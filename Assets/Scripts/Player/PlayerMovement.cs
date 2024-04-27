@@ -4,7 +4,9 @@
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float speed = 6f;
+    public float baseSpeed = 5f;
+
+    public float speed = 5f;
 
     Vector3 movement;
     Animator animator;
@@ -12,15 +14,30 @@ public class PlayerMovement : MonoBehaviour
     int floorMask;
     float camRayLength = 100f;
 
+    float duration = 0;
+
+    float buffPercentage = 0.2f;
+
     void Awake()
     {
         floorMask = LayerMask.GetMask("Floor");
         animator = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
+        speed = baseSpeed;
     }
 
     void FixedUpdate()
     {
+        if (duration > 0)
+        {
+            speed = baseSpeed + baseSpeed * buffPercentage;
+            duration -= Time.deltaTime;
+        }
+        else
+        {
+            speed = baseSpeed;
+        }
+
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
@@ -55,6 +72,12 @@ public class PlayerMovement : MonoBehaviour
     {
         bool walking = h != 0f || v != 0f;
         animator.SetBool("IsWalking", walking);
+    }
+
+    public void Buff(float speedToAdd, float duration)
+    {
+        this.duration = duration;
+        this.buffPercentage = speedToAdd;
     }
 
 }

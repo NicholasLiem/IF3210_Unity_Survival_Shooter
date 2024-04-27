@@ -4,8 +4,10 @@ namespace Nightmare
 {
     public class EnemyHealth : MonoBehaviour
     {
+        public GameObject[] orbPrefabs;
         public int startingHealth = 100;
         public float sinkSpeed = 2.5f;
+        public float spawnOrbChance = 0.5f;
         public int scoreValue = 10;
         public AudioClip deathClip;
 
@@ -16,12 +18,12 @@ namespace Nightmare
         CapsuleCollider capsuleCollider;
         EnemyMovement enemyMovement;
 
-        void Awake ()
+        void Awake()
         {
-            anim = GetComponent <Animator> ();
-            enemyAudio = GetComponent <AudioSource> ();
-            hitParticles = GetComponentInChildren <ParticleSystem> ();
-            capsuleCollider = GetComponent <CapsuleCollider> ();
+            anim = GetComponent<Animator>();
+            enemyAudio = GetComponent<AudioSource>();
+            hitParticles = GetComponentInChildren<ParticleSystem>();
+            capsuleCollider = GetComponent<CapsuleCollider>();
             enemyMovement = this.GetComponent<EnemyMovement>();
         }
 
@@ -37,11 +39,11 @@ namespace Nightmare
             capsuleCollider.attachedRigidbody.isKinematic = isKinematic;
         }
 
-        void Update ()
+        void Update()
         {
             if (IsDead())
             {
-                transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
+                transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
                 if (transform.position.y < -10f)
                 {
                     Destroy(this.gameObject);
@@ -54,7 +56,7 @@ namespace Nightmare
             return (currentHealth <= 0f);
         }
 
-        public void TakeDamage (int amount, Vector3 hitPoint)
+        public void TakeDamage(int amount, Vector3 hitPoint)
         {
             if (!IsDead())
             {
@@ -70,23 +72,41 @@ namespace Nightmare
                     enemyMovement.GoToPlayer();
                 }
             }
-                
+
             hitParticles.transform.position = hitPoint;
             hitParticles.Play();
         }
 
-        void Death ()
+        void Death()
         {
             EventManager.TriggerEvent("Sound", this.transform.position);
-            anim.SetTrigger ("Dead");
+            anim.SetTrigger("Dead");
 
             enemyAudio.clip = deathClip;
-            enemyAudio.Play ();
+            enemyAudio.Play();
+            if (Random.value < spawnOrbChance)
+            {
+                SpawnOrb();
+            }
         }
 
-        public void StartSinking ()
+        private void SpawnOrb()
         {
-            GetComponent <UnityEngine.AI.NavMeshAgent> ().enabled = false;
+            if (orbPrefabs.Length > 0)
+            {
+                GameObject selectedOrbPrefab = orbPrefabs[Random.Range(0, orbPrefabs.Length)];
+                Vector3 spawnPosition = transform.position + Vector3.up * 0.5f;
+                Instantiate(selectedOrbPrefab, spawnPosition, Quaternion.identity);
+            }
+            else
+            {
+                Debug.LogWarning("No orb prefabs assigned!");
+            }
+        }
+
+        public void StartSinking()
+        {
+            GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
             SetKinematics(true);
 
             ScoreManager.score += scoreValue;

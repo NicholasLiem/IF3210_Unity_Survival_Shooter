@@ -12,7 +12,7 @@ namespace Nightmare
         private float timer;
         private int spawned = 0;
 
-        void Start ()
+        void Start()
         {
             timer = spawnTime;
         }
@@ -41,21 +41,26 @@ namespace Nightmare
             }
         }
 
-        void Spawn ()
-        {           
+        void Spawn()
+        {
             // If the player has no health left...
-            if(playerHealth.currentHealth <= 0f)
+            if (playerHealth.currentHealth <= 0f || IsDead())
             {
                 // ... exit the function.
                 return;
             }
 
             // Find a random index between zero and one less than the number of spawn points.
-            int spawnPointIndex = Random.Range (0, spawnPoints.Length);
+            int spawnPointIndex = Random.Range(0, spawnPoints.Length);
 
             // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
-            
-            Instantiate (enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+
+            Instantiate(enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+        }
+
+        bool IsDead()
+        {
+            return !gameObject.activeSelf;
         }
     }
 }

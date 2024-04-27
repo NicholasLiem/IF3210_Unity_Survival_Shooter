@@ -9,6 +9,10 @@ namespace Nightmare
     {
         public int startingHealth = 100;
         public int currentHealth;
+
+        public float maxDamage = 2.5f;
+        public float baseDamage = 1f;
+
         public Slider healthSlider;
         public Image damageImage;
         public AudioClip deathClip;
@@ -22,6 +26,7 @@ namespace Nightmare
         PlayerShooting playerShooting;
         bool isDead;
         bool damaged;
+        bool healed;
 
         void Awake()
         {
@@ -54,6 +59,13 @@ namespace Nightmare
                 // ... set the colour of the damageImage to the flash colour.
                 damageImage.color = flashColour;
             }
+            else if (healed)
+            {
+                // ... set the colour of the damageImage to the flash colour.
+                damageImage.color = Color.green;
+                healed = false;
+
+            }
             // Otherwise...
             else
             {
@@ -63,6 +75,7 @@ namespace Nightmare
 
             // Reset the damaged flag.
             damaged = false;
+
         }
 
 
@@ -91,6 +104,20 @@ namespace Nightmare
             }
         }
 
+        public void Heal(float amount)
+        {
+            healed = true;
+            // cast to int
+            currentHealth += (int)(currentHealth * amount);
+
+            if (currentHealth > startingHealth)
+            {
+                currentHealth = startingHealth;
+            }
+
+            healthSlider.value = currentHealth;
+        }
+
         void Death()
         {
             // Set the death flag so this function won't be called again.
@@ -114,6 +141,15 @@ namespace Nightmare
         public void RestartLevel()
         {
             EventManager.TriggerEvent("GameOver");
+        }
+
+        public void PowerUp(float amount)
+        {
+            baseDamage += amount;
+            if (baseDamage > maxDamage)
+            {
+                baseDamage = maxDamage;
+            }
         }
     }
 }
