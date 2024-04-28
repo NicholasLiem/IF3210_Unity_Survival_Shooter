@@ -6,8 +6,10 @@ namespace Nightmare
 {
     public class GameOverManager : MonoBehaviour
     {
-        private PlayerHealth playerHealth;
+        public PlayerHealth playerHealth;
+        public float restartDelay = 5f;
         Animator anim;
+        float restartTimer;
 
         LevelManager lm;
         private UnityEvent listener;
@@ -18,6 +20,19 @@ namespace Nightmare
             anim = GetComponent <Animator> ();
             lm = FindObjectOfType<LevelManager>();
             EventManager.StartListening("GameOver", ShowGameOver);
+        }
+
+        void Update()
+        {
+            if (playerHealth.currentHealth <= 0)
+            {
+                anim.SetTrigger("GameOver");
+                restartTimer += Time.deltaTime;
+                if (restartTimer >= restartDelay)
+                {
+                    Application.LoadLevel(Application.loadedLevel);
+                }
+            }
         }
 
         void OnDestroy()
