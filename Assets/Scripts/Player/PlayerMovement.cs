@@ -18,10 +18,13 @@ public class PlayerMovement : MonoBehaviour
 
     float buffPercentage = 1f;
 
+    public PlayerStats playerStats;
+
     void Awake()
     {
         floorMask = LayerMask.GetMask("Floor");
         animator = GetComponent<Animator>();
+        playerStats = GetComponent<PlayerStats>();
         playerRigidbody = GetComponent<Rigidbody>();
         speed = baseSpeed;
     }
@@ -50,8 +53,11 @@ public class PlayerMovement : MonoBehaviour
     {
         movement.Set(h, 0, v);
         movement = movement.normalized * speed * Time.deltaTime;
-
         playerRigidbody.MovePosition(transform.position + movement);
+        if (playerStats != null)
+        {
+            playerStats.AddDistance(movement.magnitude);
+        }
     }
 
     void Turning()
@@ -84,5 +90,4 @@ public class PlayerMovement : MonoBehaviour
     {
         this.baseSpeed += speedToAdd;
     }
-
 }
