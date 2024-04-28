@@ -3,7 +3,6 @@ using UnityEngine;
 public class TimeManager : MonoBehaviour
 {
     public static TimeManager instance;
-    public event System.Action<int> OnMinutePassed;
 
     private float timePlayed;
     private float minuteCountdown = 60f;
@@ -24,7 +23,13 @@ public class TimeManager : MonoBehaviour
         if (minuteCountdown <= 0)
         {
             minuteCountdown = 60f;
-            OnMinutePassed?.Invoke((int)(timePlayed / 60f));
+            if (GameEventsManager.instance == null || GameEventsManager.instance.miscEvents == null)
+            {
+                Debug.LogError("GameEventsManager or miscEvents is not initialized");
+                return;
+            }
+
+            GameEventsManager.instance.miscEvents.TriggerMinutePassed((int)(timePlayed / 60f));
         }
     }
 

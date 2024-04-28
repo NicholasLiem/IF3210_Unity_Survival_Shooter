@@ -16,6 +16,7 @@ MonoBehaviour:
   displayName: Survive for one minute!
   levelRequirement: 0
   questPrerequisites: []
-  questStepPrefabs: []
+  questStepPrefabs:
+  - {fileID: 4136876856949779362, guid: eee2c2ef1af4db6fd9611ed0aadf4d22, type: 3}
   goldReward: 50
   experienceReward: 0

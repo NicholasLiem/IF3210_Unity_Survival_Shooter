@@ -5,21 +5,21 @@ using UnityEngine;
 
 public class GameEventsManager : MonoBehaviour
 {
-    public static GameEventsManager instance { get; private set; }
+    public static GameEventsManager instance;
     public MiscEvents miscEvents;
 
-
-    private void Awake()
+    void Awake()
     {
-        if (instance != null)
+        if (instance != null && instance != this)
         {
-            Debug.LogError("Found more than one Game Events Manager in the scene.");
+            Debug.LogError("Another instance of GameEventsManager exists: " + gameObject.name + " destroying!");
             Destroy(gameObject);
             return;
         }
+
         instance = this;
         DontDestroyOnLoad(gameObject);
-
         miscEvents = new MiscEvents();
+        Debug.Log("GameEventsManager initialized: " + gameObject.name);
     }
 }
