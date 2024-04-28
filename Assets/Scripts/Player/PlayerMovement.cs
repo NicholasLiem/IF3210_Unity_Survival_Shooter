@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     float duration = 0;
 
-    float buffPercentage = 0.2f;
+    float buffPercentage = 1f;
 
     void Awake()
     {
@@ -30,13 +30,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (duration > 0)
         {
-            speed = baseSpeed + baseSpeed * buffPercentage;
             duration -= Time.deltaTime;
         }
         else
         {
-            speed = baseSpeed;
+            buffPercentage = 0f;
         }
+        speed = baseSpeed + baseSpeed * buffPercentage;
 
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
@@ -78,6 +78,11 @@ public class PlayerMovement : MonoBehaviour
     {
         this.duration = duration;
         this.buffPercentage = speedToAdd;
+    }
+
+    public void AddBuff(float speedToAdd)
+    {
+        this.baseSpeed += speedToAdd;
     }
 
 }

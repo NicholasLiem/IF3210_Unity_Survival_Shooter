@@ -6,7 +6,7 @@ namespace Nightmare
     {
         public GameObject[] orbPrefabs;
         public int startingHealth = 100;
-        public float sinkSpeed = 2.5f;
+        public float sinkSpeed = 5f;
         public float spawnOrbChance = 0.5f;
         public int scoreValue = 10;
         public AudioClip deathClip;
@@ -44,7 +44,7 @@ namespace Nightmare
             if (IsDead())
             {
                 transform.Translate(-Vector3.up * sinkSpeed * Time.deltaTime);
-                if (transform.position.y < -10f)
+                if (transform.position.y < -5f)
                 {
                     Destroy(this.gameObject);
                 }

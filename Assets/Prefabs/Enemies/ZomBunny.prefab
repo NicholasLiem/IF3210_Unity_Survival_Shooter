@@ -124,7 +124,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 400004}
@@ -297,7 +297,7 @@ MonoBehaviour:
   hearingRange: 20
   wanderDistance: 40
   idleTimeRange: {x: 0.5, y: 2}
-  psychicLevels: 0.65
+  psychicLevels: 0.796
   timer: 0
 --- !u!82 &8200000
 AudioSource:
