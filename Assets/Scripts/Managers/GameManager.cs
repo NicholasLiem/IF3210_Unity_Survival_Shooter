@@ -50,21 +50,21 @@ public class GameManager : MonoBehaviour, ISaveable
         this.gameDifficulty = saveData.playerData.gameDifficulty;
     }
 
-    public void SaveJsonData()
+    public void SaveGame(int num)
     {
         SaveData sd = new();
         PopulateSaveData(sd);
 
         Debug.Log(sd);
-        if (FileManager.WriteToFile("SaveData01.dat", sd.ToJson()))
+        if (FileManager.WriteToFile(num + ".dat", sd.ToJson()))
         {
             Debug.Log("Save successful");
         }
     }
 
-    public void LoadJsonData()
+    public void LoadGame(int num)
     {
-        if (FileManager.LoadFromFile("SaveData01.dat", out var json))
+        if (FileManager.LoadFromFile(num + ".dat", out var json))
         {
             SaveData sd = new();
             sd.LoadFromJson(json);

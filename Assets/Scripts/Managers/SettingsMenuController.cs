@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class SettingsMenu : MonoBehaviour
+public class SettingsMenuController : MonoBehaviour
 {
     public TMP_InputField usernameInputField;
     public TMP_Dropdown gameDifficultyDropdown;
