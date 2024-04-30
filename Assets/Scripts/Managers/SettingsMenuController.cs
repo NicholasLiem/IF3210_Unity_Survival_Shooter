@@ -1,11 +1,9 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class SettingsMenu : MonoBehaviour
 {
     public TMP_InputField usernameInputField;
-    public AudioMixer audioMixer;
     public TMP_Dropdown gameDifficultyDropdown;
 
     void Start()
@@ -22,11 +20,6 @@ public class SettingsMenu : MonoBehaviour
         {
             GameManagement.Instance.Username = usernameInputField.text;
         }
-    }
-
-    public void SetVolume(float volume)
-    {
-        audioMixer.SetFloat("masterVol", volume);
     }
 
     public void UpdateGameDifficulty()
