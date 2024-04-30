@@ -6,27 +6,28 @@ public class SettingsMenu : MonoBehaviour
     public TMP_InputField usernameInputField;
     public TMP_Dropdown gameDifficultyDropdown;
 
-    void Start()
+    void OnEnable()
     {
-        if (GameManagement.Instance != null)
+        if (GameManager.Instance != null)
         {
-            usernameInputField.text = GameManagement.Instance.Username;
+            usernameInputField.text = GameManager.Instance.Username;
+            gameDifficultyDropdown.value = (int) GameManager.Instance.gameDifficulty;
         }
     }
 
     public void UpdateUsername()
     {
-        if (GameManagement.Instance != null)
+        if (GameManager.Instance != null)
         {
-            GameManagement.Instance.Username = usernameInputField.text;
+            GameManager.Instance.Username = usernameInputField.text;
         }
     }
 
     public void UpdateGameDifficulty()
     {
-        if (GameManagement.Instance != null)
+        if (GameManager.Instance != null)
         {
-            GameManagement.Instance.gameDifficulty = (GameDifficulty) gameDifficultyDropdown.value;
+            GameManager.Instance.gameDifficulty = (GameDifficulty) gameDifficultyDropdown.value;
         }
     }
 }
