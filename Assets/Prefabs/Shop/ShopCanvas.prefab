@@ -210,7 +210,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopCanvas: {fileID: 7323959764147611280}
   panel: {fileID: 3189720689907538609}
-  player: {fileID: 0}
   attackPetPrefab: {fileID: 1182915627347146110, guid: 6bb7dd190d0251e4388183ad894648db, type: 3}
   healPetPrefab: {fileID: 4685250781159632716, guid: 48916920fc5039043b8bec4e10a0e90b, type: 3}
   errorText: {fileID: 8054344978608541726}
@@ -233,7 +232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6387139667983068441
 RectTransform:
   m_ObjectHideFlags: 0
@@ -713,7 +712,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopCanvas: {fileID: 7323959764147611280}
   panel: {fileID: 0}
-  player: {fileID: 0}
   attackPetPrefab: {fileID: 0}
   healPetPrefab: {fileID: 0}
   errorText: {fileID: 0}
@@ -784,7 +782,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Not enough credits to purchase!
+  m_text: Not enough gold to purchase!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 75f732be230924188ac43d7fefed8aa2, type: 2}
   m_sharedMaterial: {fileID: -2911697353483398076, guid: 75f732be230924188ac43d7fefed8aa2, type: 2}

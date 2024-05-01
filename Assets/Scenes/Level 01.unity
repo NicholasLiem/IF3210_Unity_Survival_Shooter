@@ -1150,6 +1150,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2585640495210349035, guid: 4cad235a511e3ca4391907989d59bacb, type: 3}
+      propertyPath: m_text
+      value: Not enough gold to purchase!
+      objectReference: {fileID: 0}
     - target: {fileID: 2608840375161367765, guid: 4cad235a511e3ca4391907989d59bacb, type: 3}
       propertyPath: m_Pivot.x
       value: 0
