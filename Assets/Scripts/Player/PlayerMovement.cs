@@ -10,7 +10,10 @@ public class PlayerMovement : MonoBehaviour
     public Transform shopKeeper;
     public float shopThresholdRange = 3f;
     public float errorTextShowTime = 2f;
+    public float allowedShopTime = 15f;
+    float totalShopTime = 0f;
     float errorTextTimeShown = 0f;
+    bool isShopping;
 
     public float baseSpeed = 5f;
 
@@ -61,16 +64,20 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (IsNearShopkeeper())
+            if (totalShopTime <= allowedShopTime)
             {
-                errorText.SetActive(false);
-                errorTextTimeShown = 0f;
-                panel.SetActive(true);
-            } 
-            else
-            {
-                errorText.SetActive(true);
-                errorTextTimeShown = errorTextShowTime;
+                if (IsNearShopkeeper())
+                {
+                    errorText.SetActive(false);
+                    errorTextTimeShown = 0f;
+                    panel.SetActive(true);
+                    isShopping = true;
+                }
+                else
+                {
+                    errorText.SetActive(true);
+                    errorTextTimeShown = errorTextShowTime;
+                }
             }
         } 
         else
@@ -84,9 +91,22 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (!IsNearShopkeeper() && panel.activeInHierarchy)
+        // Close shop if move too far away or total shopping time exceeded allowedShopTime
+        if (!IsNearShopkeeper() && panel.activeInHierarchy || totalShopTime > allowedShopTime)
         {
             panel.SetActive(false);
+        }
+
+        // If shop panel is closed
+        if (!panel.activeInHierarchy)
+        {
+            isShopping = false;
+        }
+
+        // Keep track on shopping time
+        if (isShopping)
+        {
+            totalShopTime += Time.deltaTime;
         }
     }
 
@@ -139,5 +159,10 @@ public class PlayerMovement : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void RefreshShopTime()
+    {
+        totalShopTime = 0f;
     }
 }
