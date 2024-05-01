@@ -7,6 +7,7 @@ namespace Nightmare
     public class ScoreManager : MonoBehaviour
     {
         public static int score;
+        public static int gold = 0;
         private int levelThreshhold;
         const int LEVEL_INCREASE = 300;
 

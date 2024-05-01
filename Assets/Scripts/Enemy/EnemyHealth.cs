@@ -9,6 +9,7 @@ namespace Nightmare
         public float sinkSpeed = 5f;
         public float spawnOrbChance = 0.5f;
         public int scoreValue = 10;
+        public int goldValue = 5;
         public AudioClip deathClip;
 
         int currentHealth;
@@ -110,6 +111,7 @@ namespace Nightmare
             SetKinematics(true);
 
             ScoreManager.score += scoreValue;
+            ScoreManager.gold += goldValue;
         }
 
         public int CurrentHealth()

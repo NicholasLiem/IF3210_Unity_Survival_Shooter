@@ -1,8 +1,16 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
+    // Shop references
+    public GameObject panel;
+    public GameObject errorText;
+    public Transform shopKeeper;
+    public float shopThresholdRange = 3f;
+    public float errorTextShowTime = 2f;
+    float errorTextTimeShown = 0f;
 
     public float baseSpeed = 5f;
 
@@ -49,6 +57,39 @@ public class PlayerMovement : MonoBehaviour
         Animating(h, v);
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (IsNearShopkeeper())
+            {
+                errorText.SetActive(false);
+                errorTextTimeShown = 0f;
+                panel.SetActive(true);
+            } 
+            else
+            {
+                errorText.SetActive(true);
+                errorTextTimeShown = errorTextShowTime;
+            }
+        } 
+        else
+        {
+            if (errorTextTimeShown > 0)
+            {
+                errorTextTimeShown -= Time.deltaTime;
+            } else
+            {
+                errorText.SetActive(false);
+            }
+        }
+
+        if (!IsNearShopkeeper() && panel.activeInHierarchy)
+        {
+            panel.SetActive(false);
+        }
+    }
+
     void Move(float h, float v)
     {
         movement.Set(h, 0, v);
@@ -89,5 +130,14 @@ public class PlayerMovement : MonoBehaviour
     public void AddBuff(float speedToAdd)
     {
         this.baseSpeed += speedToAdd;
+    }
+
+    bool IsNearShopkeeper()
+    {
+        if (Vector3.Distance(this.transform.position, shopKeeper.position) <= shopThresholdRange)
+        {
+            return true;
+        }
+        return false;
     }
 }

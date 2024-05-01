@@ -5101,6 +5101,7 @@ GameObject:
   - component: {fileID: 386852876301057711}
   - component: {fileID: 3893533671396844494}
   - component: {fileID: 4218924790822684166}
+  - component: {fileID: 3369259017828994929}
   m_Layer: 6
   m_Name: Raja
   m_TagString: Enemy
@@ -5255,6 +5256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 0.5
   attackDamage: 10
+  petTag: Pet
 --- !u!114 &5936889065350288966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5275,6 +5277,7 @@ MonoBehaviour:
   sinkSpeed: 2.5
   spawnOrbChance: 0.5
   scoreValue: 50
+  goldValue: 5
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
 --- !u!114 &3820857267784364635
 MonoBehaviour:
@@ -5418,6 +5421,19 @@ MonoBehaviour:
   spawnTime: 10
   spawnPoints:
   - {fileID: 1374882004498950252}
+--- !u!114 &3369259017828994929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6072423485697858042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb1f7834c245ba844bd4910d91356662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  petPrefab: {fileID: 1816515176662853286, guid: 300caf8145ed0804ba34ec34897b84ee, type: 3}
 --- !u!1 &7028097248923132186
 GameObject:
   m_ObjectHideFlags: 0
