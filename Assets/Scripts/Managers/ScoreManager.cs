@@ -15,7 +15,9 @@ namespace Nightmare
 
         void Awake ()
         {
-            sText = GetComponent<Text>();
+            GameObject scoreTextObject = GameObject.Find("ScoreText");
+            if (scoreTextObject != null)
+                sText = scoreTextObject.GetComponent<Text>();
             score = 0;
             levelThreshhold = LEVEL_INCREASE;
         }
