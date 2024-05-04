@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using System.Collections.Generic;
 
 public class StatsDisplay : MonoBehaviour
 {
@@ -8,12 +8,16 @@ public class StatsDisplay : MonoBehaviour
     public Text goldCollectedText;
     public Text minutesPlayedText;
     public Text distanceText;
+    public Text orbsCollectedText;
+    public Text enemiesKilledText;
 
     void Awake()
     {
         distanceText = FindComponentInChildByName<Text>("DistanceTraveledText");
         minutesPlayedText = FindComponentInChildByName<Text>("MinutesPlayedText");
         goldCollectedText = FindComponentInChildByName<Text>("GoldCollectedText");
+        orbsCollectedText = FindComponentInChildByName<Text>("OrbsCollectedText");
+        enemiesKilledText = FindComponentInChildByName<Text>("EnemiesKilledText");
     }
 
     void Update()
@@ -42,5 +46,19 @@ public class StatsDisplay : MonoBehaviour
             minutesPlayedText.text = $"Minutes Played: {playerStats.MinutesPlayed}";
         if (goldCollectedText != null)
             goldCollectedText.text = $"Gold Collected: {playerStats.GoldCollected}";
+        if (orbsCollectedText != null)
+            orbsCollectedText.text = GenerateStatsText(playerStats.OrbsCollected, "Orbs Collected");
+        if (enemiesKilledText != null)
+            enemiesKilledText.text = GenerateStatsText(playerStats.EnemyKillCount, "Enemies Killed");
+    }
+
+    string GenerateStatsText(Dictionary<string, int> statsDictionary, string title)
+    {
+        string text = $"{title}:\n";
+        foreach (KeyValuePair<string, int> entry in statsDictionary)
+        {
+            text += $"{entry.Key}: {entry.Value}\n";
+        }
+        return text;
     }
 }
