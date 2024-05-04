@@ -11,7 +11,7 @@ namespace Nightmare
         public int scoreValue = 10;
         public int goldValue = 5;
         public AudioClip deathClip;
-
+        public EnemyData data;
         int currentHealth;
         Animator anim;
         AudioSource enemyAudio;
@@ -89,6 +89,8 @@ namespace Nightmare
             {
                 SpawnOrb();
             }
+
+            GameEventsManager.instance.enemyKilledEvents.TriggerEnemyKilled(data.enemyType);
         }
 
         private void SpawnOrb()

@@ -5279,6 +5279,7 @@ MonoBehaviour:
   scoreValue: 50
   goldValue: 5
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
+  data: {fileID: 11400000, guid: 4bf3ecb1b3d1fa6a4900769762453604, type: 2}
 --- !u!114 &3820857267784364635
 MonoBehaviour:
   m_ObjectHideFlags: 0

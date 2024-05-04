@@ -37,7 +37,6 @@ namespace Nightmare
 
         void OnTriggerEnter(Collider other)
         {
-            Debug.Log("OnTriggerEnter Enemy Attack");
             // If the entering collider is the player...
             if (other.gameObject == player || other.CompareTag(petTag))
             {
@@ -53,7 +52,6 @@ namespace Nightmare
 
         void OnTriggerExit(Collider other)
         {
-            Debug.Log("OnTriggerExit Enemy Attack");
             // If the exiting collider is the player...
             if (other.gameObject == player || other.CompareTag(petTag))
             {

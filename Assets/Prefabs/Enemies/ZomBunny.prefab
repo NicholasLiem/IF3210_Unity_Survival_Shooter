@@ -260,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 0.5
   attackDamage: 10
+  petTag: Pet
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,7 +281,9 @@ MonoBehaviour:
   sinkSpeed: 2.5
   spawnOrbChance: 0.5
   scoreValue: 7
+  goldValue: 5
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
+  data: {fileID: 11400000, guid: 6150500e25e4cb5a6be4fe145eed95f2, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

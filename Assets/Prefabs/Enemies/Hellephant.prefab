@@ -10255,7 +10255,9 @@ MonoBehaviour:
   sinkSpeed: 2.5
   spawnOrbChance: 0.5
   scoreValue: 77
+  goldValue: 5
   deathClip: {fileID: 8300000, guid: 8c615fd0429f34edf85539d70279360d, type: 3}
+  data: {fileID: 11400000, guid: 3b42fdefe385c0210b20a6dadf37b6e5, type: 2}
 --- !u!114 &11415352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10270,6 +10272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 0.75
   attackDamage: 30
+  petTag: Pet
 --- !u!1 &184534
 GameObject:
   m_ObjectHideFlags: 0
