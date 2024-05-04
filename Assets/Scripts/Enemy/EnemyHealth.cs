@@ -114,6 +114,8 @@ namespace Nightmare
 
             ScoreManager.score += scoreValue;
             ScoreManager.gold += goldValue;
+            // TODO: Change gold into game manager instead of score manager
+            GameEventsManager.instance.miscEvents.TriggerGoldCollected(goldValue);
         }
 
         public int CurrentHealth()
