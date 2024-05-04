@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace Nightmare
 {
@@ -31,6 +32,7 @@ namespace Nightmare
                 if (restartTimer >= restartDelay)
                 {
                     Application.LoadLevel(Application.loadedLevel);
+                    LoadMainMenu();
                 }
             }
         }
@@ -52,6 +54,11 @@ namespace Nightmare
             lm.LoadInitialLevel();
             anim.SetBool("GameOver", false);
             playerHealth.ResetPlayer();
+        }
+
+        private void LoadMainMenu()
+        {
+            SceneManager.LoadScene("Main Menu");
         }
     }
 }
