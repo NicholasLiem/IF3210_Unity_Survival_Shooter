@@ -107,12 +107,22 @@ namespace Nightmare
             if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
             {
                 EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
+                BufferHealth bufferPetHealth = shootHit.collider.GetComponent<BufferHealth>();
+
                 if (enemyHealth != null)
                 {
                     float distance = Vector3.Distance(transform.position, shootHit.point);
                     int finalDamage = (int)(damagePerShot * (1 - distance / range));
                     Debug.Log("This is final damage " + finalDamage);
                     enemyHealth.TakeDamage(finalDamage, shootHit.point);
+                }
+
+                // If the BufferHealth component exist
+                if (bufferPetHealth != null)
+                {
+                    float distance = Vector3.Distance(transform.position, shootHit.point);
+                    int finalDamage = (int)(damagePerShot * (1 - distance / range));
+                    bufferPetHealth.TakeDamage(finalDamage);
                 }
                 gunLine.SetPosition(1, shootHit.point);
             }

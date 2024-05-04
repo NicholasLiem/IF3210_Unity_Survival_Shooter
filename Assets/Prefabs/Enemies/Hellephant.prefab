@@ -9980,6 +9980,7 @@ GameObject:
   - component: {fileID: 11487314}
   - component: {fileID: 11402556}
   - component: {fileID: 11415352}
+  - component: {fileID: 6454042850095162425}
   m_Layer: 6
   m_Name: Hellephant
   m_TagString: Enemy
@@ -10273,6 +10274,19 @@ MonoBehaviour:
   timeBetweenAttacks: 0.75
   attackDamage: 30
   petTag: Pet
+--- !u!114 &6454042850095162425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf82f17ca433e0469bfbe69b3a2773a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  petPrefab: {fileID: 1816515176662853286, guid: 300caf8145ed0804ba34ec34897b84ee, type: 3}
 --- !u!1 &184534
 GameObject:
   m_ObjectHideFlags: 0

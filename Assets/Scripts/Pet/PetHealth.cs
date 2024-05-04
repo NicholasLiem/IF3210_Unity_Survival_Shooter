@@ -6,6 +6,7 @@ public class PetHealth : MonoBehaviour
 {
     public int startingHealth = 100;
     public float sinkSpeed = 5f;
+    public bool godMode = false;
     // public AudioClip deathClip;
 
     int currentHealth;
@@ -52,6 +53,11 @@ public class PetHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        if (godMode)
+        {
+            return;
+        }
+
         if (!IsDead())
         {
             // enemyAudio.Play();
@@ -82,5 +88,20 @@ public class PetHealth : MonoBehaviour
     public int CurrentHealth()
     {
         return currentHealth;
+    }
+
+    public void enableGodMode()
+    {
+        godMode = true;
+    }
+
+    public void disableGodMode()
+    {
+        godMode = false;
+    }
+
+    public void instantKillPet()
+    {
+        currentHealth = 0;
     }
 }

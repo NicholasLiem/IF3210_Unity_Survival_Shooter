@@ -103,6 +103,8 @@ namespace Nightmare
                 Debug.Log(hitCollider);
                 // Check if the collider is an enemy
                 EnemyHealth enemyHealth = hitCollider.GetComponent<EnemyHealth>();
+                BufferHealth bufferPetHealth = hitCollider.GetComponent<BufferHealth>();
+
                 Debug.Log(enemyHealth);
                 if (enemyHealth != null)
                 {
@@ -115,6 +117,19 @@ namespace Nightmare
                     {
                         enemyHealth.TakeDamage(damagePerHit, toEnemy);
                     }
+                }
+
+                // If the BufferHealth component exist
+                if (bufferPetHealth != null)
+                {
+                    Vector3 toEnemy = (hitCollider.transform.position - transform.position).normalized;
+
+                    // Check if the buffer pet is in front of the player
+                    if (Vector3.Dot(toEnemy, transform.forward) > 0)
+                    {
+                        bufferPetHealth.TakeDamage(damagePerHit);
+                    }
+                    
                 }
             }
         }

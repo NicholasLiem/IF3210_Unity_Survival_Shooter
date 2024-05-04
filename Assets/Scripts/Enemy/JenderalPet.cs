@@ -1,15 +1,15 @@
-using Nightmare;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Nightmare;
 
-public class RajaPet : MonoBehaviour
+public class JenderalPet : MonoBehaviour
 {
     public GameObject petPrefab;
 
     private void Awake()
     {
-        int numOfPets = 2;
+        int numOfPets = 1;
         for (int i = 0; i < numOfPets; i++)
         {
             // Instantiate the prefab

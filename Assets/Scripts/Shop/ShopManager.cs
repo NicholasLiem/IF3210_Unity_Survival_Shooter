@@ -11,7 +11,7 @@ public class ShopManager : MonoBehaviour
     public GameObject healPetPrefab;
     public GameObject errorText;
     public float errorTextShowTime = 2f;
-    public int petPrice = 10;
+    public int petPrice = 50;
     float errorTextTimeShown = 0f;
     GameObject player;
 
