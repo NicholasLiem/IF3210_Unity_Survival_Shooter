@@ -21,13 +21,13 @@ public class PlayerStats : MonoBehaviour
         GameEventsManager.instance.enemyKilledEvents.OnEnemyKilled += AddEnemiesKilled;
         GameEventsManager.instance.playerActionEvents.OnShotFired += AddShotFired;
         GameEventsManager.instance.playerActionEvents.OnShotHit += AddSuccessfulHit;
+        GameEventsManager.instance.playerActionEvents.OnPlayerMovement += AddDistance;
     }
 
-    public void AddDistance(float distance)
+    private void AddDistance(float distance)
     {
         DistanceTraveled += distance;
     }
-
 
     private void UpdateMinutesPlayed(int minutes)
     {
@@ -88,5 +88,17 @@ public class PlayerStats : MonoBehaviour
             Debug.Log("Successful Hits: " + SuccessfulHits);
             Debug.Log("Total Hits: " + TotalShotsFired);
         }
+    }
+
+    private void ResetStats()
+    {
+        ShotAccuracy = 0;
+        TotalShotsFired = 0;
+        SuccessfulHits = 0;
+        DistanceTraveled = 0;
+        MinutesPlayed = 0;
+        GoldCollected = 0;
+        OrbsCollected = new Dictionary<string, int>();
+        EnemyKillCount = new Dictionary<string, int>();
     }
 }

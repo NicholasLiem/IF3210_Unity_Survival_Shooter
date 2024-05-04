@@ -9,6 +9,8 @@ public class PlayerActionEvents
 
     public event Action<bool> OnShotHit;
 
+    public event Action<float> OnPlayerMovement;
+
     public void TriggerShotFired()
     {
         OnShotFired?.Invoke();
@@ -17,5 +19,10 @@ public class PlayerActionEvents
     public void TriggerShotHit(bool hit)
     {
         OnShotHit?.Invoke(hit);
+    }
+
+    public void TriggerPlayerMovement(float distance)
+    {
+        OnPlayerMovement?.Invoke(distance);
     }
 }
