@@ -15,7 +15,7 @@ namespace Nightmare
 
         void Awake ()
         {
-            sText = GetComponent <Text> ();
+            sText = GetComponent<Text>();
             score = 0;
             levelThreshhold = LEVEL_INCREASE;
         }
