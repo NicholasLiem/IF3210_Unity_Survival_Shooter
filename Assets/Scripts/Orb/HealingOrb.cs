@@ -7,6 +7,7 @@ namespace Nightmare
 {
     public class HealingOrb : MonoBehaviour
     {
+        public string orbType = "Healing Orb";
         public float despawnDelay = 5f; // Delay before despawning the orb
 
         private void Start()
@@ -21,6 +22,7 @@ namespace Nightmare
             if (other.CompareTag("Player"))
             {
                 Debug.Log("PICKED UP");
+                GameEventsManager.instance.miscEvents.TriggerOrbsCollected(orbType);
 
                 PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
 
@@ -28,6 +30,7 @@ namespace Nightmare
                 {
                     playerHealth.Heal(healthToAdd);
                 }
+                
                 CancelInvoke("DespawnOrb");
 
                 Destroy(gameObject);

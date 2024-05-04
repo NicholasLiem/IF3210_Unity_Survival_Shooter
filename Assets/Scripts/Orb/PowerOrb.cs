@@ -7,6 +7,8 @@ namespace Nightmare
 {
     public class PowerOrb : MonoBehaviour
     {
+        public string orbType = "Power Orb";
+
         public float powerToAdd = 0.10f;
 
         public float despawnDelay = 5f; // Delay before despawning the orb
@@ -21,6 +23,7 @@ namespace Nightmare
             if (other.CompareTag("Player"))
             {
                 Debug.Log("PICKED UP");
+                GameEventsManager.instance.miscEvents.TriggerOrbsCollected(orbType);
 
                 PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
                 if (playerHealth != null)

@@ -6,15 +6,16 @@ public class PlayerStats : MonoBehaviour
     public float ShotAccuracy {get; private set;}
     public float DistanceTraveled { get; private set; }
     public int MinutesPlayed { get; private set; } 
-    public int OrbsCollected {get; private set;}
     public int GoldCollected {get; private set;}
 
+    public Dictionary<string, int> OrbsCollected { get; private set; } = new Dictionary<string, int>();
     public Dictionary<string, int> EnemyKillCount { get; private set; } = new Dictionary<string, int>();
 
 
     private void OnEnable()
     {
         GameEventsManager.instance.miscEvents.OnMinutePassed += UpdateMinutesPlayed;
+        GameEventsManager.instance.miscEvents.OnOrbsCollected += AddOrbsCollected;
         GameEventsManager.instance.enemyKilledEvents.OnEnemyKilled += AddEnemiesKilled;
     }
 
@@ -40,9 +41,16 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    private void AddOrbsCollected(int orbsCollected)
+    private void AddOrbsCollected(string orbType)
     {
-        OrbsCollected += orbsCollected;
+        if (OrbsCollected.ContainsKey(orbType))
+        {
+            OrbsCollected[orbType]++;
+        }
+        else
+        {
+            OrbsCollected.Add(orbType, 1);
+        }
     }
 
     private void AddGoldCollected(int goldCollected)

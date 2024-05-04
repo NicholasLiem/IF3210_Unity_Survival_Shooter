@@ -7,6 +7,7 @@ namespace Nightmare
 {
     public class SpeedyOrb : MonoBehaviour
     {
+        public string orbType = "Speedy Orb";
         public float speedToAdd = 0.2f;
         public float duration = 15f;
 
@@ -23,6 +24,7 @@ namespace Nightmare
             if (other.CompareTag("Player"))
             {
                 Debug.Log("PICKED UP");
+                GameEventsManager.instance.miscEvents.TriggerOrbsCollected(orbType);
 
                 PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
 
