@@ -3,7 +3,9 @@ using System.Collections.Generic;
 
 public class PlayerStats : MonoBehaviour
 {
-    public float ShotAccuracy {get; private set;} = 1;
+    public float ShotAccuracy {get; private set;} = 0;
+    public int TotalShotsFired { get; private set; } = 0;
+    public int SuccessfulHits { get; private set; } = 0;
     public float DistanceTraveled { get; private set; } = 0;
     public int MinutesPlayed { get; private set; } = 0;
     public int GoldCollected {get; private set;} = 0;
@@ -17,6 +19,8 @@ public class PlayerStats : MonoBehaviour
         GameEventsManager.instance.miscEvents.OnOrbsCollected += AddOrbsCollected;
         GameEventsManager.instance.miscEvents.OnGoldCollected += AddGoldCollected;
         GameEventsManager.instance.enemyKilledEvents.OnEnemyKilled += AddEnemiesKilled;
+        GameEventsManager.instance.playerActionEvents.OnShotFired += AddShotFired;
+        GameEventsManager.instance.playerActionEvents.OnShotHit += AddSuccessfulHit;
     }
 
     public void AddDistance(float distance)
@@ -59,9 +63,30 @@ public class PlayerStats : MonoBehaviour
         GoldCollected += goldCollected;
     }
 
-    // TODO: Implement this
-    private void UpdateShotAccuracy(int shots)
+    private void AddShotFired()
     {
-        return;
+        TotalShotsFired++;
+        UpdateShotAccuracy();
+    }
+
+    private void AddSuccessfulHit(bool successfulHit)
+    {
+        if (successfulHit)
+        {
+            SuccessfulHits++;
+        }
+
+        UpdateShotAccuracy();
+    }
+
+    private void UpdateShotAccuracy()
+    {
+        if (TotalShotsFired > 0)
+        {
+            ShotAccuracy = (float)SuccessfulHits / TotalShotsFired;
+            Debug.Log("Shot Accuracy: " + ShotAccuracy);
+            Debug.Log("Successful Hits: " + SuccessfulHits);
+            Debug.Log("Total Hits: " + TotalShotsFired);
+        }
     }
 }

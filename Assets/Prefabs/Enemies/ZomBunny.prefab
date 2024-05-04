@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400000}
   - component: {fileID: 13700000}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Zombunny
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 8200000}
   - component: {fileID: 11400006}
   - component: {fileID: 5099967821534649692}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: ZomBunny
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 400004}
   - component: {fileID: 19800000}
   - component: {fileID: 19900000}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: HitParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5337,7 +5337,7 @@ GameObject:
   - component: {fileID: 400006}
   - component: {fileID: 19800002}
   - component: {fileID: 19900002}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: DeathParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10219,7 +10219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 416352}
   - component: {fileID: 10870686}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}

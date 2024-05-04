@@ -11,6 +11,8 @@ public class StatsDisplay : MonoBehaviour
     public Text orbsCollectedText;
     public Text enemiesKilledText;
 
+    public Text shotAccuracyText;
+
     void Awake()
     {
         distanceText = FindComponentInChildByName<Text>("DistanceTraveledText");
@@ -18,6 +20,7 @@ public class StatsDisplay : MonoBehaviour
         goldCollectedText = FindComponentInChildByName<Text>("GoldCollectedText");
         orbsCollectedText = FindComponentInChildByName<Text>("OrbsCollectedText");
         enemiesKilledText = FindComponentInChildByName<Text>("EnemiesKilledText");
+        shotAccuracyText = FindComponentInChildByName<Text>("ShotAccuracyText");
     }
 
     void Update()
@@ -50,6 +53,8 @@ public class StatsDisplay : MonoBehaviour
             orbsCollectedText.text = GenerateStatsText(playerStats.OrbsCollected, "Orbs Collected");
         if (enemiesKilledText != null)
             enemiesKilledText.text = GenerateStatsText(playerStats.EnemyKillCount, "Enemies Killed");
+        if (shotAccuracyText != null)
+            shotAccuracyText.text = $"Shot Accuracy: {playerStats.ShotAccuracy * 100:F2}%";
     }
 
     string GenerateStatsText(Dictionary<string, int> statsDictionary, string title)

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8936552893024627331}
   - component: {fileID: 5132193175424742136}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Zombunny
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6891647639502296061}
   - component: {fileID: 7197339077716045323}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 217471744984243940}
   - component: {fileID: 533919283257346479}
   - component: {fileID: 5080420254322048519}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: HitParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5102,7 +5102,7 @@ GameObject:
   - component: {fileID: 3893533671396844494}
   - component: {fileID: 4218924790822684166}
   - component: {fileID: 3369259017828994929}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Raja
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -5448,7 +5448,7 @@ GameObject:
   - component: {fileID: 8715862662131142614}
   - component: {fileID: 7796574122940726543}
   - component: {fileID: 6379670227359014835}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RajaField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5568,7 +5568,7 @@ GameObject:
   - component: {fileID: 3665556908422963696}
   - component: {fileID: 6002019307608859075}
   - component: {fileID: 6517364966999324279}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: DeathParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10387,7 +10387,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 01ffe1f3679a0894087ea5e74106fb93, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

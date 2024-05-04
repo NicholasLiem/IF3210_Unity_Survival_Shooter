@@ -8,6 +8,7 @@ public class GameEventsManager : MonoBehaviour
     public static GameEventsManager instance;
     public MiscEvents miscEvents;
     public EnemyKilledEvents enemyKilledEvents;
+    public PlayerActionEvents playerActionEvents;
 
     void Awake()
     {
@@ -22,6 +23,7 @@ public class GameEventsManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         miscEvents = new MiscEvents();
         enemyKilledEvents = new EnemyKilledEvents();
+        playerActionEvents = new PlayerActionEvents();
         Debug.Log("GameEventsManager initialized: " + gameObject.name);
     }
 }
