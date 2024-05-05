@@ -1,6 +1,8 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+
 
 namespace Nightmare
 {
@@ -15,6 +17,7 @@ namespace Nightmare
 
         float timer;
         Ray shootRay = new Ray();
+        RaycastHit shootHit;
         int shootableMask;
         ParticleSystem gunParticles;
         LineRenderer gunLine;
@@ -28,25 +31,33 @@ namespace Nightmare
 
         void Awake()
         {
-            // Set up the references and layer mask
             shootableMask = LayerMask.GetMask("Shootable", "Floor");
             gunParticles = GetComponent<ParticleSystem>();
             gunLine = GetComponent<LineRenderer>();
             gunAudio = GetComponent<AudioSource>();
             gunLight = GetComponent<Light>();
+
             AdjustGrenadeStock(0);
 
             listener = new UnityAction(CollectGrenade);
+
             EventManager.StartListening("GrenadePickup", CollectGrenade);
             StartPausible();
         }
-
         void OnDestroy()
         {
             EventManager.StopListening("GrenadePickup", CollectGrenade);
             StopPausible();
         }
 
+
+        // Start is called before the first frame update
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
         void Update()
         {
             if (isPaused)
@@ -65,69 +76,6 @@ namespace Nightmare
             }
         }
 
-        void Shoot()
-        {
-            timer = 0f;
-            gunAudio.Play();
-            gunLight.enabled = true;
-            gunParticles.Stop();
-            gunParticles.Play();
-            gunLine.enabled = true;
-            gunLine.SetPosition(0, transform.position);
-
-            shootRay.origin = transform.position;
-            shootRay.direction = transform.forward;
-
-            RaycastHit[] hits = Physics.RaycastAll(shootRay, range, shootableMask);
-            Array.Sort(hits, (x, y) => x.distance.CompareTo(y.distance));
-
-            bool hitTarget = false;
-            foreach (var hit in hits)
-            {
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Shootable"))
-                {
-                    ProcessHit(hit);
-                    hitTarget = true;
-                    break;
-                }
-            }
-
-            if (!hitTarget)
-            {
-                GameEventsManager.instance.playerActionEvents.TriggerShotHit(false);
-                gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
-            }
-        }
-
-        void ProcessHit(RaycastHit hit)
-        {
-            GameEventsManager.instance.playerActionEvents.TriggerShotHit(true);
-            EnemyHealth enemyHealth = hit.collider.GetComponent<EnemyHealth>();
-            BufferHealth bufferPetHealth = hit.collider.GetComponent<BufferHealth>();
-
-            if (enemyHealth != null)
-            {
-                float distance = Vector3.Distance(transform.position, hit.point);
-                int finalDamage = (int)(damagePerShot * (1 - distance / range));
-                enemyHealth.TakeDamage(finalDamage, hit.point);
-            }
-
-            if (bufferPetHealth != null)
-            {
-                float distance = Vector3.Distance(transform.position, hit.point);
-                int finalDamage = (int)(damagePerShot * (1 - distance / range));
-                bufferPetHealth.TakeDamage(finalDamage);
-            }
-
-            gunLine.SetPosition(1, hit.point);
-        }
-
-        void DisableEffects()
-        {
-            gunLine.enabled = false;
-            gunLight.enabled = false;
-        }
-
         public void CollectGrenade()
         {
             AdjustGrenadeStock(1);
@@ -137,6 +85,59 @@ namespace Nightmare
         {
             grenadeStock += change;
             GrenadeManager.grenades = grenadeStock;
+        }
+
+        void Shoot()
+        {
+            timer = 0f;
+
+            gunAudio.Play();
+
+            gunLight.enabled = true;
+
+            gunParticles.Stop();
+            gunParticles.Play();
+
+            gunLine.enabled = true;
+            gunLine.SetPosition(0, transform.position);
+
+            shootRay.origin = transform.position;
+            shootRay.direction = transform.forward;
+
+            if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
+            {
+                EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
+                BufferHealth bufferPetHealth = shootHit.collider.GetComponent<BufferHealth>();
+
+                if (enemyHealth != null)
+                {
+                    float distance = Vector3.Distance(transform.position, shootHit.point);
+                    int finalDamage = (int)(damagePerShot * (1 - distance / range));
+                    Debug.Log("This is final damage " + finalDamage);
+                    enemyHealth.TakeDamage(finalDamage, shootHit.point);
+                }
+
+                // If the BufferHealth component exist
+                if (bufferPetHealth != null)
+                {
+                    float distance = Vector3.Distance(transform.position, shootHit.point);
+                    int finalDamage = (int)(damagePerShot * (1 - distance / range));
+                    bufferPetHealth.TakeDamage(finalDamage);
+                }
+                gunLine.SetPosition(1, shootHit.point);
+            }
+            else
+            {
+                gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
+            }
+        }
+
+        public void DisableEffects()
+        {
+            // Disable the line renderer and the light.
+            gunLine.enabled = false;
+            // faceLight.enabled = false;
+            gunLight.enabled = false;
         }
     }
 }
