@@ -10332,7 +10332,7 @@ GameObject:
   - component: {fileID: 1947085258173452093}
   - component: {fileID: 8506293637836711930}
   - component: {fileID: 9125666312079647783}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: JenderalField
   m_TagString: Untagged
   m_Icon: {fileID: 0}

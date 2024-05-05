@@ -5448,7 +5448,7 @@ GameObject:
   - component: {fileID: 8715862662131142614}
   - component: {fileID: 7796574122940726543}
   - component: {fileID: 6379670227359014835}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RajaField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
