@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5433782662395266149}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: leg.F.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4500116894305818622}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: leg.F.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2040935443677120493}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: leg.B.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,11 +105,10 @@ GameObject:
   - component: {fileID: 5256369973690241610}
   - component: {fileID: 8902937255707109150}
   - component: {fileID: 8300070317990792599}
-  - component: {fileID: 1527402012339782182}
   - component: {fileID: 3150201002264974730}
   - component: {fileID: 8773359816297573033}
   - component: {fileID: 4106573138444486600}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Buff Pet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,27 +204,6 @@ CapsuleCollider:
   m_Height: 0.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0.2}
---- !u!135 &1527402012339782182
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1816515176662853286}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Radius: 5
-  m_Center: {x: 0, y: 0.5, z: 0.15}
 --- !u!195 &3150201002264974730
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -289,7 +267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4116139172443069548}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3486924437312409688}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: tail.01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +330,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8210594569019115933}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: ear.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3219217539572601017}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: ear.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -414,7 +392,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2397993924845369909}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7945139039129743388}
   - component: {fileID: 8961794477112020427}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Mesh_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +577,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5390895654402853359}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: leg.B.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,7 +608,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1280580953409822399}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
