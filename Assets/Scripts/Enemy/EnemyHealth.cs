@@ -12,7 +12,7 @@ namespace Nightmare
         public int goldValue = 5;
         public AudioClip deathClip;
         public EnemyData data;
-        int currentHealth;
+        public int currentHealth;
         Animator anim;
         AudioSource enemyAudio;
         ParticleSystem hitParticles;

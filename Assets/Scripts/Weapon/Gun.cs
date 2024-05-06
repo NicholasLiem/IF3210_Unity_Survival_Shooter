@@ -26,6 +26,7 @@ namespace Nightmare
         public Light faceLight;
         float effectsDisplayTime = 0.2f;
         int grenadeStock = 99;
+        bool oneShotKillCheat = false;
 
         private UnityAction listener;
 
@@ -43,6 +44,10 @@ namespace Nightmare
 
 
             StartPausible();
+        }
+
+        public void OneShotKillCheat() {
+            oneShotKillCheat = true;
         }
 
         void OnDestroy()
@@ -116,18 +121,25 @@ namespace Nightmare
                 // Try and find an EnemyHealth script on the gameobject hit.
                 EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
                 BufferHealth bufferPetHealth = shootHit.collider.GetComponent<BufferHealth>();
+                
+                int damage = damagePerShot;
 
+                if (oneShotKillCheat)
+                {
+                    damage = enemyHealth.currentHealth;
+                }
+                
                 // If the EnemyHealth component exist...
                 if (enemyHealth != null)
                 {
                     // ... the enemy should take damage.
-                    enemyHealth.TakeDamage((int)(damagePerShot * multiplier), shootHit.point);
+                    enemyHealth.TakeDamage((int)(damage * multiplier), shootHit.point);
                 }
 
                 // If the BufferHealth component exist
                 if (bufferPetHealth != null)
                 {
-                    bufferPetHealth.TakeDamage((int)(damagePerShot * multiplier));
+                    bufferPetHealth.TakeDamage((int)(damage * multiplier));
                 }
 
                 // Set the second position of the line renderer to the point the raycast hit.
