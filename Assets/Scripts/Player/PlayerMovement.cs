@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
@@ -7,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     // Shop references
     public GameObject panel;
     public GameObject errorText;
+    public GameObject cheatingInputField;
     public Transform shopKeeper;
     public float shopThresholdRange = 3f;
     public float errorTextShowTime = 2f;
@@ -16,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     float totalShopTime = 0f;
     float errorTextTimeShown = 0f;
     bool isShopping;
+    public bool isCheating = false;
 
     public float baseSpeed = 5f;
 
@@ -105,6 +108,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 errorText.SetActive(false);
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            isCheating = !isCheating;
+            Debug.Log(isCheating);
+            cheatingInputField.gameObject.SetActive(isCheating);
         }
 
         // Close shop if move too far away or total shopping time exceeded allowedShopTime
