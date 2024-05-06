@@ -27,6 +27,7 @@ namespace Nightmare
         public bool isDead;
         bool damaged;
         bool healed;
+        bool noDamageCheat = false;
 
         void Awake()
         {
@@ -42,6 +43,11 @@ namespace Nightmare
         private void Start()
         {
             baseDamage = GameManager.Instance.baseDemage;
+        }
+
+        public void NoDamageCheat()
+        {
+            noDamageCheat = true;
         }
 
         public void ResetPlayer()
@@ -86,28 +92,33 @@ namespace Nightmare
 
         public void TakeDamage(int amount)
         {
-            if (godMode || isDead)
-                return;
-
-            // Set the damaged flag so the screen will flash.
-            damaged = true;
-
-            // Reduce the current health by the damage amount.
-            currentHealth -= amount;
-
-            // Set the health bar's value to the current health.
-            healthSlider.value = currentHealth;
-
-            // Play the hurt sound effect.
-            playerAudio.Play();
-
-            // If the player has lost all it's health and the death flag hasn't been set yet...
-            if (currentHealth <= 0 && !isDead)
+            Debug.Log(noDamageCheat);
+            if (!noDamageCheat)
             {
-                // ... it should die.
+                if (godMode)
+                    return;
+
+                // Set the damaged flag so the screen will flash.
+                damaged = true;
+
+                // Reduce the current health by the damage amount.
+                currentHealth -= amount;
+
+                // Set the health bar's value to the current health.
+                healthSlider.value = currentHealth;
+
+                // Play the hurt sound effect.
+                playerAudio.Play();
+
+                // If the player has lost all it's health and the death flag hasn't been set yet...
+                if (currentHealth <= 0 && !isDead)
+                {
+                    // ... it should die.
                 GameManager.Instance.petData.Clear();
-                Death();
+                    Death();
+                }
             }
+            Debug.Log("This is current health " + currentHealth);
         }
 
         public void Heal(float amount)
