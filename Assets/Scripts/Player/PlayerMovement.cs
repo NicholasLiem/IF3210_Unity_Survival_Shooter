@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     // Shop references
     public GameObject panel;
     public GameObject errorText;
-    public GameObject cheatingInputField;
+    public TMPro.TMP_InputField cheatingInputField;
     public Transform shopKeeper;
     public float shopThresholdRange = 3f;
     public float errorTextShowTime = 2f;
@@ -57,6 +57,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Instantiate(healPetPrefab, this.transform.position, Quaternion.identity);
         }
+    }
+
+    public void TwoTimeSpeed()
+    {
+        speed = speed * 2;
     }
 
     void FixedUpdate()
@@ -110,11 +115,24 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             isCheating = !isCheating;
-            Debug.Log(isCheating);
-            cheatingInputField.gameObject.SetActive(isCheating);
+
+            if (isCheating)
+            {
+                cheatingInputField.gameObject.SetActive(isCheating);
+                cheatingInputField.onEndEdit.AddListener(EndInputField);
+                cheatingInputField.Select();
+                cheatingInputField.ActivateInputField();
+                cheatingInputField.text = "";
+            } 
+            else
+            {
+                cheatingInputField.text = "";
+                cheatingInputField.DeactivateInputField();
+                cheatingInputField.gameObject.SetActive(isCheating);
+            }
         }
 
         // Close shop if move too far away or total shopping time exceeded allowedShopTime
@@ -136,9 +154,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void EndInputField(string text)
+    {
+        cheatingInputField.text = "";
+        cheatingInputField.DeactivateInputField();
+        cheatingInputField.gameObject.SetActive(false);
+        isCheating = false;
+    }
+
     void Move(float h, float v)
     {
         movement.Set(h, 0, v);
+        // Debug.Log("Speed");
         movement = movement.normalized * speed * Time.deltaTime;
         playerRigidbody.MovePosition(transform.position + movement);
         GameEventsManager.instance.playerActionEvents.TriggerPlayerMovement(movement.magnitude);
