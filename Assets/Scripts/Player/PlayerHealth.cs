@@ -123,8 +123,8 @@ namespace Nightmare
             // Set the death flag so this function won't be called again.
             isDead = true;
 
-            // Turn off any remaining shooting effects.
-            playerShooting.currentWeapon.SendMessage("DisableEffects");
+            // // Turn off any remaining shooting effects.
+            playerShooting.disable();
 
             // Tell the animator that the player is dead.
             anim.SetBool("IsDead", true);

@@ -66,6 +66,13 @@ namespace Nightmare
             // Update the current weapon
             currentWeapon = newWeapon;
         }
+
+        public void disable()
+        {
+            gun.SetActive(false);
+            shotgun.SetActive(false);
+            sword.SetActive(false);
+        }
     }
 
 }

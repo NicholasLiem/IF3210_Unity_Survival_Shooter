@@ -11,58 +11,23 @@ namespace Nightmare
     {
         public int damagePerHit = 10;
         public float timeBetweenAttack = 0.3f;
-        public GameObject grenade;
-        public float grenadeSpeed = 200f;
-        public float grenadeFireDelay = 0.5f;
-        // public float range = 1f;
 
         SphereCollider attackRange;
 
         float timer;
-        // Ray shootRay;
-        // RaycastHit shootHit;
         int shootableMask;
-        // ParticleSystem gunParticles;
-        // LineRenderer gunLine;
-        // AudioSource gunAudio;
-        // public Light faceLight;
-        // Light gunLight;
-        float effectsDisplayTime = 0.2f;
-        int grenadeStock = 99;
+        AudioSource swordAudio;
+        ParticleSystem hitParticles;
 
-        private UnityAction listener;
 
         void Awake()
         {
             shootableMask = LayerMask.GetMask("Shootable", "Floor");
             attackRange = GetComponent<SphereCollider>();
-            // gunParticles = GetComponent<ParticleSystem>();
-            // gunLine = GetComponent<LineRenderer>();
-            // gunAudio = GetComponent<AudioSource>();
-            // gunLight = GetComponent<Light>();
-            AdjustGrenadeStock(0);
+            swordAudio = GetComponent<AudioSource>();
+            hitParticles = GetComponentInChildren<ParticleSystem>();
 
-            listener = new UnityAction(CollectGrenade);
-
-            EventManager.StartListening("GrenadePickup", CollectGrenade);
             StartPausible();
-        }
-
-        public void CollectGrenade()
-        {
-            AdjustGrenadeStock(1);
-        }
-
-        private void AdjustGrenadeStock(int change)
-        {
-            grenadeStock += change;
-            GrenadeManager.grenades = grenadeStock;
-        }
-
-        void OnDestroy()
-        {
-            EventManager.StopListening("GrenadePickup", CollectGrenade);
-            StopPausible();
         }
 
 
@@ -81,15 +46,13 @@ namespace Nightmare
             {
                 Shoot();
             }
-
-            // if (timer >= timeBetweenAttack * effectsDisplayTime)
-            // {
-            // DisableEffect();
-            // }
         }
 
         void Shoot()
         {
+            // play sword audio
+            hitParticles.Play();
+            swordAudio.Play();
             timer = 0f;
 
             Debug.Log("Attack");
@@ -129,17 +92,10 @@ namespace Nightmare
                     {
                         bufferPetHealth.TakeDamage(damagePerHit);
                     }
-                    
+
                 }
             }
         }
-
-
-        // public void DisableEffect()
-        // {
-        // gunLine.enabled = false;
-        // gunLight.enabled = false;
-        //}
     }
 
 }
