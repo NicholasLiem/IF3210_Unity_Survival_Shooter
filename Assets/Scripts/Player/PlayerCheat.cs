@@ -11,8 +11,11 @@ public class PlayerCheat : MonoBehaviour
     Gun gun;
     Shotgun shotgun;
     Sword sword;
+    GameObject[] pet;
+    GameObject[] enemyPet;
 
     string input;
+    float powerToAdd = 0.10f;
 
     void Awake()
     {
@@ -21,6 +24,8 @@ public class PlayerCheat : MonoBehaviour
         gun = GetComponent<Gun>(); 
         shotgun = GetComponent<Shotgun>(); 
         sword = GetComponent<Sword>();
+        pet = GameObject.FindGameObjectsWithTag("Pet");
+        enemyPet = GameObject.FindGameObjectsWithTag("EnemyPet");
     }
 
     // Start is called before the first frame update
@@ -49,6 +54,23 @@ public class PlayerCheat : MonoBehaviour
         sword.OneHitKillCheat();
     }
 
+    void FullHpPet()
+    {
+        for (int i=0; i < pet.Length; i++) { 
+            PetHealth petHealth = pet[i].GetComponent<PetHealth>();
+            petHealth.enableGodMode();
+        }
+    }
+
+    void KillPet()
+    {
+        for (int i = 0; i < enemyPet.Length; i++)
+        {
+            PetHealth enemyPetHealth = enemyPet[i].GetComponent<PetHealth>();
+            enemyPetHealth.instantKillPet();
+        }
+    }
+
     void Cheat()
     {
         if (input == "nodamage")
@@ -65,6 +87,7 @@ public class PlayerCheat : MonoBehaviour
         else if (input == "motherlode")
         {
             Debug.Log("Motherlode");
+            ScoreManager.MotherlodeCheat();
         }
         else if (input == "twotimespeed")
         {
@@ -74,14 +97,17 @@ public class PlayerCheat : MonoBehaviour
         else if (input == "fullhppet")
         {
             Debug.Log("Full HP Pet");
+            FullHpPet();
         }
         else if (input == "killpet")
         {
             Debug.Log("Kill Pet");
+            KillPet();
         }
         else if (input == "orb")
         {
             Debug.Log("Orb");
+            playerHealth.PowerUp(powerToAdd);
         }
         else if (input == "skip")
         {
