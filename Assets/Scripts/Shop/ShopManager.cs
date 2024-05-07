@@ -32,7 +32,7 @@ public class ShopManager : MonoBehaviour
     public void BuyAttackPet()
     {
         int currentGold = ScoreManager.gold;
-        if (currentGold < petPrice)
+        if (currentGold < petPrice && !ScoreManager.motherlodeCheat)
         {
             errorTextTimeShown = errorTextShowTime;
             errorText.SetActive(true);
@@ -49,7 +49,7 @@ public class ShopManager : MonoBehaviour
     public void BuyHealPet()
     {
         int currentGold = ScoreManager.gold;
-        if (currentGold < petPrice)
+        if (currentGold < petPrice && !ScoreManager.motherlodeCheat)
         {
             errorTextTimeShown = errorTextShowTime;
             errorText.SetActive(true);
