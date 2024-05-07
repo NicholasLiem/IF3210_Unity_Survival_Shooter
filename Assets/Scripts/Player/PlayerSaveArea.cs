@@ -78,16 +78,12 @@ public class PlayerSaveArea : MonoBehaviour
     void PerformAction()
     {
         isPerformingAction = true;
-
-        Time.timeScale = 0;
         saveMenu.SetActive(true);
     }
 
     public void QuitPerformAction()
     {
         saveMenu.SetActive(false);
-        Time.timeScale = 1;
-
         isPerformingAction = false;
     }
 }
