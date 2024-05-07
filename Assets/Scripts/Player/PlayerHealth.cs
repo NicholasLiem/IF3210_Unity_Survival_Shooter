@@ -24,7 +24,7 @@ namespace Nightmare
         AudioSource playerAudio;
         PlayerMovement playerMovement;
         PlayerShooting playerShooting;
-        bool isDead;
+        public bool isDead;
         bool damaged;
         bool healed;
 
@@ -81,7 +81,7 @@ namespace Nightmare
 
         public void TakeDamage(int amount)
         {
-            if (godMode)
+            if (godMode || isDead)
                 return;
 
             // Set the damaged flag so the screen will flash.
@@ -145,11 +145,15 @@ namespace Nightmare
 
         public void PowerUp(float amount)
         {
+
             baseDamage += amount;
             if (baseDamage > maxDamage)
             {
                 baseDamage = maxDamage;
             }
+            // get playershooting script
+            playerShooting = GetComponentInChildren<PlayerShooting>();
+            playerShooting.setMultiplier(baseDamage);
         }
     }
 }

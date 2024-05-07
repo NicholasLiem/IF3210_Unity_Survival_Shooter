@@ -11,6 +11,7 @@ namespace Nightmare
     {
         public int damagePerHit = 10;
         public float timeBetweenAttack = 0.3f;
+        public float multiplier = 1f;
 
         SphereCollider attackRange;
 
@@ -18,6 +19,8 @@ namespace Nightmare
         int shootableMask;
         AudioSource swordAudio;
         ParticleSystem hitParticles;
+
+        public bool heldByPlayer = false;
 
 
         void Awake()
@@ -41,14 +44,23 @@ namespace Nightmare
         void Update()
         {
             timer += Time.deltaTime;
-
-            if (Input.GetButton("Fire1") && timer >= timeBetweenAttack)
+            if (heldByPlayer)
             {
-                Shoot();
+                if (Input.GetButton("Fire1") && timer >= timeBetweenAttack)
+                {
+                    ShootPlayer();
+                }
+            }
+            else
+            {
+                if (timer >= timeBetweenAttack)
+                {
+                    ShootEnemy();
+                }
             }
         }
 
-        void Shoot()
+        void ShootPlayer()
         {
             // play sword audio
             hitParticles.Play();
@@ -78,7 +90,7 @@ namespace Nightmare
                     // Check if the enemy is in front of the player
                     if (Vector3.Dot(toEnemy, transform.forward) > 0)
                     {
-                        enemyHealth.TakeDamage(damagePerHit, toEnemy);
+                        enemyHealth.TakeDamage((int)(multiplier * damagePerHit), toEnemy);
                     }
                 }
 
@@ -90,12 +102,38 @@ namespace Nightmare
                     // Check if the buffer pet is in front of the player
                     if (Vector3.Dot(toEnemy, transform.forward) > 0)
                     {
-                        bufferPetHealth.TakeDamage(damagePerHit);
+                        bufferPetHealth.TakeDamage((int)(multiplier * damagePerHit));
                     }
 
                 }
             }
         }
-    }
 
+        void ShootEnemy()
+        {
+            timer = 0f;
+
+            Debug.Log("Attack");
+
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange.radius, shootableMask);
+
+            foreach (var hitCollider in hitColliders)
+            {
+                Debug.Log(hitCollider);
+                PlayerHealth playerHealth = hitCollider.gameObject.GetComponent<PlayerHealth>();
+
+                if (playerHealth != null)
+                {
+                    Vector3 toPlayer = (hitCollider.transform.position - transform.position).normalized;
+                    // Check if the enemy is in front of the player
+                    if (Vector3.Dot(toPlayer, transform.forward) > 0 && !playerHealth.isDead)
+                    {
+                        hitParticles.Play();
+                        swordAudio.Play();
+                        playerHealth.TakeDamage((int)(multiplier * damagePerHit));
+                    }
+                }
+            }
+        }
+    }
 }

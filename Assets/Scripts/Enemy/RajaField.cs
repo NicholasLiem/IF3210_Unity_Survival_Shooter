@@ -14,6 +14,8 @@ namespace Nightmare
         private float lastDamageTime; // Timestamp of the last damage application
 
         private bool entered = false;
+        PlayerHealth playerHealth;
+
 
         private void OnTriggerEnter(Collider other)
         {
@@ -41,6 +43,7 @@ namespace Nightmare
                 {
                     playerHealth.TakeDamage(damageAmount);
                     lastDamageTime = Time.time;
+                    this.playerHealth = playerHealth;
                 }
             }
 
@@ -62,6 +65,25 @@ namespace Nightmare
                     playerMovement.AddBuff(speedToReduce);
                 }
                 entered = false;
+            }
+        }
+
+        void Update()
+        {
+            if (Time.time - lastDamageTime < damageCooldown)
+            {
+                Debug.Log("Field Cooldown");
+                return;
+            }
+
+            if (entered)
+            {
+
+                if (this.playerHealth != null)
+                {
+                    this.playerHealth.TakeDamage(damageAmount);
+                    lastDamageTime = Time.time;
+                }
             }
         }
     }

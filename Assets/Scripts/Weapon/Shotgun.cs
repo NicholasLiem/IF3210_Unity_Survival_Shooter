@@ -9,11 +9,9 @@ namespace Nightmare
     public class Shotgun : PausibleObject
     {
         public int damagePerShot = 20;
-        public float timeBetweenBullets = 0.15f;
-        public float range = 100f;
-        public GameObject grenade;
-        public float grenadeSpeed = 200f;
-        public float grenadeFireDelay = 0.5f;
+        public float timeBetweenBullets = 0.35f;
+        public float range = 10f;
+        public float multiplier = 1f;
 
         float timer;
         Ray shootRay = new Ray();
@@ -25,9 +23,10 @@ namespace Nightmare
         Light gunLight;
         public Light faceLight;
         float effectsDisplayTime = 0.2f;
-        int grenadeStock = 99;
 
-        private UnityAction listener;
+        public bool heldByPlayer = false;
+
+        PlayerHealth playerHealth;
 
         void Awake()
         {
@@ -37,16 +36,13 @@ namespace Nightmare
             gunAudio = GetComponent<AudioSource>();
             gunLight = GetComponent<Light>();
 
-            AdjustGrenadeStock(0);
+            playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
 
-            listener = new UnityAction(CollectGrenade);
 
-            EventManager.StartListening("GrenadePickup", CollectGrenade);
             StartPausible();
         }
         void OnDestroy()
         {
-            EventManager.StopListening("GrenadePickup", CollectGrenade);
             StopPausible();
         }
 
@@ -65,10 +61,22 @@ namespace Nightmare
 
             timer += Time.deltaTime;
 
-            if (Input.GetButton("Fire1") && timer >= timeBetweenBullets)
+
+            if (heldByPlayer)
             {
-                Shoot();
+                if (Input.GetButton("Fire1") && timer >= timeBetweenBullets)
+                {
+                    Shoot();
+                }
             }
+            else
+            {
+                if (timer >= timeBetweenBullets && !playerHealth.isDead)
+                {
+                    Shoot();
+                }
+            }
+
 
             if (timer >= timeBetweenBullets * effectsDisplayTime)
             {
@@ -76,16 +84,6 @@ namespace Nightmare
             }
         }
 
-        public void CollectGrenade()
-        {
-            AdjustGrenadeStock(1);
-        }
-
-        private void AdjustGrenadeStock(int change)
-        {
-            grenadeStock += change;
-            GrenadeManager.grenades = grenadeStock;
-        }
 
         void Shoot()
         {
@@ -108,21 +106,33 @@ namespace Nightmare
             {
                 EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
                 BufferHealth bufferPetHealth = shootHit.collider.GetComponent<BufferHealth>();
-
-                if (enemyHealth != null)
+                PlayerHealth playerHealth = shootHit.collider.GetComponent<PlayerHealth>();
+                if (heldByPlayer)
                 {
-                    float distance = Vector3.Distance(transform.position, shootHit.point);
-                    int finalDamage = (int)(damagePerShot * (1 - distance / range));
-                    Debug.Log("This is final damage " + finalDamage);
-                    enemyHealth.TakeDamage(finalDamage, shootHit.point);
+                    if (enemyHealth != null)
+                    {
+                        float distance = Vector3.Distance(transform.position, shootHit.point);
+                        int finalDamage = (int)(damagePerShot * (1 - distance / range));
+                        Debug.Log("This is final damage " + finalDamage);
+                        enemyHealth.TakeDamage((int)(multiplier * finalDamage), shootHit.point);
+                    }
+
+                    // If the BufferHealth component exist
+                    if (bufferPetHealth != null)
+                    {
+                        float distance = Vector3.Distance(transform.position, shootHit.point);
+                        int finalDamage = (int)(damagePerShot * (1 - distance / range));
+                        bufferPetHealth.TakeDamage((int)(multiplier * finalDamage));
+                    }
                 }
-
-                // If the BufferHealth component exist
-                if (bufferPetHealth != null)
+                else
                 {
-                    float distance = Vector3.Distance(transform.position, shootHit.point);
-                    int finalDamage = (int)(damagePerShot * (1 - distance / range));
-                    bufferPetHealth.TakeDamage(finalDamage);
+                    if (playerHealth != null)
+                    {
+                        float distance = Vector3.Distance(transform.position, shootHit.point);
+                        int finalDamage = (int)(damagePerShot * (1 - distance / range));
+                        playerHealth.TakeDamage((int)(multiplier * finalDamage));
+                    }
                 }
                 gunLine.SetPosition(1, shootHit.point);
             }

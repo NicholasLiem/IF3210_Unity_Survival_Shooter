@@ -8,6 +8,7 @@ namespace Nightmare
     public class Gun : PausibleObject
     {
         public int damagePerShot = 20;
+        public float multiplier = 1f;
         public float timeBetweenBullets = 0.15f;
         public float range = 100f;
         public GameObject grenade;
@@ -40,18 +41,13 @@ namespace Nightmare
             gunLight = GetComponent<Light>();
             //faceLight = GetComponentInChildren<Light> ();
 
-            AdjustGrenadeStock(0);
-
-            listener = new UnityAction(CollectGrenade);
-
-            EventManager.StartListening("GrenadePickup", CollectGrenade);
 
             StartPausible();
         }
 
         void OnDestroy()
         {
-            EventManager.StopListening("GrenadePickup", CollectGrenade);
+
             StopPausible();
         }
 
@@ -63,32 +59,15 @@ namespace Nightmare
             // Add the time since Update was last called to the timer.
             timer += Time.deltaTime;
 
-#if !MOBILE_INPUT
             if (timer >= timeBetweenBullets && Time.timeScale != 0)
             {
-                // If the Fire1 button is being press and it's time to fire...
-                if (Input.GetButton("Fire2") && grenadeStock > 0)
-                {
-                    // ... shoot a grenade.
-                    ShootGrenade();
-                }
 
-                // If the Fire1 button is being press and it's time to fire...
-                else if (Input.GetButton("Fire1"))
+                if (Input.GetButton("Fire1"))
                 {
                     // ... shoot the gun.
                     Shoot();
                 }
             }
-
-#else
-            // If there is input on the shoot direction stick and it's time to fire...
-            if ((CrossPlatformInputManager.GetAxisRaw("Mouse X") != 0 || CrossPlatformInputManager.GetAxisRaw("Mouse Y") != 0) && timer >= timeBetweenBullets)
-            {
-                // ... shoot the gun
-                Shoot();
-            }
-#endif
             // If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
             if (timer >= timeBetweenBullets * effectsDisplayTime)
             {
@@ -142,13 +121,13 @@ namespace Nightmare
                 if (enemyHealth != null)
                 {
                     // ... the enemy should take damage.
-                    enemyHealth.TakeDamage(damagePerShot, shootHit.point);
+                    enemyHealth.TakeDamage((int)(damagePerShot * multiplier), shootHit.point);
                 }
 
                 // If the BufferHealth component exist
                 if (bufferPetHealth != null)
                 {
-                    bufferPetHealth.TakeDamage(damagePerShot);
+                    bufferPetHealth.TakeDamage((int)(damagePerShot * multiplier));
                 }
 
                 // Set the second position of the line renderer to the point the raycast hit.
@@ -173,26 +152,5 @@ namespace Nightmare
             gunLine.widthCurve = curve;
         }
 
-        public void CollectGrenade()
-        {
-            AdjustGrenadeStock(1);
-        }
-
-        private void AdjustGrenadeStock(int change)
-        {
-            grenadeStock += change;
-            GrenadeManager.grenades = grenadeStock;
-        }
-
-        void ShootGrenade()
-        {
-            AdjustGrenadeStock(-1);
-            timer = timeBetweenBullets - grenadeFireDelay;
-            GameObject clone = PoolManager.Pull("Grenade", transform.position, Quaternion.identity);
-            EventManager.TriggerEvent("ShootGrenade", grenadeSpeed * transform.forward);
-            //GameObject clone = Instantiate(grenade, transform.position, Quaternion.identity);
-            //Grenade grenadeClone = clone.GetComponent<Grenade>();
-            //grenadeClone.Shoot(grenadeSpeed * transform.forward);
-        }
     }
 }

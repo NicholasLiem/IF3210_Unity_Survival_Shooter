@@ -17,6 +17,7 @@ namespace Nightmare
             gun = transform.Find("Gun").gameObject;
             shotgun = transform.Find("Shotgun").gameObject;
             sword = transform.Find("Sword").gameObject;
+            // Gun gunScript = gun.GetComponentInChildren<Gun>();
         }
 
         // Start is called before the first frame update
@@ -35,11 +36,15 @@ namespace Nightmare
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
+                Shotgun shotgunScript = shotgun.GetComponentInChildren<Shotgun>();
+                shotgunScript.heldByPlayer = true;
                 Debug.Log("This is shotgun");
                 SwitchWeapon(shotgun);
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
+                Sword swordScript = sword.GetComponentInChildren<Sword>();
+                swordScript.heldByPlayer = true;
                 Debug.Log("This is sword");
                 SwitchWeapon(sword);
             }
@@ -72,6 +77,39 @@ namespace Nightmare
             gun.SetActive(false);
             shotgun.SetActive(false);
             sword.SetActive(false);
+        }
+
+        public void setMultiplier(float multiplier)
+        {
+            Gun gunScript = gun.GetComponentInChildren<Gun>();
+            Shotgun shotgunScript = shotgun.GetComponentInChildren<Shotgun>();
+            Sword swordScript = sword.GetComponentInChildren<Sword>();
+            if (gunScript != null)
+            {
+                gunScript.multiplier = multiplier;
+            }
+            else
+            {
+                Debug.Log("Gun script is null");
+
+            }
+            if (shotgunScript != null)
+            {
+                shotgunScript.multiplier = multiplier;
+            }
+            else
+            {
+                Debug.Log("Shotgun script is null");
+            }
+            if (swordScript != null)
+            {
+                swordScript.multiplier = multiplier;
+            }
+            else
+            {
+                Debug.Log("Sword script is null");
+            }
+
         }
     }
 

@@ -5,7 +5,7 @@ namespace Nightmare
 {
     public class EnemyAttack : PausibleObject
     {
-        public float timeBetweenAttacks = 0.5f;
+        public float timeBetweenAttacks = 1f;
         public int attackDamage = 10;
         public string petTag = "Pet";
 
@@ -116,11 +116,51 @@ namespace Nightmare
         {
             Debug.Log("[ENEMY] Increasing damage: " + percent);
             multiplier += percent;
+
+            Sword swordScript = GetComponentInChildren<Sword>();
+            if (swordScript != null)
+            {
+                swordScript.multiplier = multiplier;
+            }
+            else
+            {
+                Debug.Log("[ENEMY] Sword script not found");
+            }
+
+            Shotgun shotgunScript = GetComponentInChildren<Shotgun>();
+            if (shotgunScript != null)
+            {
+                shotgunScript.multiplier = multiplier;
+            }
+            else
+            {
+                Debug.Log("[ENEMY] Shotgun script not found");
+            }
         }
 
         public void DecreaseDamage(float percent)
         {
             multiplier -= percent;
+
+            Sword swordScript = GetComponentInChildren<Sword>();
+            if (swordScript != null)
+            {
+                swordScript.multiplier = multiplier;
+            }
+            else
+            {
+                Debug.Log("[ENEMY] Sword script not found");
+            }
+
+            Shotgun shotgunScript = GetComponentInChildren<Shotgun>();
+            if (shotgunScript != null)
+            {
+                shotgunScript.multiplier = multiplier;
+            }
+            else
+            {
+                Debug.Log("[ENEMY] Shotgun script not found");
+            }
         }
     }
 }
