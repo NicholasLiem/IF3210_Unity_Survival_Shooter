@@ -2,6 +2,7 @@ using Nightmare;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; 
 
 public class PlayerCheat : MonoBehaviour
 {
@@ -112,6 +113,7 @@ public class PlayerCheat : MonoBehaviour
         else if (input == "skip")
         {
             Debug.Log("Skip");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else if (input == "deactivecheat")
         {
