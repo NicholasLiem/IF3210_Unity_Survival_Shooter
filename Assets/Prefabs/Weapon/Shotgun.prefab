@@ -5193,6 +5193,7 @@ MonoBehaviour:
   range: 10
   multiplier: 1
   faceLight: {fileID: 0}
+  heldByPlayer: 1
 --- !u!1 &1356038162465046225
 GameObject:
   m_ObjectHideFlags: 0
@@ -10480,6 +10481,7 @@ MonoBehaviour:
   range: 10
   multiplier: 1
   faceLight: {fileID: 0}
+  heldByPlayer: 1
 --- !u!1 &1422926798815106906
 GameObject:
   m_ObjectHideFlags: 0
@@ -15951,6 +15953,7 @@ MonoBehaviour:
   range: 10
   multiplier: 1
   faceLight: {fileID: 0}
+  heldByPlayer: 1
 --- !u!1 &6028481469233543142
 GameObject:
   m_ObjectHideFlags: 0
@@ -21238,6 +21241,7 @@ MonoBehaviour:
   range: 10
   multiplier: 1
   faceLight: {fileID: 0}
+  heldByPlayer: 1
 --- !u!1 &8041297070932336952
 GameObject:
   m_ObjectHideFlags: 0
@@ -26525,3 +26529,4 @@ MonoBehaviour:
   range: 10
   multiplier: 1
   faceLight: {fileID: 0}
+  heldByPlayer: 1

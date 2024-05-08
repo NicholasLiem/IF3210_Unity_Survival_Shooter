@@ -142,6 +142,11 @@ namespace Nightmare
         {
             multiplier -= percent;
 
+            if (this == null)
+            {
+                return;
+            }
+
             Sword swordScript = GetComponentInChildren<Sword>();
             if (swordScript != null)
             {
