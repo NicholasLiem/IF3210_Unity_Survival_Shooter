@@ -16,8 +16,11 @@ namespace Nightmare
         Animator anim;
         AudioSource enemyAudio;
         ParticleSystem hitParticles;
+        ParticleSystem deathParticles;
         CapsuleCollider capsuleCollider;
         EnemyMovement enemyMovement;
+
+        public ParticleSystem angryParticles;
 
         void Awake()
         {
@@ -26,6 +29,7 @@ namespace Nightmare
             hitParticles = GetComponentInChildren<ParticleSystem>();
             capsuleCollider = GetComponent<CapsuleCollider>();
             enemyMovement = this.GetComponent<EnemyMovement>();
+
         }
 
         void OnEnable()
@@ -63,6 +67,12 @@ namespace Nightmare
             {
                 enemyAudio.Play();
                 currentHealth -= amount;
+
+                // not is playing angryparticles
+                if (angryParticles != null && !angryParticles.isPlaying && currentHealth <= 0.6 * startingHealth)
+                {
+                    triggerAngry();
+                }
 
                 if (IsDead())
                 {
@@ -121,6 +131,14 @@ namespace Nightmare
         public int CurrentHealth()
         {
             return currentHealth;
+        }
+
+        private void triggerAngry()
+        {
+            angryParticles.Play();
+
+            EnemyMovement enemyMovement = GetComponent<EnemyMovement>();
+            enemyMovement.angry();
         }
     }
 }

@@ -169,6 +169,15 @@ namespace Nightmare
             return navHit.mask;
         }
 
+        public void angry()
+        {
+            nav.speed += 1f;
+            this.psychicLevels += 0.1f;
+            this.visionRange += 5f;
+            this.hearingRange += 5f;
+
+        }
+
         //void OnDrawGizmos()
         //{
         //    Vector3 position = this.transform.position;
