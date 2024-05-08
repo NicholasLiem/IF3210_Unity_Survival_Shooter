@@ -8,6 +8,7 @@ public class SaveData
     public struct PlayerData
     {
         public string username;
+        public float baseDamage;
         public GameDifficulty gameDifficulty;
     }
 

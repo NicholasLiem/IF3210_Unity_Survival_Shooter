@@ -11,7 +11,7 @@ namespace Nightmare
         public int currentHealth;
 
         public float maxDamage = 2.5f;
-        public float baseDamage = 1f;
+        public float baseDamage;
 
         public Slider healthSlider;
         public Image damageImage;
@@ -37,6 +37,11 @@ namespace Nightmare
             playerShooting = GetComponentInChildren<PlayerShooting>();
 
             ResetPlayer();
+        }
+
+        private void Start()
+        {
+            baseDamage = GameManager.Instance.baseDemage;
         }
 
         public void ResetPlayer()
@@ -151,6 +156,7 @@ namespace Nightmare
             {
                 baseDamage = maxDamage;
             }
+            GameManager.Instance.baseDemage = baseDamage;
             // get playershooting script
             playerShooting = GetComponentInChildren<PlayerShooting>();
             playerShooting.setMultiplier(baseDamage);

@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -16,8 +15,10 @@ public class GameManager : MonoBehaviour, ISaveable
     public static GameManager Instance;
 
     public string Username { get; set; } = "";
+    public float baseDemage = 1f;
+
     public GameDifficulty gameDifficulty = GameDifficulty.Easy;
-    public List<Tuple<string, int>> petData = new List<Tuple<string, int>>();
+    public List<Tuple<string, int>> petData = new();
 
     private void Awake()
     {
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour, ISaveable
         SaveData.PlayerData playerData = new();
 
         playerData.username = this.Username;
+        playerData.baseDamage = this.baseDemage;
         playerData.gameDifficulty = this.gameDifficulty;
 
         saveData.playerData = playerData;
@@ -50,6 +52,7 @@ public class GameManager : MonoBehaviour, ISaveable
     public void LoadFromSaveData(SaveData saveData)
     {
         this.Username = saveData.playerData.username;
+        this.baseDemage = saveData.playerData.baseDamage;
         this.gameDifficulty = saveData.playerData.gameDifficulty;
     }
 
