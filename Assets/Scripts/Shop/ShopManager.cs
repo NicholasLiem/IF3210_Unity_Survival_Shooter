@@ -41,13 +41,9 @@ public class ShopManager : MonoBehaviour
 
         ScoreManager.gold = currentGold - petPrice;
 
-        GameObject instance = Instantiate(attackPetPrefab, player.transform.position, Quaternion.identity);
+        Instantiate(attackPetPrefab, player.transform.position, Quaternion.identity);
 
-        AttackerMovement moveScript = instance.GetComponent<AttackerMovement>();
-
-        int petCount = GameManager.Instance.GetPetAmount("attack");
-
-        GameManager.Instance.petData.Add(new Tuple<string, int>("attack", petCount + 1));
+        GameManager.Instance.AddOrUpdatePet("attack");
     }
 
     public void BuyHealPet()
@@ -62,13 +58,9 @@ public class ShopManager : MonoBehaviour
 
         ScoreManager.gold = currentGold - petPrice;
 
-        GameObject instance = Instantiate(healPetPrefab, player.transform.position, Quaternion.identity);
+        Instantiate(healPetPrefab, player.transform.position, Quaternion.identity);
 
-        HealerMovement moveScript = instance.GetComponent<HealerMovement>();
-
-        int petCount = GameManager.Instance.GetPetAmount("heal");
-
-        GameManager.Instance.petData.Add(new Tuple<string, int>("heal", petCount + 1));
+        GameManager.Instance.AddOrUpdatePet("heal");
     }
 
     private void Update()

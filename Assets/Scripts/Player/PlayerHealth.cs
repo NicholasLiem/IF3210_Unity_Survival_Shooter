@@ -105,6 +105,7 @@ namespace Nightmare
             if (currentHealth <= 0 && !isDead)
             {
                 // ... it should die.
+                GameManager.Instance.petData.Clear();
                 Death();
             }
         }
