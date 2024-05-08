@@ -39,7 +39,10 @@ public class ShopManager : MonoBehaviour
             return;
         }
 
-        ScoreManager.gold = currentGold - petPrice;
+        if (!ScoreManager.motherlodeCheat)
+        {
+            ScoreManager.gold = currentGold - petPrice;
+        }
 
         Instantiate(attackPetPrefab, player.transform.position, Quaternion.identity);
 
@@ -56,7 +59,10 @@ public class ShopManager : MonoBehaviour
             return;
         }
 
-        ScoreManager.gold = currentGold - petPrice;
+        if (!ScoreManager.motherlodeCheat)
+        {
+            ScoreManager.gold = currentGold - petPrice;
+        }
 
         Instantiate(healPetPrefab, player.transform.position, Quaternion.identity);
 
