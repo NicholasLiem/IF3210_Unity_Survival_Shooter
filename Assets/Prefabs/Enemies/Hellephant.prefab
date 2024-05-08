@@ -10163,7 +10163,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1.2
-  m_Speed: 2
+  m_Speed: 4
   m_Acceleration: 8
   avoidancePriority: 20
   m_AngularSpeed: 120
@@ -10174,7 +10174,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 29
-  m_ObstacleAvoidanceType: 1
+  m_ObstacleAvoidanceType: 2
 --- !u!135 &13536644
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10231,11 +10231,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea9a6ed18654d14db02bf0076cfe488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 15
-  hearingRange: 32
-  wanderDistance: 20
+  visionRange: 80
+  hearingRange: 80
+  wanderDistance: 80
   idleTimeRange: {x: 2, y: 6}
-  psychicLevels: 1
+  psychicLevels: 0.91
   timer: 0
 --- !u!114 &11402556
 MonoBehaviour:
@@ -10260,6 +10260,7 @@ MonoBehaviour:
   goldValue: 5
   deathClip: {fileID: 8300000, guid: 8c615fd0429f34edf85539d70279360d, type: 3}
   data: {fileID: 11400000, guid: 3b42fdefe385c0210b20a6dadf37b6e5, type: 2}
+  angryParticles: {fileID: 0}
 --- !u!114 &11415352
 MonoBehaviour:
   m_ObjectHideFlags: 0

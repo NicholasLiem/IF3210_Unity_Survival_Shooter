@@ -7,14 +7,14 @@ namespace Nightmare
 {
     public class EnemyMovement : PausibleObject
     {
-        public float visionRange = 10f;
-        public float hearingRange = 20f;
-        public float wanderDistance = 10f;
-        public Vector2 idleTimeRange;
-        [Range(0f, 1f)]
-        public float psychicLevels = 0.2f;
+        // public float visionRange = 10f;
+        // public float hearingRange = 20f;
+        // // public float wanderDistance = 10f;
+        // public Vector2 idleTimeRange;
+        // [Range(0f, 1f)]
+        // public float psychicLevels = 0.2f;
 
-        float currentVision;
+        // float currentVision;
         Transform player;
         PlayerHealth playerHealth;
         EnemyHealth enemyHealth;
@@ -35,8 +35,7 @@ namespace Nightmare
         {
             nav.enabled = true;
             ClearPath();
-            ScaleVision(1f);
-            IsPsychic();
+            GoToPlayer();
             timer = 0f;
         }
 
@@ -53,8 +52,7 @@ namespace Nightmare
                 // If both the enemy and the player have health left...
                 if (enemyHealth.CurrentHealth() > 0 && playerHealth.currentHealth > 0)
                 {
-                    LookForPlayer();
-                    WanderOrIdle();
+                    GoToPlayer();
                 }
                 else
                 {
@@ -81,24 +79,6 @@ namespace Nightmare
                 nav.isStopped = false;
         }
 
-        private void LookForPlayer()
-        {
-            TestSense(player.position, currentVision);
-        }
-
-        private void HearPoint(Vector3 position)
-        {
-            TestSense(position, hearingRange);
-        }
-
-        private void TestSense(Vector3 position, float senseRange)
-        {
-            if (Vector3.Distance(this.transform.position, position) <= senseRange)
-            {
-                GoToPosition(position);
-            }
-        }
-
         public void GoToPlayer()
         {
             GoToPosition(player.position);
@@ -121,60 +101,60 @@ namespace Nightmare
             }
         }
 
-        private void WanderOrIdle()
-        {
-            if (!nav.hasPath)
-            {
-                if (timer <= 0f)
-                {
-                    SetDestination(GetRandomPoint(wanderDistance, 5));
-                    if (nav.pathStatus == NavMeshPathStatus.PathInvalid)
-                    {
-                        ClearPath();
-                    }
-                    timer = Random.Range(idleTimeRange.x, idleTimeRange.y);
-                }
-                else
-                {
-                    timer -= Time.deltaTime;
-                }
-            }
-        }
+        // private void WanderOrIdle()
+        // {
+        //     if (!nav.hasPath)
+        //     {
+        //         if (timer <= 0f)
+        //         {
+        //             SetDestination(GetRandomPoint(wanderDistance, 5));
+        //             if (nav.pathStatus == NavMeshPathStatus.PathInvalid)
+        //             {
+        //                 ClearPath();
+        //             }
+        //             timer = Random.Range(idleTimeRange.x, idleTimeRange.y);
+        //         }
+        //         else
+        //         {
+        //             timer -= Time.deltaTime;
+        //         }
+        //     }
+        // }
 
-        private void IsPsychic()
-        {
-            GoToPlayer();
-        }
+        // private void IsPsychic()
+        // {
+        //     GoToPlayer();
+        // }
 
-        private Vector3 GetRandomPoint(float distance, int layermask)
-        {
-            Vector3 randomPoint = UnityEngine.Random.insideUnitSphere * distance + this.transform.position; ;
+        // private Vector3 GetRandomPoint(float distance, int layermask)
+        // {
+        //     Vector3 randomPoint = UnityEngine.Random.insideUnitSphere * distance + this.transform.position; ;
 
-            NavMeshHit navHit;
-            NavMesh.SamplePosition(randomPoint, out navHit, distance, layermask);
+        //     NavMeshHit navHit;
+        //     NavMesh.SamplePosition(randomPoint, out navHit, distance, layermask);
 
-            return navHit.position;
-        }
+        //     return navHit.position;
+        // }
 
-        public void ScaleVision(float scale)
-        {
-            currentVision = visionRange * scale;
-        }
+        // public void ScaleVision(float scale)
+        // {
+        //     currentVision = visionRange * scale;
+        // }
 
-        private int GetCurrentNavArea()
-        {
-            NavMeshHit navHit;
-            nav.SamplePathPosition(-1, 0.0f, out navHit);
+        // private int GetCurrentNavArea()
+        // {
+        //     NavMeshHit navHit;
+        //     nav.SamplePathPosition(-1, 0.0f, out navHit);
 
-            return navHit.mask;
-        }
+        //     return navHit.mask;
+        // }
 
         public void angry()
         {
             nav.speed += 1f;
-            this.psychicLevels += 0.1f;
-            this.visionRange += 5f;
-            this.hearingRange += 5f;
+            // this.psychicLevels += 0.1f;
+            // this.visionRange += 5f;
+            // this.hearingRange += 5f;
 
         }
 

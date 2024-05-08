@@ -10073,7 +10073,7 @@ NavMeshAgent:
   m_Height: 1.1
   m_BaseOffset: 0
   m_WalkableMask: 29
-  m_ObstacleAvoidanceType: 1
+  m_ObstacleAvoidanceType: 2
 --- !u!114 &7676273058050949203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10105,7 +10105,7 @@ MonoBehaviour:
   - {fileID: 6017793591555407587, guid: 1a0597017c737480ca76940c07499957, type: 3}
   - {fileID: 5872965906753236289, guid: 6c1e626f49142426ab0e5297ec61658e, type: 3}
   - {fileID: 3324956058065805383, guid: 458c593d4f5614ee48cde4c396f10af5, type: 3}
-  startingHealth: 300
+  startingHealth: 10000
   sinkSpeed: 2.5
   spawnOrbChance: 0.5
   scoreValue: 50
@@ -10125,11 +10125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea9a6ed18654d14db02bf0076cfe488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 50
-  hearingRange: 50
-  wanderDistance: 20
-  idleTimeRange: {x: 0.5, y: 2}
-  psychicLevels: 0.89
   timer: 0
 --- !u!82 &386852876301057711
 AudioSource:
@@ -10252,7 +10247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 100000, guid: ea3c2728ef33e3a4d99527a86cda6465, type: 3}
-  spawnTime: 10
+  spawnTime: 15
   spawnPoints:
   - {fileID: 1374882004498950252}
 --- !u!114 &3369259017828994929
@@ -15312,6 +15307,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShotgunEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1508485521436864784, guid: 66f5f0fa903714974b66550c7b9d9930, type: 3}
+      propertyPath: range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1508485521436864784, guid: 66f5f0fa903714974b66550c7b9d9930, type: 3}
+      propertyPath: damagePerShot
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 2057415467821821166, guid: 66f5f0fa903714974b66550c7b9d9930, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.208
@@ -15351,6 +15354,38 @@ PrefabInstance:
     - target: {fileID: 2057415467821821166, guid: 66f5f0fa903714974b66550c7b9d9930, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -351.518
+      objectReference: {fileID: 0}
+    - target: {fileID: 2271701015861379768, guid: 66f5f0fa903714974b66550c7b9d9930, type: 3}
+      propertyPath: range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2271701015861379768, guid: 66f5f0fa903714974b66550c7b9d9930, type: 3}
+      propertyPath: damagePerShot
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2398142741430227823, guid: 66f5f0fa903714974b66550c7b9d9930, type: 3}
+      propertyPath: range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2398142741430227823, guid: 66f5f0fa903714974b66550c7b9d9930, type: 3}
+      propertyPath: damagePerShot
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3389587366896380380, guid: 66f5f0fa903714974b66550c7b9d9930, type: 3}
+      propertyPath: range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3389587366896380380, guid: 66f5f0fa903714974b66550c7b9d9930, type: 3}
+      propertyPath: damagePerShot
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3512247950713054533, guid: 66f5f0fa903714974b66550c7b9d9930, type: 3}
+      propertyPath: range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3512247950713054533, guid: 66f5f0fa903714974b66550c7b9d9930, type: 3}
+      propertyPath: damagePerShot
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

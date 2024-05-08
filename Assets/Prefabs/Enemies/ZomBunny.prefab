@@ -246,7 +246,7 @@ NavMeshAgent:
   m_Height: 1.1
   m_BaseOffset: 0
   m_WalkableMask: 29
-  m_ObstacleAvoidanceType: 1
+  m_ObstacleAvoidanceType: 2
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +285,7 @@ MonoBehaviour:
   goldValue: 5
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
   data: {fileID: 11400000, guid: 6150500e25e4cb5a6be4fe145eed95f2, type: 2}
+  angryParticles: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,11 +298,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea9a6ed18654d14db02bf0076cfe488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 8
-  hearingRange: 20
-  wanderDistance: 40
+  visionRange: 50
+  hearingRange: 50
+  wanderDistance: 50
   idleTimeRange: {x: 0.5, y: 2}
-  psychicLevels: 0.796
+  psychicLevels: 0.91
   timer: 0
 --- !u!82 &8200000
 AudioSource:
@@ -424,7 +425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 100000, guid: ea3c2728ef33e3a4d99527a86cda6465, type: 3}
-  spawnTime: 10
+  spawnTime: 25
   spawnPoints:
   - {fileID: 400002}
 --- !u!1 &100004
