@@ -48,6 +48,12 @@ public class GameManager : MonoBehaviour, ISaveable
         playerData.gameDifficulty = this.gameDifficulty;
 
         saveData.playerData = playerData;
+
+        SaveData.QuestData questData = new();
+
+        questData.progress = this.questProgress;
+
+        saveData.questData = questData;
     }
 
     public void LoadFromSaveData(SaveData saveData)
@@ -55,6 +61,8 @@ public class GameManager : MonoBehaviour, ISaveable
         this.Username = saveData.playerData.username;
         this.baseDemage = saveData.playerData.baseDamage;
         this.gameDifficulty = saveData.playerData.gameDifficulty;
+
+        this.questProgress = saveData.questData.progress;
     }
 
     public void SaveGame(int num)
