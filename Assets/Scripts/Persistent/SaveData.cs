@@ -8,6 +8,8 @@ public class SaveData
     public struct PlayerData
     {
         public string username;
+        public float baseDamage;
+
         public GameDifficulty gameDifficulty;
     }
 
@@ -20,7 +22,7 @@ public class SaveData
     [System.Serializable]
     public struct QuestData
     {
-        // TODO: Add quest data
+        public int progress;
     }
 
     public PlayerData playerData;

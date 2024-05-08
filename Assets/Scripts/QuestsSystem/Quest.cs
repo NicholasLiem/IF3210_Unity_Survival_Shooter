@@ -18,6 +18,7 @@ public class Quest
     public void MoveToNextStep()
     {
         currentQuestStepIndex++;
+        GameManager.Instance.questProgress++;
     }
 
     public bool CurrentStepExists()

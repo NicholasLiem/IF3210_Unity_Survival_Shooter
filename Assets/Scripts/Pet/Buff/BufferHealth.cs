@@ -69,7 +69,10 @@ public class BufferHealth : MonoBehaviour
 
             if (IsDead())
             {
-                masterAttack.DecreaseDamage(buffPercentage);
+                if (masterAttack != null)
+                {
+                    masterAttack.DecreaseDamage(buffPercentage);
+                }
                 Death();
             }
         }

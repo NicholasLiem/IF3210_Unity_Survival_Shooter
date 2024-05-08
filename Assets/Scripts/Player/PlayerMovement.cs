@@ -47,16 +47,12 @@ public class PlayerMovement : MonoBehaviour
 
         for (int i = 0; i < attPetCount; i++)
         {
-            GameObject instance = Instantiate(attackPetPrefab, this.transform.position, Quaternion.identity);
-
-            AttackerMovement moveScript = instance.GetComponent<AttackerMovement>();
+            Instantiate(attackPetPrefab, this.transform.position, Quaternion.identity);
         }
 
         for (int i = 0; i < healPetCount; i++)
         {
-            GameObject instance = Instantiate(healPetPrefab, this.transform.position, Quaternion.identity);
-
-            HealerMovement moveScript = instance.GetComponent<HealerMovement>();
+            Instantiate(healPetPrefab, this.transform.position, Quaternion.identity);
         }
     }
 
