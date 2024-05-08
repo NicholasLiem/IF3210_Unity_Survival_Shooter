@@ -121,9 +121,9 @@ namespace Nightmare
                         float distance = Vector3.Distance(transform.position, shootHit.point);
                         int finalDamage = (int)(damagePerShot * (1 - distance / range));
                         if (oneShotKillCheat)
-                    {
-                        finalDamage = enemyHealth.currentHealth;
-                    }
+                        {
+                            finalDamage = enemyHealth.currentHealth;
+                        }
                     Debug.Log("This is final damage " + finalDamage);
                         enemyHealth.TakeDamage((int)(multiplier * finalDamage), shootHit.point);
                     }

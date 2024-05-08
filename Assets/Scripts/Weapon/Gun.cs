@@ -124,14 +124,14 @@ namespace Nightmare
                 
                 int damage = damagePerShot;
 
-                if (oneShotKillCheat)
-                {
-                    damage = enemyHealth.currentHealth;
-                }
                 
                 // If the EnemyHealth component exist...
                 if (enemyHealth != null)
                 {
+                    if (oneShotKillCheat)
+                    {
+                        damage = enemyHealth.currentHealth;
+                    }
                     // ... the enemy should take damage.
                     enemyHealth.TakeDamage((int)(damage * multiplier), shootHit.point);
                 }
