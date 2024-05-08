@@ -38,7 +38,6 @@ public class PlayerCheat : MonoBehaviour
         }
         weaponSword = weaponSword.transform.Find("KatanaEnd").gameObject;
         sword = weaponSword.GetComponent<Sword>();
-        pet = GameObject.FindGameObjectsWithTag("Pet");
         enemyPet = GameObject.FindGameObjectsWithTag("EnemyPet");
     }
 
@@ -75,7 +74,8 @@ public class PlayerCheat : MonoBehaviour
 
     void FullHpPet()
     {
-        for (int i=0; i < pet.Length; i++) { 
+        pet = GameObject.FindGameObjectsWithTag("Pet");
+        for (int i=0; i < pet.Length; i++) {
             PetHealth petHealth = pet[i].GetComponent<PetHealth>();
             petHealth.enableGodMode();
         }
