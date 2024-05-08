@@ -7,7 +7,7 @@ public class HealerMovement : MonoBehaviour
 {
     // Gap distance with master
     public float distanceFromMaster = 2.0f;
-    public GameObject masterObject;
+    GameObject masterObject;
 
     Transform master;
     NavMeshAgent nav;
@@ -17,6 +17,7 @@ public class HealerMovement : MonoBehaviour
     {
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        masterObject = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Start()

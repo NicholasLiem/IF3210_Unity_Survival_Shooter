@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public float shopThresholdRange = 3f;
     public float errorTextShowTime = 2f;
     public float allowedShopTime = 15f;
+    public GameObject attackPetPrefab;
+    public GameObject healPetPrefab;
     float totalShopTime = 0f;
     float errorTextTimeShown = 0f;
     bool isShopping;
@@ -35,6 +37,27 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
         speed = baseSpeed;
+    }
+
+    private void Start()
+    {
+        // Re-instantiate pet
+        int attPetCount = GameManager.Instance.GetPetAmount("attack");
+        int healPetCount = GameManager.Instance.GetPetAmount("heal");
+
+        for (int i = 0; i < attPetCount; i++)
+        {
+            GameObject instance = Instantiate(attackPetPrefab, this.transform.position, Quaternion.identity);
+
+            AttackerMovement moveScript = instance.GetComponent<AttackerMovement>();
+        }
+
+        for (int i = 0; i < healPetCount; i++)
+        {
+            GameObject instance = Instantiate(healPetPrefab, this.transform.position, Quaternion.identity);
+
+            HealerMovement moveScript = instance.GetComponent<HealerMovement>();
+        }
     }
 
     void FixedUpdate()

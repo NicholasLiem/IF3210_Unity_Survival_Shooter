@@ -1,4 +1,5 @@
 using Nightmare;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,10 @@ public class ShopManager : MonoBehaviour
     public GameObject healPetPrefab;
     public GameObject errorText;
     public float errorTextShowTime = 2f;
-    public int petPrice = 50;
+    public int petPrice = 0;
+
+    public List<Tuple<string, int>> petData = new List<Tuple<string, int>>();
+
     float errorTextTimeShown = 0f;
     GameObject player;
 
@@ -41,7 +45,9 @@ public class ShopManager : MonoBehaviour
 
         AttackerMovement moveScript = instance.GetComponent<AttackerMovement>();
 
-        moveScript.masterObject = player;
+        int petCount = GameManager.Instance.GetPetAmount("attack");
+
+        GameManager.Instance.petData.Add(new Tuple<string, int>("attack", petCount + 1));
     }
 
     public void BuyHealPet()
@@ -60,7 +66,9 @@ public class ShopManager : MonoBehaviour
 
         HealerMovement moveScript = instance.GetComponent<HealerMovement>();
 
-        moveScript.masterObject = player;
+        int petCount = GameManager.Instance.GetPetAmount("heal");
+
+        GameManager.Instance.petData.Add(new Tuple<string, int>("heal", petCount + 1));
     }
 
     private void Update()

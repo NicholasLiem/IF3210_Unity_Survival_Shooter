@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum GameDifficulty : ushort
@@ -15,6 +17,7 @@ public class GameManager : MonoBehaviour, ISaveable
 
     public string Username { get; set; } = "";
     public GameDifficulty gameDifficulty = GameDifficulty.Easy;
+    public List<Tuple<string, int>> petData = new List<Tuple<string, int>>();
 
     private void Awake()
     {
@@ -73,4 +76,21 @@ public class GameManager : MonoBehaviour, ISaveable
             Debug.Log("Load complete");
         }
     }
+
+    public int GetPetAmount(string petName)
+    {
+        if (petData == null || !petData.Any())
+        {
+            return 0;
+        }
+
+        var pet = petData.FirstOrDefault(t => t.Item1 == petName);
+        if (pet == null)
+        {
+            return 0;
+        }
+
+        return pet.Item2;
+    }
+
 }

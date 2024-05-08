@@ -10,8 +10,8 @@ public class AttackerMovement : MonoBehaviour
     // Gap distance with master
     public float distanceFromMaster = 1f;
 
-    public GameObject masterObject;
     public float distanceFromMasterThreshold = 5f;
+    GameObject masterObject;
 
     public string enemyTag = "Enemy";
 
@@ -24,6 +24,7 @@ public class AttackerMovement : MonoBehaviour
     {
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        masterObject = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Start()
