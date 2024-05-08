@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour, ISaveable
     public string Username { get; set; } = "";
     public GameDifficulty gameDifficulty = GameDifficulty.Easy;
     public List<Tuple<string, int>> petData = new List<Tuple<string, int>>();
+    public int questProgress = 0;
 
     private void Awake()
     {
@@ -91,6 +92,50 @@ public class GameManager : MonoBehaviour, ISaveable
         }
 
         return pet.Item2;
+    }
+
+    public void AddOrUpdatePet(string petName)
+    {
+        if (petData == null)
+        {
+            petData = new List<Tuple<string, int>>();
+        }
+
+        var pet = petData.FirstOrDefault(t => t.Item1 == petName);
+        if (pet != null)
+        {
+            // Pet exists, increment the amount
+            int index = petData.IndexOf(pet);
+            petData[index] = new Tuple<string, int>(pet.Item1, pet.Item2 + 1);
+        }
+        else
+        {
+            // Pet does not exist
+            petData.Add(new Tuple<string, int>(petName, 1));
+        }
+    }
+
+    public void DecrementPet(string petName)
+    {
+        // If is null or empty
+        if (petData == null || !petData.Any())
+        {
+            return;
+        }
+
+        var pet = petData.FirstOrDefault(t => t.Item1 == petName);
+        if (pet != null)
+        {
+            int index = petData.IndexOf(pet);
+            if (pet.Item2 - 1 > 0)
+            {
+                petData[index] = new Tuple<string, int>(pet.Item1, pet.Item2 - 1);
+            }
+            else
+            {
+                petData.RemoveAt(index);
+            }
+        }
     }
 
 }

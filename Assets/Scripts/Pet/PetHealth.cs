@@ -65,6 +65,15 @@ public class PetHealth : MonoBehaviour
 
             if (IsDead())
             {
+                AttackerMovement attackMov = this.gameObject.GetComponent<AttackerMovement>();
+                if (attackMov != null)
+                {
+                    GameManager.Instance.DecrementPet("attack");
+                } 
+                else
+                {
+                    GameManager.Instance.DecrementPet("heal");
+                }
                 Death();
             }
         }
