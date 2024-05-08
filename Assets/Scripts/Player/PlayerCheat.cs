@@ -9,8 +9,11 @@ public class PlayerCheat : MonoBehaviour
 
     PlayerHealth playerHealth;
     PlayerMovement playerMovement;
+    GameObject weaponGun;
+    GameObject weaponShotgun;
+    GameObject weaponSword;
     Gun gun;
-    Shotgun shotgun;
+    Shotgun[] shotgun  = new Shotgun[5];
     Sword sword;
     GameObject[] pet;
     GameObject[] enemyPet;
@@ -22,9 +25,19 @@ public class PlayerCheat : MonoBehaviour
     {
         playerHealth = GetComponent<PlayerHealth>();
         playerMovement = GetComponent<PlayerMovement>();
-        gun = GetComponent<Gun>(); 
-        shotgun = GetComponent<Shotgun>(); 
-        sword = GetComponent<Sword>();
+        weaponGun = transform.Find("Gun").gameObject;
+        weaponShotgun = transform.Find("Shotgun").gameObject;
+        weaponSword = transform.Find("Sword").gameObject;
+        weaponGun = weaponGun.transform.Find("GunBarrelEnd").gameObject;
+        gun = weaponGun.GetComponent<Gun>();
+        for (int i = 0; i < 5; i++)
+        {
+            string barrelName = i == 0 ? "ShotgunBarrelEnd" : $"ShotgunBarrelEnd ({i})";
+            GameObject shotgunBarrelEnd = weaponShotgun.transform.Find(barrelName).gameObject;
+            shotgun[i] = shotgunBarrelEnd.GetComponent<Shotgun>();
+        }
+        weaponSword = weaponSword.transform.Find("KatanaEnd").gameObject;
+        sword = weaponSword.GetComponent<Sword>();
         pet = GameObject.FindGameObjectsWithTag("Pet");
         enemyPet = GameObject.FindGameObjectsWithTag("EnemyPet");
     }
@@ -44,14 +57,19 @@ public class PlayerCheat : MonoBehaviour
     public void ReadInputString(string s)
     {
         input = s;
+
         Cheat();
         input = "";
     }
 
     void OneHitKill()
     {
+        Debug.Log(gun);
         gun.OneShotKillCheat();
-        shotgun.OneShotKillCheat();
+        for (int i = 0; i < shotgun.Length; i++)
+        {
+            shotgun[i].OneShotKillCheat();
+        }
         sword.OneHitKillCheat();
     }
 
