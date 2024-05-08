@@ -235,7 +235,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.3
-  m_Speed: 3
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 40
@@ -285,6 +285,7 @@ MonoBehaviour:
   goldValue: 5
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
   data: {fileID: 11400000, guid: 6150500e25e4cb5a6be4fe145eed95f2, type: 2}
+  currentHealth: 0
   angryParticles: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -298,11 +299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea9a6ed18654d14db02bf0076cfe488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 50
-  hearingRange: 50
-  wanderDistance: 50
-  idleTimeRange: {x: 0.5, y: 2}
-  psychicLevels: 0.91
   timer: 0
 --- !u!82 &8200000
 AudioSource:

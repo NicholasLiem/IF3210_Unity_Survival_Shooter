@@ -14,7 +14,7 @@ namespace Nightmare
 
         Text sText;
 
-        void Awake ()
+        void Awake()
         {
             GameObject scoreTextObject = GameObject.Find("ScoreText");
             if (scoreTextObject != null)
@@ -25,17 +25,17 @@ namespace Nightmare
 
         public static void MotherlodeCheat()
         {
-            motherlodeCheat=true;
+            motherlodeCheat = true;
         }
 
 
-        void Update ()
+        void Update()
         {
             sText.text = "Score: " + score;
-            if (score >= levelThreshhold)
-            {
-                AdvanceLevel();
-            }
+            // if (score >= levelThreshhold)
+            // {
+            //     AdvanceLevel();
+            // }
         }
 
         private void AdvanceLevel()

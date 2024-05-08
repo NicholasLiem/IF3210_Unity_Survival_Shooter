@@ -92,6 +92,10 @@ namespace Nightmare
 
         public void TakeDamage(int amount)
         {
+            if (isDead)
+            {
+                return;
+            }
             Debug.Log(noDamageCheat);
             if (!noDamageCheat)
             {

@@ -7,6 +7,8 @@ namespace Nightmare
         private PlayerHealth playerHealth;
         public GameObject enemy;
         public float spawnTime = 3f;
+
+        public float spawnQty = 9999;
         public Transform[] spawnPoints;
 
         private float timer;
@@ -34,7 +36,7 @@ namespace Nightmare
                 return;
 
             timer -= Time.deltaTime;
-            if (timer <= 0f)
+            if (timer <= 0f && spawned < spawnQty)
             {
                 Spawn();
                 timer = spawnTime;
@@ -50,11 +52,15 @@ namespace Nightmare
                 return;
             }
 
-            // Find a random index between zero and one less than the number of spawn points.
-            int spawnPointIndex = Random.Range(0, spawnPoints.Length);
+            if (spawnPoints.Length > 0)
+            {
+                // Find a random index between zero and one less than the number of spawn points.
+                int spawnPointIndex = Random.Range(0, spawnPoints.Length);
 
-            // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
-            Instantiate(enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+                // Create an instance of the enemy prefab at the randomly selected spawn point's position and rotation.
+                Instantiate(enemy, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+                spawned++;
+            }
         }
 
         bool IsDead()

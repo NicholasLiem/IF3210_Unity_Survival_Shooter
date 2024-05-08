@@ -101,6 +101,12 @@ namespace Nightmare
             }
 
             GameEventsManager.instance.enemyKilledEvents.TriggerEnemyKilled(data.enemyType);
+
+            if (angryParticles != null)
+            {
+                LevelManager lm = FindObjectOfType<LevelManager>();
+                lm.AdvanceLevel();
+            }
         }
 
         private void SpawnOrb()

@@ -10105,13 +10105,14 @@ MonoBehaviour:
   - {fileID: 6017793591555407587, guid: 1a0597017c737480ca76940c07499957, type: 3}
   - {fileID: 5872965906753236289, guid: 6c1e626f49142426ab0e5297ec61658e, type: 3}
   - {fileID: 3324956058065805383, guid: 458c593d4f5614ee48cde4c396f10af5, type: 3}
-  startingHealth: 10000
+  startingHealth: 2000
   sinkSpeed: 2.5
   spawnOrbChance: 0.5
   scoreValue: 50
   goldValue: 5
   deathClip: {fileID: 8300000, guid: 1d3bfb9269f136947bf8ac164cace1ff, type: 3}
   data: {fileID: 11400000, guid: 4bf3ecb1b3d1fa6a4900769762453604, type: 2}
+  currentHealth: 0
   angryParticles: {fileID: 7958903249401435117}
 --- !u!114 &3820857267784364635
 MonoBehaviour:
