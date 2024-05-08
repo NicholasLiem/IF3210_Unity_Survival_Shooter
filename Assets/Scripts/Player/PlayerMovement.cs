@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     float duration = 0;
 
     float buffPercentage = 1f;
+    float buffCheat = 0f;
 
     void Awake()
     {
@@ -61,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void TwoTimeSpeed()
     {
-        speed = speed * 2;
+        buffCheat = 2f;
     }
 
     void FixedUpdate()
@@ -74,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         {
             buffPercentage = 0f;
         }
-        speed = baseSpeed + baseSpeed * buffPercentage;
+        speed = baseSpeed + baseSpeed * buffPercentage + baseSpeed * buffCheat;
 
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
