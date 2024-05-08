@@ -22,6 +22,16 @@ namespace Nightmare
 
         public bool heldByPlayer = false;
 
+        // ParticleSystem gunParticles;
+        // LineRenderer gunLine;
+        // AudioSource gunAudio;
+        // public Light faceLight;
+        // Light gunLight;
+        float effectsDisplayTime = 0.2f;
+        int grenadeStock = 99;
+        bool oneHitKillCheat = false;
+
+        private UnityAction listener;
 
         void Awake()
         {
@@ -31,6 +41,28 @@ namespace Nightmare
             hitParticles = GetComponentInChildren<ParticleSystem>();
 
             StartPausible();
+        }
+
+        public void OneHitKillCheat()
+        {
+            oneHitKillCheat = true;
+        }
+
+        public void CollectGrenade()
+        {
+            AdjustGrenadeStock(1);
+        }
+
+        private void AdjustGrenadeStock(int change)
+        {
+            grenadeStock += change;
+            GrenadeManager.grenades = grenadeStock;
+        }
+
+        void OnDestroy()
+        {
+            EventManager.StopListening("GrenadePickup", CollectGrenade);
+            StopPausible();
         }
 
 
@@ -83,6 +115,12 @@ namespace Nightmare
                 Debug.Log(enemyHealth);
                 if (enemyHealth != null)
                 {
+                    int damage = damagePerHit;
+
+                    if (oneHitKillCheat)
+                    {
+                        damage = enemyHealth.currentHealth;
+                    }
                     Debug.Log(enemyHealth);
                     // Calculate the direction to the enemy
                     Vector3 toEnemy = (hitCollider.transform.position - transform.position).normalized;
@@ -90,7 +128,7 @@ namespace Nightmare
                     // Check if the enemy is in front of the player
                     if (Vector3.Dot(toEnemy, transform.forward) > 0)
                     {
-                        enemyHealth.TakeDamage((int)(multiplier * damagePerHit), toEnemy);
+                        enemyHealth.TakeDamage((int)(multiplier * damage), toEnemy);
                     }
                 }
 

@@ -10,6 +10,7 @@ namespace Nightmare
         public static int gold = 0;
         private int levelThreshhold;
         const int LEVEL_INCREASE = 300;
+        public static bool motherlodeCheat = false;
 
         Text sText;
 
@@ -20,6 +21,11 @@ namespace Nightmare
                 sText = scoreTextObject.GetComponent<Text>();
             score = 0;
             levelThreshhold = LEVEL_INCREASE;
+        }
+
+        public static void MotherlodeCheat()
+        {
+            motherlodeCheat=true;
         }
 
 

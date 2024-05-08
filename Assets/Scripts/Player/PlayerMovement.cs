@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
@@ -7,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     // Shop references
     public GameObject panel;
     public GameObject errorText;
+    public TMPro.TMP_InputField cheatingInputField;
     public Transform shopKeeper;
     public float shopThresholdRange = 3f;
     public float errorTextShowTime = 2f;
@@ -16,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     float totalShopTime = 0f;
     float errorTextTimeShown = 0f;
     bool isShopping;
+    public bool isCheating = false;
 
     public float baseSpeed = 5f;
 
@@ -30,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     float duration = 0;
 
     float buffPercentage = 1f;
+    float buffCheat = 0f;
 
     void Awake()
     {
@@ -56,6 +60,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void TwoTimeSpeed()
+    {
+        buffCheat = 2f;
+    }
+
     void FixedUpdate()
     {
         if (duration > 0)
@@ -66,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         {
             buffPercentage = 0f;
         }
-        speed = baseSpeed + baseSpeed * buffPercentage;
+        speed = baseSpeed + baseSpeed * buffPercentage + baseSpeed * buffCheat;
 
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
@@ -107,6 +116,26 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            isCheating = !isCheating;
+
+            if (isCheating)
+            {
+                cheatingInputField.gameObject.SetActive(isCheating);
+                cheatingInputField.onEndEdit.AddListener(EndInputField);
+                cheatingInputField.Select();
+                cheatingInputField.ActivateInputField();
+                cheatingInputField.text = "";
+            } 
+            else
+            {
+                cheatingInputField.text = "";
+                cheatingInputField.DeactivateInputField();
+                cheatingInputField.gameObject.SetActive(isCheating);
+            }
+        }
+
         // Close shop if move too far away or total shopping time exceeded allowedShopTime
         if (!IsNearShopkeeper() && panel.activeInHierarchy || totalShopTime > allowedShopTime)
         {
@@ -126,9 +155,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void EndInputField(string text)
+    {
+        cheatingInputField.text = "";
+        cheatingInputField.DeactivateInputField();
+        cheatingInputField.gameObject.SetActive(false);
+        isCheating = false;
+    }
+
     void Move(float h, float v)
     {
         movement.Set(h, 0, v);
+        // Debug.Log("Speed");
         movement = movement.normalized * speed * Time.deltaTime;
         playerRigidbody.MovePosition(transform.position + movement);
         GameEventsManager.instance.playerActionEvents.TriggerPlayerMovement(movement.magnitude);
