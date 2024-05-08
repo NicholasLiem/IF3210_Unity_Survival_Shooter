@@ -98,8 +98,8 @@ public class BufferHealth : MonoBehaviour
         return currentHealth;
     }
 
-    public void instantKillPet()
+    public void InstantKillPet()
     {
-        currentHealth = 0;
+        TakeDamage(currentHealth);
     }
 }

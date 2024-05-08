@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 4106573138444486600}
   m_Layer: 7
   m_Name: Buff Pet
-  m_TagString: Untagged
+  m_TagString: Enemy Pet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
