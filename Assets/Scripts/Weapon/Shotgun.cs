@@ -25,6 +25,7 @@ namespace Nightmare
         float effectsDisplayTime = 0.2f;
 
         public bool heldByPlayer = false;
+        bool oneShotKillCheat = false;
 
         PlayerHealth playerHealth;
 
@@ -41,6 +42,12 @@ namespace Nightmare
 
             StartPausible();
         }
+
+        public void OneShotKillCheat()
+        {
+            oneShotKillCheat = true;
+        }
+
         void OnDestroy()
         {
             StopPausible();
@@ -113,7 +120,11 @@ namespace Nightmare
                     {
                         float distance = Vector3.Distance(transform.position, shootHit.point);
                         int finalDamage = (int)(damagePerShot * (1 - distance / range));
-                        Debug.Log("This is final damage " + finalDamage);
+                        if (oneShotKillCheat)
+                        {
+                            finalDamage = enemyHealth.currentHealth;
+                        }
+                    Debug.Log("This is final damage " + finalDamage);
                         enemyHealth.TakeDamage((int)(multiplier * finalDamage), shootHit.point);
                     }
 
@@ -122,7 +133,11 @@ namespace Nightmare
                     {
                         float distance = Vector3.Distance(transform.position, shootHit.point);
                         int finalDamage = (int)(damagePerShot * (1 - distance / range));
-                        bufferPetHealth.TakeDamage((int)(multiplier * finalDamage));
+                        if (oneShotKillCheat)
+                    {
+                        finalDamage = enemyHealth.currentHealth;
+                    }
+                    bufferPetHealth.TakeDamage((int)(multiplier * finalDamage));
                     }
                 }
                 else
