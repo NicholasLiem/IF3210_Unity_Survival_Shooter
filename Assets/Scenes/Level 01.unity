@@ -2500,6 +2500,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZomBear Keroco
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: ea3c2728ef33e3a4d99527a86cda6465, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ea3c2728ef33e3a4d99527a86cda6465, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.7731447
@@ -3352,7 +3356,19 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1685316481}
+        m_TargetAssemblyTypeName: PlayerCheat, Assembly-CSharp
+        m_MethodName: ReadInputString
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -3628,7 +3644,7 @@ GameObject:
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1627188289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3701,6 +3717,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 0}
+--- !u!114 &1685316481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134198587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33752f476da3894f8fc597adce63daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1758458344
 GameObject:
   m_ObjectHideFlags: 0
@@ -4202,7 +4230,7 @@ CanvasGroup:
   m_GameObject: {fileID: 1939354813}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 0
+  m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 1
 --- !u!114 &1939354819
@@ -4320,6 +4348,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: e5171f72421770240bd7c3989fe351e3, type: 3}
       propertyPath: m_Name
       value: ' ZomBunny Kepala Keroco'
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: e5171f72421770240bd7c3989fe351e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: e5171f72421770240bd7c3989fe351e3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4513,7 +4545,7 @@ PrefabInstance:
     - target: {fileID: 11400002, guid: 4e5a0d387dc27394b81600988ad0216f, type: 3}
       propertyPath: cheatingInputField
       value: 
-      objectReference: {fileID: 1319862409}
+      objectReference: {fileID: 1319862411}
     - target: {fileID: 11400004, guid: 4e5a0d387dc27394b81600988ad0216f, type: 3}
       propertyPath: godMode
       value: 0
@@ -4547,6 +4579,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100006, guid: 4e5a0d387dc27394b81600988ad0216f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1685316473}
+    - targetCorrespondingSourceObject: {fileID: 100006, guid: 4e5a0d387dc27394b81600988ad0216f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1685316481}
   m_SourcePrefab: {fileID: 100100000, guid: 4e5a0d387dc27394b81600988ad0216f, type: 3}
 --- !u!1001 &2057621546
 PrefabInstance:
@@ -4628,6 +4663,10 @@ PrefabInstance:
     - target: {fileID: 153412, guid: 548c56f4bcf4db24b8aa057e9846a005, type: 3}
       propertyPath: m_Name
       value: Jenderal
+      objectReference: {fileID: 0}
+    - target: {fileID: 153412, guid: 548c56f4bcf4db24b8aa057e9846a005, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 418926, guid: 548c56f4bcf4db24b8aa057e9846a005, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4829,6 +4868,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpeedOrb
       objectReference: {fileID: 0}
+    - target: {fileID: 3324956058065805383, guid: 458c593d4f5614ee48cde4c396f10af5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4885,6 +4928,10 @@ PrefabInstance:
     - target: {fileID: 5872965906753236289, guid: 6c1e626f49142426ab0e5297ec61658e, type: 3}
       propertyPath: m_Name
       value: PowerOrb
+      objectReference: {fileID: 0}
+    - target: {fileID: 5872965906753236289, guid: 6c1e626f49142426ab0e5297ec61658e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4943,6 +4990,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealOrb
       objectReference: {fileID: 0}
+    - target: {fileID: 6017793591555407587, guid: 1a0597017c737480ca76940c07499957, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4999,6 +5050,10 @@ PrefabInstance:
     - target: {fileID: 6072423485697858042, guid: 9ab6f86c5408847f7a34f1b5dd75ab02, type: 3}
       propertyPath: m_Name
       value: Raja
+      objectReference: {fileID: 0}
+    - target: {fileID: 6072423485697858042, guid: 9ab6f86c5408847f7a34f1b5dd75ab02, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
