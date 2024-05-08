@@ -14,4 +14,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 01.unity
     guid: d1595c9a6b202454da834fdd46fb859b
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/MonologCutscene.unity
+    guid: ed43ff3687336b1478f7424c39d73b44
+  - enabled: 1
+    path: Assets/Scenes/Level 02.unity
+    guid: afe4b79d6e2ce4495ab463e94d7b0cb4
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/BossCutscene.unity
+    guid: b437a2780fd33a740a569402e9b3d682
+  - enabled: 1
+    path: Assets/Scenes/Level 03.unity
+    guid: e3d70859ae60e4bba973287cf4213ca2
+  - enabled: 1
+    path: Assets/Scenes/Cutscenes/EndingCutscene.unity
+    guid: 1cf01b301c3824f4bb7954756d1d95f9
+  - enabled: 1
+    path: Assets/Scenes/Save Point Scene.unity
+    guid: 889614435534e44999539e234b31d228
   m_configObjects: {}

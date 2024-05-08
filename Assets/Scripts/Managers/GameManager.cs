@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameDifficulty : ushort
 {
@@ -20,6 +21,13 @@ public class GameManager : MonoBehaviour, ISaveable
     public GameDifficulty gameDifficulty = GameDifficulty.Easy;
     public List<Tuple<string, int>> petData = new();
     public int questProgress = 0;
+
+    public int score = 0;
+    public int gold = 0;
+
+    public int currentLevel = 1;
+    public int shopSceneIndex = 8;
+    public int MAX_PLAYABLE_SCENE = 7;
 
     private void Awake()
     {
@@ -148,5 +156,33 @@ public class GameManager : MonoBehaviour, ISaveable
             }
         }
     }
+       
+    public void AdvanceLevel(bool toShop = false)
+    {
+        if (toShop)
+        {
+            SceneManager.LoadScene(shopSceneIndex);
+        }
+        else
+        {
+            LoadLevel(currentLevel + 1);
+        }
+    }
 
+    private void LoadLevel(int level)
+    {
+        currentLevel = level;
+        if (currentLevel > MAX_PLAYABLE_SCENE)
+        {
+            // Reset scene level, score, gold and back to main menu
+            currentLevel = 1;
+            score = 0;
+            gold = 0;
+            SceneManager.LoadScene(0);
+        } else
+        {
+            // Load next level in 
+            SceneManager.LoadScene(currentLevel);
+        }
+    }
 }

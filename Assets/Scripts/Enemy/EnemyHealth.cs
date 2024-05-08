@@ -104,8 +104,7 @@ namespace Nightmare
 
             if (angryParticles != null)
             {
-                LevelManager lm = FindObjectOfType<LevelManager>();
-                lm.AdvanceLevel();
+                GameManager.Instance.AdvanceLevel();
             }
         }
 
@@ -128,8 +127,8 @@ namespace Nightmare
             GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
             SetKinematics(true);
 
-            ScoreManager.score += scoreValue;
-            ScoreManager.gold += goldValue;
+            GameManager.Instance.score += scoreValue;
+            GameManager.Instance.gold += goldValue;
             // TODO: Change gold into game manager instead of score manager
             GameEventsManager.instance.miscEvents.TriggerGoldCollected(goldValue);
         }

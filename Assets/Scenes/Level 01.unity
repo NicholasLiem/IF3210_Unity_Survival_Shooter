@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1055,6 +1055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 100002, guid: e5171f72421770240bd7c3989fe351e3, type: 3}
   spawnTime: 20
+  spawnQty: 9999
   spawnPoints:
   - {fileID: 227261758}
 --- !u!4 &227261758
@@ -1286,6 +1287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 100002, guid: e5171f72421770240bd7c3989fe351e3, type: 3}
   spawnTime: 20
+  spawnQty: 9999
   spawnPoints:
   - {fileID: 301595612}
 --- !u!4 &301595612
@@ -1923,6 +1925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 100000, guid: ea3c2728ef33e3a4d99527a86cda6465, type: 3}
   spawnTime: 10
+  spawnQty: 9999
   spawnPoints:
   - {fileID: 615215598}
 --- !u!4 &615215598
@@ -2619,6 +2622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 100000, guid: ea3c2728ef33e3a4d99527a86cda6465, type: 3}
   spawnTime: 15
+  spawnQty: 9999
   spawnPoints:
   - {fileID: 994998094}
 --- !u!4 &994998094

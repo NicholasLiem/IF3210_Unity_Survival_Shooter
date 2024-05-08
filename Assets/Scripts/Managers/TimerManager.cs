@@ -40,8 +40,7 @@ namespace Nightmare
         // See EnemyHealth.cs
         private void AdvanceLevel()
         {
-            LevelManager lm = FindObjectOfType<LevelManager>();
-            lm.AdvanceLevel();
+            GameManager.Instance.AdvanceLevel(true);
         }
     }
 }

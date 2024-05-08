@@ -49,7 +49,7 @@ namespace Nightmare
 
         private void ResetLevel()
         {
-            ScoreManager.score = 0;
+            GameManager.Instance.score = 0;
             LevelManager lm = FindObjectOfType<LevelManager>();
             lm.LoadInitialLevel();
             anim.SetBool("GameOver", false);
@@ -58,6 +58,7 @@ namespace Nightmare
 
         private void LoadMainMenu()
         {
+            GameManager.Instance.currentLevel = 1;
             SceneManager.LoadScene("Main Menu");
         }
     }

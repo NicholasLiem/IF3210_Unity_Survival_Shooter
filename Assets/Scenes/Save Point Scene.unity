@@ -510,9 +510,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 119113812}
     - target: {fileID: 11400002, guid: 4e5a0d387dc27394b81600988ad0216f, type: 3}
+      propertyPath: healPetPrefab
+      value: 
+      objectReference: {fileID: 4685250781159632716, guid: 48916920fc5039043b8bec4e10a0e90b, type: 3}
+    - target: {fileID: 11400002, guid: 4e5a0d387dc27394b81600988ad0216f, type: 3}
       propertyPath: allowedShopTime
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 4e5a0d387dc27394b81600988ad0216f, type: 3}
+      propertyPath: attackPetPrefab
+      value: 
+      objectReference: {fileID: 1182915627347146110, guid: 6bb7dd190d0251e4388183ad894648db, type: 3}
     - target: {fileID: 11400004, guid: 4e5a0d387dc27394b81600988ad0216f, type: 3}
       propertyPath: godMode
       value: 0
@@ -3798,7 +3806,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4158481591769718642, guid: 4cad235a511e3ca4391907989d59bacb, type: 3}
       propertyPath: petPrice
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7252188012016435089, guid: 4cad235a511e3ca4391907989d59bacb, type: 3}
       propertyPath: m_IsActive

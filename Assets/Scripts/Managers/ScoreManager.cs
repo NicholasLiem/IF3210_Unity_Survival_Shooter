@@ -6,8 +6,6 @@ namespace Nightmare
 {
     public class ScoreManager : MonoBehaviour
     {
-        public static int score;
-        public static int gold = 0;
         private int levelThreshhold;
         const int LEVEL_INCREASE = 300;
         public static bool motherlodeCheat = false;
@@ -19,7 +17,6 @@ namespace Nightmare
             GameObject scoreTextObject = GameObject.Find("ScoreText");
             if (scoreTextObject != null)
                 sText = scoreTextObject.GetComponent<Text>();
-            score = 0;
             levelThreshhold = LEVEL_INCREASE;
         }
 
@@ -31,7 +28,7 @@ namespace Nightmare
 
         void Update()
         {
-            sText.text = "Score: " + score;
+            sText.text = "Score: " + GameManager.Instance.score;
             // if (score >= levelThreshhold)
             // {
             //     AdvanceLevel();
@@ -40,7 +37,7 @@ namespace Nightmare
 
         private void AdvanceLevel()
         {
-            levelThreshhold = score + LEVEL_INCREASE;
+            levelThreshhold = GameManager.Instance.score + LEVEL_INCREASE;
             LevelManager lm = FindObjectOfType<LevelManager>();
             lm.AdvanceLevel();
         }

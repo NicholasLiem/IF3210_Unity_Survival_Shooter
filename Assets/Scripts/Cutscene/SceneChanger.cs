@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
     public float changeTime;
-    public int sceneIndex;
 
     private void Update()
     {
@@ -14,7 +13,7 @@ public class SceneChanger : MonoBehaviour
 
         if (changeTime <= 0)
         {
-            SceneManager.LoadScene(sceneIndex);
+            GameManager.Instance.AdvanceLevel();
         }
     }
 }

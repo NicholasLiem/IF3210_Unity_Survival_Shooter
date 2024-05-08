@@ -14,13 +14,7 @@ public class NavigationController : MonoBehaviour
         timeLeft -= Time.deltaTime;
         if (timeLeft <= 0)
         {
-            switch (GameManager.Instance.questProgress) {
-                case 0:
-                    SceneManager.LoadScene(1);
-                    break;
-                default:
-                    break;
-            }
+            GameManager.Instance.AdvanceLevel();
         }
     }
 }

@@ -16,6 +16,6 @@ public class GoldManager : MonoBehaviour
 
     void Update()
     {
-        goldText.text = "Gold: " + ScoreManager.gold;
+        goldText.text = "Gold: " + GameManager.Instance.gold;
     }
 }
