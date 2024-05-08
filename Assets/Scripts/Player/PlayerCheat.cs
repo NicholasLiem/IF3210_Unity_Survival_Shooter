@@ -38,7 +38,6 @@ public class PlayerCheat : MonoBehaviour
         }
         weaponSword = weaponSword.transform.Find("KatanaEnd").gameObject;
         sword = weaponSword.GetComponent<Sword>();
-        enemyPet = GameObject.FindGameObjectsWithTag("EnemyPet");
     }
 
     // Start is called before the first frame update
@@ -83,10 +82,13 @@ public class PlayerCheat : MonoBehaviour
 
     void KillPet()
     {
+        enemyPet = GameObject.FindGameObjectsWithTag("Enemy Pet");
+        
         for (int i = 0; i < enemyPet.Length; i++)
         {
-            PetHealth enemyPetHealth = enemyPet[i].GetComponent<PetHealth>();
-            enemyPetHealth.instantKillPet();
+            Debug.Log("Enemy Pet " + enemyPet[i].name);
+            BufferHealth enemyPetHealth = enemyPet[i].GetComponent<BufferHealth>();
+            enemyPetHealth.InstantKillPet();
         }
     }
 
