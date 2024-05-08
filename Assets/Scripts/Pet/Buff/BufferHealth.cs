@@ -97,4 +97,9 @@ public class BufferHealth : MonoBehaviour
     {
         return currentHealth;
     }
+
+    public void instantKillPet()
+    {
+        currentHealth = 0;
+    }
 }
