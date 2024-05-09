@@ -6,6 +6,7 @@ public class MainMenuController : MonoBehaviour
     public void StartGame()
     {
         GameManager.Instance.HavePlayed = true;
+        GameManager.Instance.petData.Clear();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
