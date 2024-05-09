@@ -10,8 +10,14 @@ public class SettingsMenuController : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
+            Debug.Log(GameManager.Instance.HavePlayed);
             usernameInputField.text = GameManager.Instance.Username;
             gameDifficultyDropdown.value = (int) GameManager.Instance.gameDifficulty;
+
+            if (GameManager.Instance.HavePlayed)
+            {
+                gameDifficultyDropdown.interactable = false;
+            }
         }
     }
 

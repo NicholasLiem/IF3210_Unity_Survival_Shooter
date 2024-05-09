@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour, ISaveable
     public int shopSceneIndex = 8;
     public int MAX_PLAYABLE_SCENE = 7;
 
+    public bool HavePlayed;
+
     private void Awake()
     {
         Debug.Log("GameManager Awake started");
@@ -119,6 +121,7 @@ public class GameManager : MonoBehaviour, ISaveable
 
             LoadFromSaveData(sd);
             Debug.Log("Load complete");
+            this.HavePlayed = true;
 
             AdvanceLevel(true);
         }
