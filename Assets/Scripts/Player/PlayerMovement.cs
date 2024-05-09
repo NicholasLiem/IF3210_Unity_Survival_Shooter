@@ -12,10 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform shopKeeper;
     public float shopThresholdRange = 3f;
     public float errorTextShowTime = 2f;
-    public float allowedShopTime = 15f;
     public GameObject attackPetPrefab;
     public GameObject healPetPrefab;
-    float totalShopTime = 0f;
     float errorTextTimeShown = 0f;
     bool isShopping;
     public bool isCheating = false;
@@ -89,20 +87,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (totalShopTime <= allowedShopTime)
+            
+            if (IsNearShopkeeper())
             {
-                if (IsNearShopkeeper())
-                {
-                    errorText.SetActive(false);
-                    errorTextTimeShown = 0f;
-                    panel.SetActive(true);
-                    isShopping = true;
-                }
-                else
-                {
-                    errorText.SetActive(true);
-                    errorTextTimeShown = errorTextShowTime;
-                }
+                errorText.SetActive(false);
+                errorTextTimeShown = 0f;
+                panel.SetActive(true);
+                isShopping = true;
+            }
+            else
+            {
+                errorText.SetActive(true);
+                errorTextTimeShown = errorTextShowTime;
             }
         } 
         else
@@ -136,8 +132,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        // Close shop if move too far away or total shopping time exceeded allowedShopTime
-        if (!IsNearShopkeeper() && panel.activeInHierarchy || totalShopTime > allowedShopTime)
+        // Close shop if move too far away
+        if (!IsNearShopkeeper() && panel.activeInHierarchy)
         {
             panel.SetActive(false);
         }
@@ -146,12 +142,6 @@ public class PlayerMovement : MonoBehaviour
         if (!panel.activeInHierarchy)
         {
             isShopping = false;
-        }
-
-        // Keep track on shopping time
-        if (isShopping)
-        {
-            totalShopTime += Time.deltaTime;
         }
     }
 
@@ -210,10 +200,5 @@ public class PlayerMovement : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    public void RefreshShopTime()
-    {
-        totalShopTime = 0f;
     }
 }
