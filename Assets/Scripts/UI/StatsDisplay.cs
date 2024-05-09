@@ -14,12 +14,12 @@ public class StatsDisplay : MonoBehaviour
 
     void Awake()
     {
-        distanceText = FindComponentInChildByName<Text>("DistanceTraveledText");
         minutesPlayedText = FindComponentInChildByName<Text>("MinutesPlayedText");
         shotAccuracyText = FindComponentInChildByName<Text>("ShotAccuracyText");
-        // goldCollectedText = FindComponentInChildByName<Text>("GoldCollectedText");
+        goldCollectedText = FindComponentInChildByName<Text>("GoldCollectedText");
         // orbsCollectedText = FindComponentInChildByName<Text>("OrbsCollectedText");
         // enemiesKilledText = FindComponentInChildByName<Text>("EnemiesKilledText");
+        // distanceText = FindComponentInChildByName<Text>("DistanceTraveledText");
     }
 
     void Update()

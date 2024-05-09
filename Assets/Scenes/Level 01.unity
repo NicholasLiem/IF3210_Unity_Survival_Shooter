@@ -242,9 +242,6 @@ MonoBehaviour:
   playerStats: {fileID: 1685316467}
   goldCollectedText: {fileID: 1857874819}
   minutesPlayedText: {fileID: 683828208}
-  distanceText: {fileID: 0}
-  orbsCollectedText: {fileID: 0}
-  enemiesKilledText: {fileID: 0}
   shotAccuracyText: {fileID: 0}
 --- !u!1 &15127719
 GameObject:
@@ -3521,7 +3518,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Shot Accuracy: 100%'
+  m_Text: 'Shot Accuracy: 0.00%'
 --- !u!222 &1578801334
 CanvasRenderer:
   m_ObjectHideFlags: 0
