@@ -34,13 +34,22 @@ public class StatsDisplay : MonoBehaviour
 
     T FindComponentInChildByName<T>(string name) where T : Component
     {
-        Transform[] children = GetComponentsInChildren<Transform>(true);
-        foreach (Transform child in children)
+        return FindComponentInChildByName<T>(transform, name);
+    }
+
+    T FindComponentInChildByName<T>(Transform parent, string name) where T : Component
+    {
+        if (parent.name == name)
         {
-            if (child.name == name)
-            {
-                return child.GetComponent<T>();
-            }
+            T component = parent.GetComponent<T>();
+            if (component != null)
+                return component;
+        }
+        foreach (Transform child in parent)
+        {
+            T found = FindComponentInChildByName<T>(child, name);
+            if (found != null)
+                return found;
         }
         return null;
     }
@@ -56,15 +65,5 @@ public class StatsDisplay : MonoBehaviour
             shotAccuracyText.text = $"Shot Accuracy: {playerStats.ShotAccuracy * 100:F2}%";
         if (scoreText != null)
             scoreText.text = $"Score: {playerStats.Score}";
-    }
-
-    string GenerateStatsText(Dictionary<string, int> statsDictionary, string title)
-    {
-        string text = $"{title}:\n";
-        foreach (KeyValuePair<string, int> entry in statsDictionary)
-        {
-            text += $"{entry.Key}: {entry.Value}\n";
-        }
-        return text;
     }
 }
