@@ -7,6 +7,9 @@ public class QuestManager : MonoBehaviour
     private Dictionary<string, Quest> questMap;
     private int currentPlayerLevel = 0;
 
+    public delegate void QuestUpdateHandler(Quest quest);
+    public event QuestUpdateHandler OnQuestUpdated;
+
     private void Awake()
     {
         questMap = CreateQuestMap();
@@ -81,8 +84,13 @@ public class QuestManager : MonoBehaviour
         Quest quest = GetQuestById(id);
         quest.state = state;
         GameEventsManager.Instance.questEvents.QuestStateChange(quest);
+        NotifyQuestUpdate(quest);
     }
 
+    private void NotifyQuestUpdate(Quest quest)
+    {
+        OnQuestUpdated?.Invoke(quest);
+    }
 
     private void StartQuest(string id)
     {
@@ -90,6 +98,7 @@ public class QuestManager : MonoBehaviour
         Quest quest = GetQuestById(id);
         quest.InstantiateCurrentQuestStep(this.transform);
         ChangeQuestState(quest.info.id,  QuestState.IN_PROGRESS);
+        NotifyQuestUpdate(quest);
     }
 
     private void AdvanceQuest(string id)
