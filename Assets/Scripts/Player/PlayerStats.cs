@@ -84,9 +84,6 @@ public class PlayerStats : MonoBehaviour
         if (TotalShotsFired > 0)
         {
             ShotAccuracy = (float)SuccessfulHits / TotalShotsFired;
-            Debug.Log("Shot Accuracy: " + ShotAccuracy);
-            Debug.Log("Successful Hits: " + SuccessfulHits);
-            Debug.Log("Total Hits: " + TotalShotsFired);
         }
     }
 
