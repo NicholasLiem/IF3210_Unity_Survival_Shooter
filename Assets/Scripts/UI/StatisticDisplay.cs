@@ -68,7 +68,7 @@ public class StatisticDisplay : MonoBehaviour
         if (enemiesKilledText != null)
             enemiesKilledText.text = GenerateStatsText(playerStats.EnemyKillCount, "Enemies Killed");
         if (distanceText != null)
-            distanceText.text = $"Distance: {playerStats.DistanceTraveled} km";
+            distanceText.text = $"Distance Traveled: {playerStats.DistanceTraveled} km";
         if (shotAccuracyText != null)
             shotAccuracyText.text = $"Shot Accuracy: {playerStats.ShotAccuracy * 100:F2}%";
         if (totalShotsFiredText != null)
