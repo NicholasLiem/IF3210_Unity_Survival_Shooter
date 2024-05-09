@@ -1,64 +1,38 @@
-﻿using System.Collections;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 namespace Nightmare
 {
     public class GameOverManager : MonoBehaviour
     {
         public PlayerHealth playerHealth;
-        public float restartDelay = 5f;
-        Animator anim;
-        float restartTimer;
+        public float gameOverDelay = 3f;
 
-        LevelManager lm;
-        private UnityEvent listener;
-
-        void Awake ()
+        void Awake()
         {
             playerHealth = FindObjectOfType<PlayerHealth>();
-            anim = GetComponent <Animator> ();
-            lm = FindObjectOfType<LevelManager>();
-            EventManager.StartListening("GameOver", ShowGameOver);
         }
 
         void Update()
         {
             if (playerHealth.currentHealth <= 0)
             {
-                anim.SetTrigger("GameOver");
-                restartTimer += Time.deltaTime;
-                if (restartTimer >= restartDelay)
-                {
-                    Application.LoadLevel(Application.loadedLevel);
-                    LoadMainMenu();
-                }
+                StartCoroutine(DelayedLoadGameOver());
             }
         }
 
-        void OnDestroy()
+        IEnumerator DelayedLoadGameOver()
         {
-            EventManager.StopListening("GameOver", ShowGameOver);
+            yield return new WaitForSeconds(gameOverDelay);
+            ResetGame();
+            SceneManager.LoadScene("Game Over");
         }
 
-        void ShowGameOver()
-        {
-            anim.SetBool("GameOver", true);
-        }
-
-        private void ResetLevel()
-        {
-            LevelManager lm = FindObjectOfType<LevelManager>();
-            lm.LoadInitialLevel();
-            anim.SetBool("GameOver", false);
-            playerHealth.ResetPlayer();
-        }
-
-        private void LoadMainMenu()
+        private void ResetGame()
         {
             GameManager.Instance.currentLevel = 1;
-            SceneManager.LoadScene("Main Menu");
+            playerHealth.ResetPlayer();
         }
     }
 }
