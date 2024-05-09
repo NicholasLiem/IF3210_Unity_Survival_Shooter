@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class NavigationController : MonoBehaviour
 {
 
-    float timeLeft = 10.0f;
+    float timeLeft = 40.0f;
 
     private void Update()
     {
