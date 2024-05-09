@@ -44,7 +44,6 @@ public class PlayerStats : MonoBehaviour, ISaveable
     {
         if (GameEventsManager.Instance != null)
         {
-            GameEventsManager.Instance.miscEvents.OnSecondPassed += AddSecondsPlayed;
             GameEventsManager.Instance.miscEvents.OnOrbsCollected += AddOrbsCollected;
             GameEventsManager.Instance.miscEvents.OnGoldCollected += AddGoldCollected;
             GameEventsManager.Instance.enemyKilledEvents.OnEnemyKilled += AddEnemiesKilled;
@@ -68,9 +67,10 @@ public class PlayerStats : MonoBehaviour, ISaveable
         DistanceTraveled += distance / 1000.0f;
     }
 
-    private void AddSecondsPlayed()
+    public void AddSecondsPassed()
     {
         SecondsPlayed++;
+        Debug.Log("Seconds Played: " + SecondsPlayed);
     }
 
     private void AddEnemiesKilled(string enemyType)

@@ -2,46 +2,37 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    public static TimeManager instance;
+    public static TimeManager Instance { get; private set; }
 
-    private float timePlayed;
-    private int secondsPassed = 0;
-    private float secondCountdown = 1f;
+    private float secondCounter = 1.0f;
+    private int totalSeconds = 0;
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
+        {
             Destroy(gameObject);
+        }
     }
 
     void Update()
     {
-        timePlayed += Time.deltaTime;
-        secondCountdown -= Time.deltaTime;
-
-        if (secondCountdown <= 0)
+        secondCounter -= Time.deltaTime;
+        if (secondCounter <= 0)
         {
-            secondCountdown += 1f;
-            secondsPassed++;
-            GameEventsManager.Instance.miscEvents.TriggerSecondPassed();
+            secondCounter += 1.0f;
+            totalSeconds++;
+            GameManager.Instance.PlayerStats.AddSecondsPassed();
 
-            if (secondsPassed >= 60)
+            if (totalSeconds % 60 == 0)
             {
-                secondsPassed = 0;
                 GameEventsManager.Instance.miscEvents.TriggerMinutePassed();
             }
         }
-    }
-
-    public float GetTimePlayedMinutes()
-    {
-        return timePlayed / 60f;
-    }
-
-    public float GetTimePlayedSeconds()
-    {
-        return timePlayed;
     }
 }

@@ -23,7 +23,6 @@ public class SaveData
         public int totalShotsFired;
         public int successfillHits;
         public float distanceTraveled;
-        public int minutesPlayed;
         public int goldCollected;
         
         public int score;

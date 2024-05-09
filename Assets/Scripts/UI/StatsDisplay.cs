@@ -49,7 +49,7 @@ public class StatsDisplay : MonoBehaviour
     {
         if (playerStats == null) return;
         if (timePlayedText != null)
-            timePlayedText.text = $"Minutes Played: {playerStats.GetFormattedTimePlayed()}";
+            timePlayedText.text = $"Time Played: {playerStats.GetFormattedTimePlayed()}";
         if (goldCollectedText != null)
             goldCollectedText.text = $"Gold Collected: {playerStats.GoldCollected}";
         if (shotAccuracyText != null)

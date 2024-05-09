@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goldCollectedText: {fileID: 1857874819}
-  minutesPlayedText: {fileID: 683828208}
+  timePlayedText: {fileID: 0}
   shotAccuracyText: {fileID: 0}
   scoreText: {fileID: 0}
 --- !u!1 &15127719
@@ -2005,7 +2005,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Minutes Played: 0'
+  m_Text: 'Time Played: 00:00:00'
 --- !u!222 &683828209
 CanvasRenderer:
   m_ObjectHideFlags: 0
