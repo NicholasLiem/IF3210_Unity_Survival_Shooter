@@ -5,7 +5,8 @@ public class TimeManager : MonoBehaviour
     public static TimeManager instance;
 
     private float timePlayed;
-    private float minuteCountdown = 60f;
+    private int secondsPassed = 0;
+    private float secondCountdown = 1f;
 
     private void Awake()
     {
@@ -18,23 +19,29 @@ public class TimeManager : MonoBehaviour
     void Update()
     {
         timePlayed += Time.deltaTime;
-        minuteCountdown -= Time.deltaTime;
+        secondCountdown -= Time.deltaTime;
 
-        if (minuteCountdown <= 0)
+        if (secondCountdown <= 0)
         {
-            minuteCountdown = 60f;
-            if (GameEventsManager.Instance == null || GameEventsManager.Instance.miscEvents == null)
-            {
-                Debug.LogError("GameEventsManager or miscEvents is not initialized");
-                return;
-            }
+            secondCountdown += 1f;
+            secondsPassed++;
+            GameEventsManager.Instance.miscEvents.TriggerSecondPassed();
 
-            GameEventsManager.Instance.miscEvents.TriggerMinutePassed((int)(timePlayed / 60f));
+            if (secondsPassed >= 60)
+            {
+                secondsPassed = 0;
+                GameEventsManager.Instance.miscEvents.TriggerMinutePassed();
+            }
         }
     }
 
     public float GetTimePlayedMinutes()
     {
         return timePlayed / 60f;
+    }
+
+    public float GetTimePlayedSeconds()
+    {
+        return timePlayed;
     }
 }

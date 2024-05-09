@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
 
 public class PlayerStats : MonoBehaviour
@@ -9,7 +10,7 @@ public class PlayerStats : MonoBehaviour
     public int TotalShotsFired { get; private set; } = 0;
     public int SuccessfulHits { get; private set; } = 0;
     public float DistanceTraveled { get; private set; } = 0;
-    public int MinutesPlayed { get; private set; } = 0;
+    public int SecondsPlayed { get; private set; } = 0;
     public int GoldCollected {get; private set;} = 0;
     public int Score {get; private set;} = 0;
 
@@ -43,7 +44,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (GameEventsManager.Instance != null)
         {
-            GameEventsManager.Instance.miscEvents.OnMinutePassed += UpdateMinutesPlayed;
+            GameEventsManager.Instance.miscEvents.OnSecondPassed += AddSecondsPlayed;
             GameEventsManager.Instance.miscEvents.OnOrbsCollected += AddOrbsCollected;
             GameEventsManager.Instance.miscEvents.OnGoldCollected += AddGoldCollected;
             GameEventsManager.Instance.enemyKilledEvents.OnEnemyKilled += AddEnemiesKilled;
@@ -64,12 +65,12 @@ public class PlayerStats : MonoBehaviour
 
     private void AddDistance(float distance)
     {
-        DistanceTraveled += distance;
+        DistanceTraveled += distance / 1000.0f;
     }
 
-    private void UpdateMinutesPlayed(int minutes)
+    private void AddSecondsPlayed()
     {
-        MinutesPlayed = minutes;
+        SecondsPlayed++;
     }
 
     private void AddEnemiesKilled(string enemyType)
@@ -146,7 +147,7 @@ public class PlayerStats : MonoBehaviour
         TotalShotsFired = 0;
         SuccessfulHits = 0;
         DistanceTraveled = 0;
-        MinutesPlayed = 0;
+        SecondsPlayed = 0;
         GoldCollected = 0;
         Score = 0;
         OrbsCollected = new Dictionary<string, int>();
@@ -159,7 +160,7 @@ public class PlayerStats : MonoBehaviour
         saveData.statisticData.totalShotsFired = TotalShotsFired;
         saveData.statisticData.successfulHits = SuccessfulHits;
         saveData.statisticData.distanceTraveled = DistanceTraveled;
-        saveData.statisticData.minutesPlayed = MinutesPlayed;
+        saveData.statisticData.secondsPlayed = SecondsPlayed;
         saveData.statisticData.goldCollected = GoldCollected;
         saveData.statisticData.orbsCollected = new Dictionary<string, int>(OrbsCollected);
         saveData.statisticData.enemyKillCount = new Dictionary<string, int>(EnemyKillCount);
@@ -171,9 +172,15 @@ public class PlayerStats : MonoBehaviour
         TotalShotsFired = saveData.statisticData.totalShotsFired;
         SuccessfulHits = saveData.statisticData.successfulHits;
         DistanceTraveled = saveData.statisticData.distanceTraveled;
-        MinutesPlayed = saveData.statisticData.minutesPlayed;
+        SecondsPlayed = saveData.statisticData.secondsPlayed;
         GoldCollected = saveData.statisticData.goldCollected;
         OrbsCollected = new Dictionary<string, int>(saveData.statisticData.orbsCollected);
         EnemyKillCount = new Dictionary<string, int>(saveData.statisticData.enemyKillCount);
+    }
+
+    public string GetFormattedTimePlayed()
+    {
+        TimeSpan time = TimeSpan.FromSeconds(SecondsPlayed);
+        return time.ToString(@"hh\:mm\:ss");
     }
 }

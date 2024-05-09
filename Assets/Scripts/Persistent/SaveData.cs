@@ -20,7 +20,7 @@ public class SaveData
         public int totalShotsFired;
         public int successfulHits;
         public float distanceTraveled;
-        public int minutesPlayed;
+        public int secondsPlayed;
         public int goldCollected;
         public Dictionary<string, int> orbsCollected;
         public Dictionary<string, int> enemyKillCount;

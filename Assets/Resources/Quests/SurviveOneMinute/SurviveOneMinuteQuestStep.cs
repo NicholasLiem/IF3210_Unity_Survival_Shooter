@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SurviveOneMinuteQuestStep : QuestStep
 {
     private int minutesToComplete = 1;
+    private int totalMinutes = 0;
 
     private void OnEnable()
     {
@@ -16,11 +15,12 @@ public class SurviveOneMinuteQuestStep : QuestStep
         GameEventsManager.Instance.miscEvents.OnMinutePassed -= OneMinuteHasPassed;
     }
 
-    private void OneMinuteHasPassed(int totalMinutes)
+    private void OneMinuteHasPassed()
     {
-        Debug.Log("Total Minutes: " + totalMinutes);
+        totalMinutes++;
         if (totalMinutes >= minutesToComplete)
         {
+            Debug.Log("Quest is finised");
             FinishQuestStep();
         }
     }

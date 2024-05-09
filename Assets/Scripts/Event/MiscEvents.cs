@@ -5,12 +5,18 @@ using UnityEngine;
 
 public class MiscEvents
 {
-    public event Action<int> OnMinutePassed;
+    public event Action OnSecondPassed;
+    public event Action OnMinutePassed;
     public event Action<string> OnOrbsCollected;
     public event Action<int> OnGoldCollected;
-    public void TriggerMinutePassed(int minutes)
+
+    public void TriggerMinutePassed()
     {
-        OnMinutePassed?.Invoke(minutes);
+        OnMinutePassed?.Invoke();
+    }
+    public void TriggerSecondPassed()
+    {
+        OnSecondPassed?.Invoke();
     }
 
     public void TriggerOrbsCollected(string orbsType){

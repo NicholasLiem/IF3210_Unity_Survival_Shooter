@@ -6,7 +6,7 @@ public class StatsDisplay : MonoBehaviour
 {
     private PlayerStats playerStats;
     public Text goldCollectedText;
-    public Text minutesPlayedText;
+    public Text timePlayedText;
     public Text shotAccuracyText;
     public Text scoreText;
 
@@ -21,7 +21,7 @@ public class StatsDisplay : MonoBehaviour
             Debug.LogError("GameManager or PlayerStats is not initialized.");
         }
 
-        minutesPlayedText = FindComponentInChildByName<Text>("MinutesPlayedText");
+        timePlayedText = FindComponentInChildByName<Text>("TimePlayedText");
         shotAccuracyText = FindComponentInChildByName<Text>("ShotAccuracyText");
         goldCollectedText = FindComponentInChildByName<Text>("GoldCollectedText");
         scoreText = FindComponentInChildByName<Text>("ScoreText");
@@ -48,8 +48,8 @@ public class StatsDisplay : MonoBehaviour
     void UpdateUI()
     {
         if (playerStats == null) return;
-        if (minutesPlayedText != null)
-            minutesPlayedText.text = $"Minutes Played: {playerStats.MinutesPlayed}";
+        if (timePlayedText != null)
+            timePlayedText.text = $"Minutes Played: {playerStats.GetFormattedTimePlayed()}";
         if (goldCollectedText != null)
             goldCollectedText.text = $"Gold Collected: {playerStats.GoldCollected}";
         if (shotAccuracyText != null)

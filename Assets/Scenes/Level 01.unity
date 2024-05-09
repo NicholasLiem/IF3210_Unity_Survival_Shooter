@@ -243,6 +243,7 @@ MonoBehaviour:
   goldCollectedText: {fileID: 1857874819}
   minutesPlayedText: {fileID: 683828208}
   shotAccuracyText: {fileID: 0}
+  scoreText: {fileID: 0}
 --- !u!1 &15127719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1919,7 +1920,7 @@ GameObject:
   - component: {fileID: 683828207}
   - component: {fileID: 683828206}
   m_Layer: 5
-  m_Name: MinutesPlayedText
+  m_Name: TimePlayedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
