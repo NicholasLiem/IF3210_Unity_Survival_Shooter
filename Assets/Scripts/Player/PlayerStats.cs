@@ -70,7 +70,6 @@ public class PlayerStats : MonoBehaviour, ISaveable
     public void AddSecondsPassed()
     {
         SecondsPlayed++;
-        Debug.Log("Seconds Played: " + SecondsPlayed);
     }
 
     private void AddEnemiesKilled(string enemyType)
@@ -137,7 +136,6 @@ public class PlayerStats : MonoBehaviour, ISaveable
 
     public void AddScore(int score)
     {
-        Debug.Log("Score added: " + score);
         Score += score;
     }
 
