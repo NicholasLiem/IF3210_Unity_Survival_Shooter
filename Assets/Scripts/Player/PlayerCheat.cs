@@ -25,19 +25,6 @@ public class PlayerCheat : MonoBehaviour
     {
         playerHealth = GetComponent<PlayerHealth>();
         playerMovement = GetComponent<PlayerMovement>();
-        weaponGun = transform.Find("Gun").gameObject;
-        weaponShotgun = transform.Find("Shotgun").gameObject;
-        weaponSword = transform.Find("Sword").gameObject;
-        weaponGun = weaponGun.transform.Find("GunBarrelEnd").gameObject;
-        gun = weaponGun.GetComponent<Gun>();
-        for (int i = 0; i < 5; i++)
-        {
-            string barrelName = i == 0 ? "ShotgunBarrelEnd" : $"ShotgunBarrelEnd ({i})";
-            GameObject shotgunBarrelEnd = weaponShotgun.transform.Find(barrelName).gameObject;
-            shotgun[i] = shotgunBarrelEnd.GetComponent<Shotgun>();
-        }
-        weaponSword = weaponSword.transform.Find("KatanaEnd").gameObject;
-        sword = weaponSword.GetComponent<Sword>();
     }
 
     // Start is called before the first frame update
@@ -62,6 +49,19 @@ public class PlayerCheat : MonoBehaviour
 
     void OneHitKill()
     {
+        weaponGun = transform.Find("Gun").gameObject;
+        weaponShotgun = transform.Find("Shotgun").gameObject;
+        weaponSword = transform.Find("Sword").gameObject;
+        weaponGun = weaponGun.transform.Find("GunBarrelEnd").gameObject;
+        gun = weaponGun.GetComponent<Gun>();
+        for (int i = 0; i < 5; i++)
+        {
+            string barrelName = i == 0 ? "ShotgunBarrelEnd" : $"ShotgunBarrelEnd ({i})";
+            GameObject shotgunBarrelEnd = weaponShotgun.transform.Find(barrelName).gameObject;
+            shotgun[i] = shotgunBarrelEnd.GetComponent<Shotgun>();
+        }
+        weaponSword = weaponSword.transform.Find("KatanaEnd").gameObject;
+        sword = weaponSword.GetComponent<Sword>();
         Debug.Log(gun);
         gun.OneShotKillCheat();
         for (int i = 0; i < shotgun.Length; i++)
@@ -133,7 +133,7 @@ public class PlayerCheat : MonoBehaviour
         else if (input == "skip")
         {
             Debug.Log("Skip");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            GameManager.Instance.AdvanceLevel(); ;
         }
         else if (input == "deactivecheat")
         {
