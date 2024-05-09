@@ -21,12 +21,18 @@ public class LoadMenuController : MonoBehaviour
         {
             save01.interactable = FileManager.IsFileExist("1.dat");
             buttonText01.color = save01.interactable ? buttonText01.color : disabledTextColor;
+            save01.onClick.RemoveAllListeners();
+            save01.onClick.AddListener(() => GameManager.Instance.LoadGame(1));
 
             save02.interactable = FileManager.IsFileExist("2.dat");
             buttonText02.color = save02.interactable ? buttonText02.color : disabledTextColor;
+            save02.onClick.RemoveAllListeners();
+            save02.onClick.AddListener(() => GameManager.Instance.LoadGame(2));
 
             save03.interactable = FileManager.IsFileExist("3.dat");
             buttonText03.color = save03.interactable ? buttonText03.color : disabledTextColor;
+            save03.onClick.RemoveAllListeners();
+            save03.onClick.AddListener(() => GameManager.Instance.LoadGame(3));
         }
     }
 }

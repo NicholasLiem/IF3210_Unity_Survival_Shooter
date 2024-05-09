@@ -63,12 +63,14 @@ public class GameManager : MonoBehaviour, ISaveable
         playerData.username = this.Username;
         playerData.baseDamage = this.baseDemage;
         playerData.gameDifficulty = this.gameDifficulty;
+        playerData.petData = this.petData;
 
         saveData.playerData = playerData;
 
         SaveData.QuestData questData = new();
 
         questData.progress = this.questProgress;
+        questData.currentLevel = this.currentLevel;
 
         saveData.questData = questData;
 
@@ -80,7 +82,11 @@ public class GameManager : MonoBehaviour, ISaveable
         this.Username = saveData.playerData.username;
         this.baseDemage = saveData.playerData.baseDamage;
         this.gameDifficulty = saveData.playerData.gameDifficulty;
+        this.petData = saveData.playerData.petData;
+
         this.questProgress = saveData.questData.progress;
+        this.currentLevel = saveData.questData.currentLevel;
+
         PlayerStats.LoadFromSaveData(saveData);
     }
 
@@ -89,15 +95,15 @@ public class GameManager : MonoBehaviour, ISaveable
         SaveData sd = new();
         PopulateSaveData(sd);
 
-        Debug.Log(sd);
         if (FileManager.WriteToFile(num + ".dat", sd.ToJson()))
         {
-            Debug.Log("Save successful");
+            Debug.Log("Save successful " + num);
         }
     }
 
     public void LoadGame(int num)
     {
+        Debug.Log("LOADING");
         if (FileManager.LoadFromFile(num + ".dat", out var json))
         {
             SaveData sd = new();
@@ -105,6 +111,8 @@ public class GameManager : MonoBehaviour, ISaveable
 
             LoadFromSaveData(sd);
             Debug.Log("Load complete");
+
+            AdvanceLevel(true);
         }
     }
 

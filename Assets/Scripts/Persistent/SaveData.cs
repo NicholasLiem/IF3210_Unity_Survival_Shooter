@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class SaveData
     {
         public string username;
         public float baseDamage;
+        
+        public List<Tuple<string, int>> petData;
 
         public GameDifficulty gameDifficulty;
     }
@@ -18,12 +21,14 @@ public class SaveData
     {
         public float shotAccuracy;
         public int totalShotsFired;
-        public int successfulHits;
+        public int successfillHits;
         public float distanceTraveled;
         public int minutesPlayed;
-        public int goldCollected;
-        public Dictionary<string, int> orbsCollected;
-        public Dictionary<string, int> enemyKillCount;
+        public int GoldCollected;
+        public int score;
+
+        public Dictionary<string, int> OrbsCollected;
+        public Dictionary<string, int> EnemyKillCount;
     }
 
 
@@ -31,6 +36,7 @@ public class SaveData
     public struct QuestData
     {
         public int progress;
+        public int currentLevel;
     }
 
     public PlayerData playerData;
