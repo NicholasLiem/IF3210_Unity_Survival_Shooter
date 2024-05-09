@@ -25,12 +25,13 @@ public class SaveData
         public float distanceTraveled;
         public int minutesPlayed;
         public int goldCollected;
+        
         public int score;
 
         public int secondsPlayed;
 
-        public Dictionary<string, int> OrbsCollected;
-        public Dictionary<string, int> EnemyKillCount;
+        public Dictionary<string, int> orbsCollected;
+        public Dictionary<string, int> enemyKillCount;
     }
 
 

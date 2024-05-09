@@ -163,9 +163,9 @@ public class PlayerStats : MonoBehaviour, ISaveable
         statisticData.successfillHits = this.SuccessfulHits;
         statisticData.distanceTraveled = this.DistanceTraveled;
         statisticData.secondsPlayed = this.SecondsPlayed;
-        statisticData.GoldCollected = this.GoldCollected;
-        statisticData.OrbsCollected = this.OrbsCollected;
-        statisticData.EnemyKillCount = this.EnemyKillCount;
+        statisticData.goldCollected = this.GoldCollected;
+        statisticData.orbsCollected = this.OrbsCollected;
+        statisticData.enemyKillCount = this.EnemyKillCount;
         statisticData.score = this.Score;
 
         saveData.statisticData = statisticData;
@@ -177,10 +177,10 @@ public class PlayerStats : MonoBehaviour, ISaveable
         this.TotalShotsFired = saveData.statisticData.totalShotsFired;
         this.SuccessfulHits = saveData.statisticData.successfillHits;
         this.DistanceTraveled = saveData.statisticData.distanceTraveled;
-        this.SecondPlayed = saveData.statisticData.secondsPlayed;
-        this.GoldCollected = saveData.statisticData.GoldCollected;
-        this.OrbsCollected = saveData.statisticData.OrbsCollected;
-        this.EnemyKillCount = saveData.statisticData.EnemyKillCount;
+        this.SecondsPlayed = saveData.statisticData.secondsPlayed;
+        this.GoldCollected = saveData.statisticData.goldCollected;
+        this.OrbsCollected = saveData.statisticData.orbsCollected;
+        this.EnemyKillCount = saveData.statisticData.enemyKillCount;
         this.Score = saveData.statisticData.score;
     }
 
