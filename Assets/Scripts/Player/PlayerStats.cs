@@ -102,7 +102,6 @@ public class PlayerStats : MonoBehaviour
 
     private void AddShotFired()
     {
-        Debug.Log("Shot fired");
         TotalShotsFired++;
         UpdateShotAccuracy();
     }
