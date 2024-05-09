@@ -127,8 +127,7 @@ namespace Nightmare
             GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
             SetKinematics(true);
 
-            GameManager.Instance.score += scoreValue;
-            GameManager.Instance.gold += goldValue;
+            GameManager.Instance.PlayerStats.AddScore(scoreValue);
             GameEventsManager.Instance.miscEvents.TriggerGoldCollected(goldValue);
         }
 

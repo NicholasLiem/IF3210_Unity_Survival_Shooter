@@ -31,7 +31,7 @@ public class ShopManager : MonoBehaviour
 
     public void BuyAttackPet()
     {
-        int currentGold = GameManager.Instance.gold;
+        int currentGold = GameManager.Instance.PlayerStats.GoldCollected;
         if (currentGold < petPrice && !ScoreManager.motherlodeCheat)
         {
             errorTextTimeShown = errorTextShowTime;
@@ -41,7 +41,7 @@ public class ShopManager : MonoBehaviour
 
         if (!ScoreManager.motherlodeCheat)
         {
-            GameManager.Instance.gold = currentGold - petPrice;
+            GameManager.Instance.PlayerStats.DeductGoldCollected(petPrice);
         }
 
         Instantiate(attackPetPrefab, player.transform.position, Quaternion.identity);
@@ -51,7 +51,7 @@ public class ShopManager : MonoBehaviour
 
     public void BuyHealPet()
     {
-        int currentGold = GameManager.Instance.gold;
+        int currentGold = GameManager.Instance.PlayerStats.GoldCollected;
         if (currentGold < petPrice && !ScoreManager.motherlodeCheat)
         {
             errorTextTimeShown = errorTextShowTime;
@@ -61,7 +61,7 @@ public class ShopManager : MonoBehaviour
 
         if (!ScoreManager.motherlodeCheat)
         {
-            GameManager.Instance.gold = currentGold - petPrice;
+            GameManager.Instance.PlayerStats.DeductGoldCollected(petPrice);
         }
 
         Instantiate(healPetPrefab, player.transform.position, Quaternion.identity);

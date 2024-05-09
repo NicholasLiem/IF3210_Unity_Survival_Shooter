@@ -10,7 +10,8 @@ public class PlayerStats : MonoBehaviour
     public int SuccessfulHits { get; private set; } = 0;
     public float DistanceTraveled { get; private set; } = 0;
     public int MinutesPlayed { get; private set; } = 0;
-    public int GoldCollected {get; private set;} = 0;
+    public int GoldCollected {get; private set;} = 500;
+    public int Score {get; private set;} = 0;
 
     public Dictionary<string, int> OrbsCollected { get; private set; } = new Dictionary<string, int>();
     public Dictionary<string, int> EnemyKillCount { get; private set; } = new Dictionary<string, int>();
@@ -100,6 +101,15 @@ public class PlayerStats : MonoBehaviour
         GoldCollected += goldCollected;
     }
 
+    public void DeductGoldCollected(int price)
+    {
+        if (price > GoldCollected)
+        {
+            return;
+        }
+        GoldCollected -= price;
+    }
+
     private void AddShotFired()
     {
         TotalShotsFired++;
@@ -124,7 +134,13 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    private void ResetStats()
+    public void AddScore(int score)
+    {
+        Debug.Log("Score added: " + score);
+        Score += score;
+    }
+
+    public void ResetStats()
     {
         ShotAccuracy = 0;
         TotalShotsFired = 0;
@@ -132,6 +148,7 @@ public class PlayerStats : MonoBehaviour
         DistanceTraveled = 0;
         MinutesPlayed = 0;
         GoldCollected = 0;
+        Score = 0;
         OrbsCollected = new Dictionary<string, int>();
         EnemyKillCount = new Dictionary<string, int>();
     }

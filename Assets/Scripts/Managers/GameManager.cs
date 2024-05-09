@@ -22,9 +22,6 @@ public class GameManager : MonoBehaviour, ISaveable
     public List<Tuple<string, int>> petData = new();
     public int questProgress = 0;
 
-    public int score = 0;
-    public int gold = 0;
-
     public PlayerStats PlayerStats;
 
     public int currentLevel = 1;
@@ -187,8 +184,7 @@ public class GameManager : MonoBehaviour, ISaveable
         {
             // Reset scene level, score, gold and back to main menu
             currentLevel = 1;
-            score = 0;
-            gold = 0;
+            PlayerStats.ResetStats();
             SceneManager.LoadScene(0);
         } else
         {

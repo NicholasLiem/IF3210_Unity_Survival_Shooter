@@ -8,9 +8,7 @@ public class StatsDisplay : MonoBehaviour
     public Text goldCollectedText;
     public Text minutesPlayedText;
     public Text shotAccuracyText;
-    // public Text distanceText;
-    // public Text orbsCollectedText;
-    // public Text enemiesKilledText;
+    public Text scoreText;
 
     void Awake()
     {
@@ -26,6 +24,7 @@ public class StatsDisplay : MonoBehaviour
         minutesPlayedText = FindComponentInChildByName<Text>("MinutesPlayedText");
         shotAccuracyText = FindComponentInChildByName<Text>("ShotAccuracyText");
         goldCollectedText = FindComponentInChildByName<Text>("GoldCollectedText");
+        scoreText = FindComponentInChildByName<Text>("ScoreText");
     }
 
     void Update()
@@ -55,12 +54,8 @@ public class StatsDisplay : MonoBehaviour
             goldCollectedText.text = $"Gold Collected: {playerStats.GoldCollected}";
         if (shotAccuracyText != null)
             shotAccuracyText.text = $"Shot Accuracy: {playerStats.ShotAccuracy * 100:F2}%";
-        // if (orbsCollectedText != null)
-        //     orbsCollectedText.text = GenerateStatsText(playerStats.OrbsCollected, "Orbs Collected");
-        // if (enemiesKilledText != null)
-        //     enemiesKilledText.text = GenerateStatsText(playerStats.EnemyKillCount, "Enemies Killed");
-        // if (distanceText != null)
-        //     distanceText.text = $"Distance Traveled: {playerStats.DistanceTraveled:F2}m";
+        if (scoreText != null)
+            scoreText.text = $"Score {playerStats.Score}";
     }
 
     string GenerateStatsText(Dictionary<string, int> statsDictionary, string title)
