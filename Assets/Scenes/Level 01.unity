@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571328, b: 0.3069218, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2126,7 +2126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 129951185609088669, guid: 5ed15f1e5f10c4ddf93d6da22ca1d59d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.422737
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 129951185609088669, guid: 5ed15f1e5f10c4ddf93d6da22ca1d59d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2274,6 +2274,10 @@ PrefabInstance:
     - target: {fileID: 1817271121336607761, guid: 4cad235a511e3ca4391907989d59bacb, type: 3}
       propertyPath: m_Name
       value: ShopCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1817271121336607761, guid: 4cad235a511e3ca4391907989d59bacb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2585640495210349035, guid: 4cad235a511e3ca4391907989d59bacb, type: 3}
       propertyPath: m_text
@@ -4484,6 +4488,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop
       objectReference: {fileID: 0}
+    - target: {fileID: 1253129871656352669, guid: 256b29fbb412d744e8c118b8a7da3b38, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8185218071934380454, guid: 256b29fbb412d744e8c118b8a7da3b38, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.15
@@ -4506,7 +4514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8185218071934380454, guid: 256b29fbb412d744e8c118b8a7da3b38, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8185218071934380454, guid: 256b29fbb412d744e8c118b8a7da3b38, type: 3}
       propertyPath: m_LocalRotation.w
