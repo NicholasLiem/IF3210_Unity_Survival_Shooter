@@ -68,6 +68,10 @@ public class PlayerSaveArea : MonoBehaviour
                 QuitPerformAction();
             }
         }
+        else
+        {
+            QuitPerformAction();
+        }
     }
 
     void ShowSaveMessage()

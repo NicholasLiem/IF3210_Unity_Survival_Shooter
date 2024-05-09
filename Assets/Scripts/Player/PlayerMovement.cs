@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     // Shop references
     public GameObject panel;
     public GameObject errorText;
+    public GameObject messageText;
     public TMPro.TMP_InputField cheatingInputField;
     public Transform shopKeeper;
     public float shopThresholdRange = 3f;
@@ -136,6 +137,15 @@ public class PlayerMovement : MonoBehaviour
         if (!IsNearShopkeeper() && panel.activeInHierarchy)
         {
             panel.SetActive(false);
+        }
+
+        if (IsNearShopkeeper() && !panel.activeInHierarchy)
+        {
+            messageText.SetActive(true);
+        }
+        else
+        {
+            messageText.SetActive(false);
         }
 
         // If shop panel is closed
