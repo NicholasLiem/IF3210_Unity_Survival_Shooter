@@ -30,6 +30,31 @@ public class GameManager : MonoBehaviour, ISaveable
 
     public bool HavePlayed;
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Scene Loaded: " + scene.name);
+        CheckForLevelInitialization();
+    }
+
+    private void CheckForLevelInitialization()
+    {
+        if (currentLevel % 2 == 0)
+        {
+            GameEventsManager.Instance.miscEvents.TriggerLevelAdvance(currentLevel);
+            Debug.Log("Triggered Level Advance for level: " + currentLevel);
+        }
+    }
+
     private void Awake()
     {
         Debug.Log("GameManager Awake started");
@@ -189,6 +214,7 @@ public class GameManager : MonoBehaviour, ISaveable
        
     public void AdvanceLevel(bool toShop = false)
     {
+        int nextLevel = currentLevel + 1;
         if (toShop)
         {
             SceneManager.LoadScene(shopSceneIndex);

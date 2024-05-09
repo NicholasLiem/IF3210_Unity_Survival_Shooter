@@ -17,10 +17,11 @@ public class SurviveOneMinuteQuestStep : QuestStep
 
     private void OneMinuteHasPassed()
     {
+        Debug.Log("Minute passssssed");
         totalMinutes++;
         if (totalMinutes >= minutesToComplete)
         {
-            Debug.Log("Quest is finised");
+            Debug.Log("Finish quest step?");
             FinishQuestStep();
         }
     }

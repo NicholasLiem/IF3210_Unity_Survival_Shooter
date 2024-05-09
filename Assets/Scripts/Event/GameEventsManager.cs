@@ -11,6 +11,7 @@ public class GameEventsManager : MonoBehaviour
     public MiscEvents miscEvents;
     public EnemyKilledEvents enemyKilledEvents;
     public PlayerActionEvents playerActionEvents;
+    public QuestEvents questEvents;
 
     void Awake()
     {
@@ -25,6 +26,7 @@ public class GameEventsManager : MonoBehaviour
         miscEvents = new MiscEvents();
         enemyKilledEvents = new EnemyKilledEvents();
         playerActionEvents = new PlayerActionEvents();
+        questEvents = new QuestEvents();
         Ready?.Invoke();
         Debug.Log("GameEventsManager initialized: " + gameObject.name);
     }

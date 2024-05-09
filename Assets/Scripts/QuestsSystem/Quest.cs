@@ -1,6 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Quest
 {
@@ -26,14 +27,30 @@ public class Quest
         return (currentQuestStepIndex < info.questStepPrefabs.Length);
     }
 
-    public void InstantiateCurrentQuestStep(Transform parrentTransform)
+    public void InstantiateCurrentQuestStep(Transform parentTransform)
     {
         GameObject questStepPrefab = GetCurrentQuestStepPrefab();
         if (questStepPrefab != null)
         {
-            Object.Instantiate<GameObject>(questStepPrefab, parrentTransform);
+            GameObject instantiatedPrefab = Object.Instantiate(questStepPrefab, parentTransform);
+            Debug.Log("Prefab instantiated successfully: " + instantiatedPrefab.name);
+
+            QuestStep questStep = instantiatedPrefab.GetComponent<QuestStep>();
+            if (questStep != null)
+            {
+                questStep.InitializeQuestStep(info.id);
+            }
+            else
+            {
+                Debug.LogError("QuestStep component not found on the instantiated prefab for quest ID: " + info.id);
+            }
+        }
+        else
+        {
+            Debug.LogError("Failed to load quest step prefab for quest ID: " + info.id);
         }
     }
+
 
     private GameObject GetCurrentQuestStepPrefab()
     {

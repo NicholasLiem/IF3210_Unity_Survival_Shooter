@@ -19,7 +19,6 @@ public class QuestInfoSO : ScriptableObject
 
     [Header("Rewards")]
     public int goldReward;
-    public int experienceReward;
 
     // Ensure id always the name of the scriptable object
     private void OnValidate()
