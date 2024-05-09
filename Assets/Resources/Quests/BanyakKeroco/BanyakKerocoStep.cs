@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Nightmare;
 public class BanyakKerocoStep : QuestStep
 {
     private int kerocoCount = 0;
@@ -48,7 +48,6 @@ public class BanyakKerocoStep : QuestStep
     private void OneMinuteHasPassed()
     {
         totalMinutes++;
-        Debug.Log("Minutes passed: " + totalMinutes);
 
         if (totalMinutes >= minutesToComplete)
         {
