@@ -55,7 +55,7 @@ public class StatsDisplay : MonoBehaviour
         if (shotAccuracyText != null)
             shotAccuracyText.text = $"Shot Accuracy: {playerStats.ShotAccuracy * 100:F2}%";
         if (scoreText != null)
-            scoreText.text = $"Score {playerStats.Score}";
+            scoreText.text = $"Score: {playerStats.Score}";
     }
 
     string GenerateStatsText(Dictionary<string, int> statsDictionary, string title)
