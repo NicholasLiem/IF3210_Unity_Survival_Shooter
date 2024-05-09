@@ -6,12 +6,19 @@ using UnityEngine;
 public class SaveData
 {
     [System.Serializable]
+    public struct PetData
+    {
+        public string name;
+        public int count;
+    }
+
+    [System.Serializable]
     public struct PlayerData
     {
         public string username;
         public float baseDamage;
         
-        public List<Tuple<string, int>> petData;
+        public PetData[] petData;
 
         public GameDifficulty gameDifficulty;
     }

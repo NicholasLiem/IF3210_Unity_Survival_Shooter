@@ -63,8 +63,12 @@ public class GameManager : MonoBehaviour, ISaveable
         playerData.username = this.Username;
         playerData.baseDamage = this.baseDemage;
         playerData.gameDifficulty = this.gameDifficulty;
-        playerData.petData = this.petData;
-
+        SaveData.PetData[] peDataArray = new SaveData.PetData[petData.Count];
+        for (int i = 0; i < petData.Count; i++)
+        {
+            peDataArray[i] = new SaveData.PetData { name = petData[i].Item1, count = petData[i].Item2 };
+        }
+        playerData.petData = peDataArray;
         saveData.playerData = playerData;
 
         SaveData.QuestData questData = new();
@@ -82,7 +86,11 @@ public class GameManager : MonoBehaviour, ISaveable
         this.Username = saveData.playerData.username;
         this.baseDemage = saveData.playerData.baseDamage;
         this.gameDifficulty = saveData.playerData.gameDifficulty;
-        this.petData = saveData.playerData.petData;
+        this.petData.Clear();
+        foreach (SaveData.PetData item in saveData.playerData.petData)
+        {
+            this.petData.Add(new Tuple<string, int>(item.name, item.count));
+        }
 
         this.questProgress = saveData.questData.progress;
         this.currentLevel = saveData.questData.currentLevel;
@@ -134,6 +142,9 @@ public class GameManager : MonoBehaviour, ISaveable
 
     public void AddOrUpdatePet(string petName)
     {
+
+        Debug.Log("PET BUYED: " + petName);
+
         if (petData == null)
         {
             petData = new List<Tuple<string, int>>();
