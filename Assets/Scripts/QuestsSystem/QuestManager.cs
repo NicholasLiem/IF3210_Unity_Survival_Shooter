@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
+    public static QuestManager Instance { get; private set; }
     private Dictionary<string, Quest> questMap;
     private int currentPlayerLevel = 0;
 
@@ -12,6 +13,17 @@ public class QuestManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         questMap = CreateQuestMap();
     }
 
@@ -75,6 +87,11 @@ public class QuestManager : MonoBehaviour
             if (quest.state == QuestState.CAN_START)
             {
                 StartQuest(quest.info.id);
+            }
+
+            if (quest.state == QuestState.IN_PROGRESS)
+            {
+                NotifyQuestUpdate(quest);
             }
         }
     }

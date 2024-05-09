@@ -15,14 +15,17 @@ public class GameEventsManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance == null)
         {
-            Debug.LogError("Another instance of GameEventsManager exists: " + gameObject.name + " destroying!");
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
             Destroy(gameObject);
             return;
         }
 
-        Instance = this;
         miscEvents = new MiscEvents();
         enemyKilledEvents = new EnemyKilledEvents();
         playerActionEvents = new PlayerActionEvents();

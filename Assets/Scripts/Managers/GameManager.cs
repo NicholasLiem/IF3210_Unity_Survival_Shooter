@@ -22,7 +22,10 @@ public class GameManager : MonoBehaviour, ISaveable
     public List<Tuple<string, int>> petData = new();
     public int questProgress = 0;
 
+    public GameEventsManager GameEventsManager;
+
     public PlayerStats PlayerStats;
+    public QuestManager QuestManager;
 
     public int currentLevel = 1;
     public int shopSceneIndex = 8;
@@ -62,11 +65,17 @@ public class GameManager : MonoBehaviour, ISaveable
         {
             Instance = this;
             PlayerStats = FindObjectOfType<PlayerStats>();
-            if (PlayerStats == null)
+            QuestManager = FindObjectOfType<QuestManager>();
+            GameEventsManager = FindObjectOfType<GameEventsManager>();
+            if (PlayerStats == null && QuestManager == null && GameEventsManager == null)
             {
-                Debug.Log("PlayerStats not found, creating new one.");
+                Debug.Log("PlayerStats and QuestManager not found, creating new one.");
                 GameObject stats = new GameObject("PlayerStats");
                 PlayerStats = stats.AddComponent<PlayerStats>();
+                GameObject gem = new GameObject("GameEventsManager");
+                GameEventsManager = gem.AddComponent<GameEventsManager>();
+                GameObject qm = new GameObject("QuestManager");
+                QuestManager = qm.AddComponent<QuestManager>();
             }
             DontDestroyOnLoad(this);
         }
