@@ -8,14 +8,19 @@ public class GameOverMenuController : MonoBehaviour
 
     public void GoBackToMainMenu()
     {
-        GameManager.Instance.PlayerStats.ResetStats();
-        SceneManager.LoadScene("Main Menu");
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.RestartGame();
+        }
+        SceneManager.LoadScene(0);
     }
 
     public void RestartGame()
     {
-        // Resetting the stats
-        GameManager.Instance.PlayerStats.ResetStats();
-        SceneManager.LoadScene("Level 01");
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.RestartGame();
+        }
+        SceneManager.LoadScene(1);
     }
 }

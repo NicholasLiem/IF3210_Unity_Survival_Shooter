@@ -249,4 +249,10 @@ public class GameManager : MonoBehaviour, ISaveable
             SceneManager.LoadScene(currentLevel);
         }
     }
+
+    public void RestartGame()
+    {
+        currentLevel = 1;
+        QuestManager.RestartQuest(currentLevel);
+    }
 }

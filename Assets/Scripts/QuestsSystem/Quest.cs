@@ -36,6 +36,7 @@ public class Quest
             Debug.Log("Prefab instantiated successfully: " + instantiatedPrefab.name);
 
             QuestStep questStep = instantiatedPrefab.GetComponent<QuestStep>();
+            QuestManager.Instance.RegisterPrefabInstance(instantiatedPrefab);
             if (questStep != null)
             {
                 questStep.InitializeQuestStep(info.id);

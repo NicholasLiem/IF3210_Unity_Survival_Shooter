@@ -5,6 +5,7 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
     public static QuestManager Instance { get; private set; }
+    private List<GameObject> instantiatedPrefabs = new List<GameObject>();
     private Dictionary<string, Quest> questMap;
     private int currentPlayerLevel = 0;
 
@@ -24,7 +25,37 @@ public class QuestManager : MonoBehaviour
             return;
         }
 
+        InitializeQuests();
+    }
+
+    public void InitializeQuests()
+    {
         questMap = CreateQuestMap();
+        foreach (Quest quest in questMap.Values)
+        {
+            NotifyQuestUpdate(quest);
+        }
+    }
+
+    public void RestartQuest(int restartLevel)
+    {
+        ClearInstantiatedPrefabs();
+        InitializeQuests();
+        currentPlayerLevel = restartLevel;
+    }
+
+    private void ClearInstantiatedPrefabs()
+    {
+        foreach (GameObject prefab in instantiatedPrefabs)
+        {
+            Destroy(prefab);
+        }
+        instantiatedPrefabs.Clear();
+    }
+
+    public void RegisterPrefabInstance(GameObject prefabInstance)
+    {
+        instantiatedPrefabs.Add(prefabInstance);
     }
 
     private void OnEnable()
