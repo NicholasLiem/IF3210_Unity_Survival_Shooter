@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour, ISaveable
         {
             // Reset scene level, score, gold and back to main menu
             currentLevel = 1;
-            PlayerStats.ResetStats();
+            // PlayerStats.ResetStats();
             SceneManager.LoadScene(0);
         } else
         {

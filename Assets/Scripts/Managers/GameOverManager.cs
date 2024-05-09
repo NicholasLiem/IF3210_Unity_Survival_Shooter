@@ -49,8 +49,6 @@ namespace Nightmare
 
         private void ResetLevel()
         {
-            // Reset stats when game is finished
-            GameManager.Instance.PlayerStats.ResetStats();
             LevelManager lm = FindObjectOfType<LevelManager>();
             lm.LoadInitialLevel();
             anim.SetBool("GameOver", false);
