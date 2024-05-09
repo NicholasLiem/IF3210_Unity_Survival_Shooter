@@ -148,8 +148,8 @@ public class PlayerStats : MonoBehaviour, ISaveable
         SecondsPlayed = 0;
         GoldCollected = 0;
         Score = 0;
-        OrbsCollected = new Dictionary<string, int>();
-        EnemyKillCount = new Dictionary<string, int>();
+        OrbsCollected.Clear();
+        EnemyKillCount.Clear();
     }
 
     public void PopulateSaveData(SaveData saveData)
@@ -162,8 +162,20 @@ public class PlayerStats : MonoBehaviour, ISaveable
         statisticData.distanceTraveled = this.DistanceTraveled;
         statisticData.secondsPlayed = this.SecondsPlayed;
         statisticData.goldCollected = this.GoldCollected;
-        statisticData.orbsCollected = this.OrbsCollected;
-        statisticData.enemyKillCount = this.EnemyKillCount;
+        SaveData.OrbData[] orbs = new SaveData.OrbData[this.OrbsCollected.Count];
+        int i = 0;
+        foreach (var pair in this.OrbsCollected)
+        {
+            orbs[i++] = new SaveData.OrbData { name = pair.Key, count = pair.Value };
+        }
+        statisticData.orbsCollected = orbs;
+        SaveData.EnemyData[] enemies = new SaveData.EnemyData[this.EnemyKillCount.Count];
+        i = 0;
+        foreach (var pair in this.EnemyKillCount)
+        {
+            enemies[i++] = new SaveData.EnemyData { name = pair.Key, count = pair.Value };
+        }
+        statisticData.enemyKillCount = enemies;
         statisticData.score = this.Score;
 
         saveData.statisticData = statisticData;
@@ -177,8 +189,16 @@ public class PlayerStats : MonoBehaviour, ISaveable
         this.DistanceTraveled = saveData.statisticData.distanceTraveled;
         this.SecondsPlayed = saveData.statisticData.secondsPlayed;
         this.GoldCollected = saveData.statisticData.goldCollected;
-        this.OrbsCollected = saveData.statisticData.orbsCollected;
-        this.EnemyKillCount = saveData.statisticData.enemyKillCount;
+        this.OrbsCollected.Clear();
+        foreach (var item in saveData.statisticData.orbsCollected)
+        {
+            this.OrbsCollected[item.name] = item.count;
+        }
+        this.EnemyKillCount.Clear();
+        foreach (var item in saveData.statisticData.enemyKillCount)
+        {
+            this.EnemyKillCount[item.name] = item.count;
+        }
         this.Score = saveData.statisticData.score;
     }
 

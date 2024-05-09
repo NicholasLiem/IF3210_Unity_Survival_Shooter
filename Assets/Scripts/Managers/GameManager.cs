@@ -142,9 +142,6 @@ public class GameManager : MonoBehaviour, ISaveable
 
     public void AddOrUpdatePet(string petName)
     {
-
-        Debug.Log("PET BUYED: " + petName);
-
         if (petData == null)
         {
             petData = new List<Tuple<string, int>>();

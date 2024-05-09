@@ -13,6 +13,20 @@ public class SaveData
     }
 
     [System.Serializable]
+    public struct OrbData
+    {
+        public string name;
+        public int count;
+    }
+
+    [System.Serializable]
+    public struct EnemyData
+    {
+        public string name;
+        public int count;
+    }
+
+    [System.Serializable]
     public struct PlayerData
     {
         public string username;
@@ -36,8 +50,8 @@ public class SaveData
 
         public int secondsPlayed;
 
-        public Dictionary<string, int> orbsCollected;
-        public Dictionary<string, int> enemyKillCount;
+        public OrbData[] orbsCollected;
+        public EnemyData[] enemyKillCount;
     }
 
 
