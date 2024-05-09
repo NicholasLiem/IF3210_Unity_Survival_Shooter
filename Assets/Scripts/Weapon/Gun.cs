@@ -115,7 +115,10 @@ namespace Nightmare
             shootRay.origin = transform.position;
             shootRay.direction = transform.forward;
 
-            GameEventsManager.instance.playerActionEvents.TriggerShotFired();
+            if (WeaponHelper.IsPartOfPlayer(transform))
+            {
+                GameEventsManager.Instance.playerActionEvents.TriggerShotFired();
+            }
 
             // Perform the raycast against gameobjects on the shootable layer and if it hits something...
             if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
@@ -135,7 +138,10 @@ namespace Nightmare
                         damage = enemyHealth.currentHealth;
                     }
                     // ... the enemy should take damage.
-                    GameEventsManager.instance.playerActionEvents.TriggerShotHit(true);
+                    if (WeaponHelper.IsPartOfPlayer(transform))
+                    {
+                        GameEventsManager.Instance.playerActionEvents.TriggerShotHit(true);
+                    }
                     enemyHealth.TakeDamage((int)(damage * multiplier), shootHit.point);
                 }
 
@@ -166,6 +172,5 @@ namespace Nightmare
 
             gunLine.widthCurve = curve;
         }
-
     }
 }

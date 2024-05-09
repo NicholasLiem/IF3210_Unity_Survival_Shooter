@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour, ISaveable
     public int score = 0;
     public int gold = 0;
 
+    public PlayerStats playerStats;
+
     public int currentLevel = 1;
     public int shopSceneIndex = 8;
     public int MAX_PLAYABLE_SCENE = 7;
@@ -34,6 +36,12 @@ public class GameManager : MonoBehaviour, ISaveable
         if (Instance == null)
         {
             Instance = this;
+            playerStats = FindObjectOfType<PlayerStats>();
+            if (playerStats == null)
+            {
+                GameObject stats = new GameObject("PlayerStats");
+                playerStats = stats.AddComponent<PlayerStats>();
+            }
             DontDestroyOnLoad(this);
         }
         else if (Instance != this)
@@ -41,7 +49,6 @@ public class GameManager : MonoBehaviour, ISaveable
             Destroy(gameObject);
         }
     }
-
 
     /*
      * Save and Load
@@ -69,7 +76,6 @@ public class GameManager : MonoBehaviour, ISaveable
         this.Username = saveData.playerData.username;
         this.baseDemage = saveData.playerData.baseDamage;
         this.gameDifficulty = saveData.playerData.gameDifficulty;
-
         this.questProgress = saveData.questData.progress;
     }
 

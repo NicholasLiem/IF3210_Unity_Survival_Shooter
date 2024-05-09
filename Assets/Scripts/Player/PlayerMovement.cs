@@ -169,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
         // Debug.Log("Speed");
         movement = movement.normalized * speed * Time.deltaTime;
         playerRigidbody.MovePosition(transform.position + movement);
-        GameEventsManager.instance.playerActionEvents.TriggerPlayerMovement(movement.magnitude);
+        GameEventsManager.Instance.playerActionEvents.TriggerPlayerMovement(movement.magnitude);
     }
 
     void Turning()

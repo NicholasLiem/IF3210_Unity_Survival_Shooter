@@ -24,7 +24,7 @@ namespace Nightmare
             if (other.CompareTag("Player"))
             {
                 Debug.Log("PICKED UP");
-                GameEventsManager.instance.miscEvents.TriggerOrbsCollected(orbType);
+                GameEventsManager.Instance.miscEvents.TriggerOrbsCollected(orbType);
 
                 PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
 

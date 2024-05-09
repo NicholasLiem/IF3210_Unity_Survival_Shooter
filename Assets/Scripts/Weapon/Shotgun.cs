@@ -39,7 +39,6 @@ namespace Nightmare
 
             playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
 
-
             StartPausible();
         }
 
@@ -108,7 +107,10 @@ namespace Nightmare
 
             shootRay.origin = transform.position;
             shootRay.direction = transform.forward;
-            GameEventsManager.instance.playerActionEvents.TriggerShotFired();
+            if (WeaponHelper.IsPartOfPlayer(transform))
+            {
+                GameEventsManager.Instance.playerActionEvents.TriggerShotFired();
+            }
 
             if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
             {
@@ -126,7 +128,10 @@ namespace Nightmare
                             finalDamage = enemyHealth.currentHealth;
                         }
                         Debug.Log("This is final damage " + finalDamage);
-                        GameEventsManager.instance.playerActionEvents.TriggerShotHit(true);
+                        if (WeaponHelper.IsPartOfPlayer(transform))
+                        {
+                            GameEventsManager.Instance.playerActionEvents.TriggerShotHit(true);
+                        }
                         enemyHealth.TakeDamage((int)(multiplier * finalDamage), shootHit.point);
                     }
 

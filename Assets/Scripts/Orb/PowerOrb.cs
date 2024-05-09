@@ -23,7 +23,7 @@ namespace Nightmare
             if (other.CompareTag("Player"))
             {
                 Debug.Log("PICKED UP");
-                GameEventsManager.instance.miscEvents.TriggerOrbsCollected(orbType);
+                GameEventsManager.Instance.miscEvents.TriggerOrbsCollected(orbType);
 
                 PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
                 if (playerHealth != null)

@@ -8,12 +8,12 @@ public class SurviveOneMinuteQuestStep : QuestStep
 
     private void OnEnable()
     {
-        GameEventsManager.instance.miscEvents.OnMinutePassed += OneMinuteHasPassed;
+        GameEventsManager.Instance.miscEvents.OnMinutePassed += OneMinuteHasPassed;
     }
 
     private void OnDisable()
     {
-        GameEventsManager.instance.miscEvents.OnMinutePassed -= OneMinuteHasPassed;
+        GameEventsManager.Instance.miscEvents.OnMinutePassed -= OneMinuteHasPassed;
     }
 
     private void OneMinuteHasPassed(int totalMinutes)

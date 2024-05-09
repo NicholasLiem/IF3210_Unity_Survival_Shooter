@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class PlayerStats : MonoBehaviour
 {
+    public static PlayerStats Instance { get; private set; }
     public float ShotAccuracy {get; private set;} = 0;
     public int TotalShotsFired { get; private set; } = 0;
     public int SuccessfulHits { get; private set; } = 0;
@@ -13,15 +14,31 @@ public class PlayerStats : MonoBehaviour
     public Dictionary<string, int> OrbsCollected { get; private set; } = new Dictionary<string, int>();
     public Dictionary<string, int> EnemyKillCount { get; private set; } = new Dictionary<string, int>();
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnEnable()
     {
-        GameEventsManager.instance.miscEvents.OnMinutePassed += UpdateMinutesPlayed;
-        GameEventsManager.instance.miscEvents.OnOrbsCollected += AddOrbsCollected;
-        GameEventsManager.instance.miscEvents.OnGoldCollected += AddGoldCollected;
-        GameEventsManager.instance.enemyKilledEvents.OnEnemyKilled += AddEnemiesKilled;
-        GameEventsManager.instance.playerActionEvents.OnShotFired += AddShotFired;
-        GameEventsManager.instance.playerActionEvents.OnShotHit += AddSuccessfulHit;
-        GameEventsManager.instance.playerActionEvents.OnPlayerMovement += AddDistance;
+        if (GameEventsManager.Instance != null)
+        {
+            GameEventsManager.Instance.miscEvents.OnMinutePassed += UpdateMinutesPlayed;
+            GameEventsManager.Instance.miscEvents.OnOrbsCollected += AddOrbsCollected;
+            GameEventsManager.Instance.miscEvents.OnGoldCollected += AddGoldCollected;
+            GameEventsManager.Instance.enemyKilledEvents.OnEnemyKilled += AddEnemiesKilled;
+            GameEventsManager.Instance.playerActionEvents.OnShotFired += AddShotFired;
+            GameEventsManager.Instance.playerActionEvents.OnShotHit += AddSuccessfulHit;
+            GameEventsManager.Instance.playerActionEvents.OnPlayerMovement += AddDistance;
+        }
     }
 
     private void AddDistance(float distance)

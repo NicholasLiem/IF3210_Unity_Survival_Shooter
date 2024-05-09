@@ -23,13 +23,13 @@ public class TimeManager : MonoBehaviour
         if (minuteCountdown <= 0)
         {
             minuteCountdown = 60f;
-            if (GameEventsManager.instance == null || GameEventsManager.instance.miscEvents == null)
+            if (GameEventsManager.Instance == null || GameEventsManager.Instance.miscEvents == null)
             {
                 Debug.LogError("GameEventsManager or miscEvents is not initialized");
                 return;
             }
 
-            GameEventsManager.instance.miscEvents.TriggerMinutePassed((int)(timePlayed / 60f));
+            GameEventsManager.Instance.miscEvents.TriggerMinutePassed((int)(timePlayed / 60f));
         }
     }
 

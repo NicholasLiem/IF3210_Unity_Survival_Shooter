@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class StatsDisplay : MonoBehaviour
 {
-    public PlayerStats playerStats;
+    private PlayerStats playerStats;
     public Text goldCollectedText;
     public Text minutesPlayedText;
     public Text shotAccuracyText;
@@ -20,6 +20,7 @@ public class StatsDisplay : MonoBehaviour
         // orbsCollectedText = FindComponentInChildByName<Text>("OrbsCollectedText");
         // enemiesKilledText = FindComponentInChildByName<Text>("EnemiesKilledText");
         // distanceText = FindComponentInChildByName<Text>("DistanceTraveledText");
+        playerStats = GameManager.Instance.playerStats;
     }
 
     void Update()
@@ -46,14 +47,14 @@ public class StatsDisplay : MonoBehaviour
             minutesPlayedText.text = $"Minutes Played: {playerStats.MinutesPlayed}";
         if (goldCollectedText != null)
             goldCollectedText.text = $"Gold Collected: {playerStats.GoldCollected}";
+        if (shotAccuracyText != null)
+            shotAccuracyText.text = $"Shot Accuracy: {playerStats.ShotAccuracy * 100:F2}%";
         // if (orbsCollectedText != null)
         //     orbsCollectedText.text = GenerateStatsText(playerStats.OrbsCollected, "Orbs Collected");
         // if (enemiesKilledText != null)
         //     enemiesKilledText.text = GenerateStatsText(playerStats.EnemyKillCount, "Enemies Killed");
         // if (distanceText != null)
         //     distanceText.text = $"Distance Traveled: {playerStats.DistanceTraveled:F2}m";
-        if (shotAccuracyText != null)
-            shotAccuracyText.text = $"Shot Accuracy: {playerStats.ShotAccuracy * 100:F2}%";
     }
 
     string GenerateStatsText(Dictionary<string, int> statsDictionary, string title)

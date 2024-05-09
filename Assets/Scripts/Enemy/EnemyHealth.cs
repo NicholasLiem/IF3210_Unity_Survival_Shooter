@@ -100,7 +100,7 @@ namespace Nightmare
                 SpawnOrb();
             }
 
-            GameEventsManager.instance.enemyKilledEvents.TriggerEnemyKilled(data.enemyType);
+            GameEventsManager.Instance.enemyKilledEvents.TriggerEnemyKilled(data.enemyType);
 
             if (angryParticles != null)
             {
@@ -129,8 +129,7 @@ namespace Nightmare
 
             GameManager.Instance.score += scoreValue;
             GameManager.Instance.gold += goldValue;
-            // TODO: Change gold into game manager instead of score manager
-            GameEventsManager.instance.miscEvents.TriggerGoldCollected(goldValue);
+            GameEventsManager.Instance.miscEvents.TriggerGoldCollected(goldValue);
         }
 
         public int CurrentHealth()
