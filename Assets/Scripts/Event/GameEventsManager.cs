@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GameEventsManager : MonoBehaviour
 {
+    public delegate void OnReady();
+    public static event OnReady Ready;
     public static GameEventsManager Instance;
     public MiscEvents miscEvents;
     public EnemyKilledEvents enemyKilledEvents;
@@ -23,6 +25,7 @@ public class GameEventsManager : MonoBehaviour
         miscEvents = new MiscEvents();
         enemyKilledEvents = new EnemyKilledEvents();
         playerActionEvents = new PlayerActionEvents();
+        Ready?.Invoke();
         Debug.Log("GameEventsManager initialized: " + gameObject.name);
     }
 }

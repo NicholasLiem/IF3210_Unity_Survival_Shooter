@@ -14,13 +14,18 @@ public class StatsDisplay : MonoBehaviour
 
     void Awake()
     {
+        if (GameManager.Instance != null && GameManager.Instance.PlayerStats != null)
+        {
+            playerStats = GameManager.Instance.PlayerStats;
+        }
+        else
+        {
+            Debug.LogError("GameManager or PlayerStats is not initialized.");
+        }
+
         minutesPlayedText = FindComponentInChildByName<Text>("MinutesPlayedText");
         shotAccuracyText = FindComponentInChildByName<Text>("ShotAccuracyText");
         goldCollectedText = FindComponentInChildByName<Text>("GoldCollectedText");
-        // orbsCollectedText = FindComponentInChildByName<Text>("OrbsCollectedText");
-        // enemiesKilledText = FindComponentInChildByName<Text>("EnemiesKilledText");
-        // distanceText = FindComponentInChildByName<Text>("DistanceTraveledText");
-        playerStats = GameManager.Instance.playerStats;
     }
 
     void Update()
@@ -43,6 +48,7 @@ public class StatsDisplay : MonoBehaviour
 
     void UpdateUI()
     {
+        if (playerStats == null) return;
         if (minutesPlayedText != null)
             minutesPlayedText.text = $"Minutes Played: {playerStats.MinutesPlayed}";
         if (goldCollectedText != null)

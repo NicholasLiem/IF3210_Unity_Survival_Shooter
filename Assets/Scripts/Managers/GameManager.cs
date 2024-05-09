@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour, ISaveable
     public int score = 0;
     public int gold = 0;
 
-    public PlayerStats playerStats;
+    public PlayerStats PlayerStats;
 
     public int currentLevel = 1;
     public int shopSceneIndex = 8;
@@ -33,22 +33,27 @@ public class GameManager : MonoBehaviour, ISaveable
 
     private void Awake()
     {
+        Debug.Log("GameManager Awake started");
         if (Instance == null)
         {
             Instance = this;
-            playerStats = FindObjectOfType<PlayerStats>();
-            if (playerStats == null)
+            PlayerStats = FindObjectOfType<PlayerStats>();
+            if (PlayerStats == null)
             {
+                Debug.Log("PlayerStats not found, creating new one.");
                 GameObject stats = new GameObject("PlayerStats");
-                playerStats = stats.AddComponent<PlayerStats>();
+                PlayerStats = stats.AddComponent<PlayerStats>();
             }
             DontDestroyOnLoad(this);
         }
-        else if (Instance != this)
+        else
         {
+            Debug.Log("GameManager instance already exists, destroying duplicate.");
             Destroy(gameObject);
         }
+        Debug.Log("GameManager Awake completed with PlayerStats: " + PlayerStats);
     }
+
 
     /*
      * Save and Load

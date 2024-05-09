@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class PlayerStats : MonoBehaviour
 {
+    private bool eventsSubscribed = false;
     public static PlayerStats Instance { get; private set; }
     public float ShotAccuracy {get; private set;} = 0;
     public int TotalShotsFired { get; private set; } = 0;
@@ -29,6 +30,16 @@ public class PlayerStats : MonoBehaviour
 
     private void OnEnable()
     {
+        GameEventsManager.Ready += SubscribeToEvents;
+    }
+
+    private void OnDisable()
+    {
+        GameEventsManager.Ready -= SubscribeToEvents;
+    }
+
+    private void SubscribeToEvents()
+    {
         if (GameEventsManager.Instance != null)
         {
             GameEventsManager.Instance.miscEvents.OnMinutePassed += UpdateMinutesPlayed;
@@ -38,6 +49,15 @@ public class PlayerStats : MonoBehaviour
             GameEventsManager.Instance.playerActionEvents.OnShotFired += AddShotFired;
             GameEventsManager.Instance.playerActionEvents.OnShotHit += AddSuccessfulHit;
             GameEventsManager.Instance.playerActionEvents.OnPlayerMovement += AddDistance;
+        }
+    }
+
+    private void Update()
+    {
+        if (!eventsSubscribed && GameEventsManager.Instance != null)
+        {
+            SubscribeToEvents();
+            eventsSubscribed = true;
         }
     }
 
@@ -82,6 +102,7 @@ public class PlayerStats : MonoBehaviour
 
     private void AddShotFired()
     {
+        Debug.Log("Shot fired");
         TotalShotsFired++;
         UpdateShotAccuracy();
     }
