@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Save Point Scene.unity
     guid: 889614435534e44999539e234b31d228
+  - enabled: 1
+    path: Assets/Scenes/Game Over.unity
+    guid: 3ab85bc5d1769bbc4a28bdfddc7f0458
   m_configObjects: {}
