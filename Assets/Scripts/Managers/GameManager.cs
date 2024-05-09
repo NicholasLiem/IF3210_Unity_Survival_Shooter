@@ -71,6 +71,8 @@ public class GameManager : MonoBehaviour, ISaveable
         questData.progress = this.questProgress;
 
         saveData.questData = questData;
+
+        PlayerStats.PopulateSaveData(saveData);
     }
 
     public void LoadFromSaveData(SaveData saveData)
@@ -79,6 +81,7 @@ public class GameManager : MonoBehaviour, ISaveable
         this.baseDemage = saveData.playerData.baseDamage;
         this.gameDifficulty = saveData.playerData.gameDifficulty;
         this.questProgress = saveData.questData.progress;
+        PlayerStats.LoadFromSaveData(saveData);
     }
 
     public void SaveGame(int num)

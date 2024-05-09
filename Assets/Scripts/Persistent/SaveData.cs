@@ -16,8 +16,16 @@ public class SaveData
     [System.Serializable]
     public struct StatisticData
     {
-        // TODO: Add statistic data
+        public float shotAccuracy;
+        public int totalShotsFired;
+        public int successfulHits;
+        public float distanceTraveled;
+        public int minutesPlayed;
+        public int goldCollected;
+        public Dictionary<string, int> orbsCollected;
+        public Dictionary<string, int> enemyKillCount;
     }
+
 
     [System.Serializable]
     public struct QuestData

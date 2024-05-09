@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour
     public int SuccessfulHits { get; private set; } = 0;
     public float DistanceTraveled { get; private set; } = 0;
     public int MinutesPlayed { get; private set; } = 0;
-    public int GoldCollected {get; private set;} = 500;
+    public int GoldCollected {get; private set;} = 0;
     public int Score {get; private set;} = 0;
 
     public Dictionary<string, int> OrbsCollected { get; private set; } = new Dictionary<string, int>();
@@ -151,5 +151,29 @@ public class PlayerStats : MonoBehaviour
         Score = 0;
         OrbsCollected = new Dictionary<string, int>();
         EnemyKillCount = new Dictionary<string, int>();
+    }
+
+    public void PopulateSaveData(SaveData saveData)
+    {
+        saveData.statisticData.shotAccuracy = ShotAccuracy;
+        saveData.statisticData.totalShotsFired = TotalShotsFired;
+        saveData.statisticData.successfulHits = SuccessfulHits;
+        saveData.statisticData.distanceTraveled = DistanceTraveled;
+        saveData.statisticData.minutesPlayed = MinutesPlayed;
+        saveData.statisticData.goldCollected = GoldCollected;
+        saveData.statisticData.orbsCollected = new Dictionary<string, int>(OrbsCollected);
+        saveData.statisticData.enemyKillCount = new Dictionary<string, int>(EnemyKillCount);
+    }
+
+    public void LoadFromSaveData(SaveData saveData)
+    {
+        ShotAccuracy = saveData.statisticData.shotAccuracy;
+        TotalShotsFired = saveData.statisticData.totalShotsFired;
+        SuccessfulHits = saveData.statisticData.successfulHits;
+        DistanceTraveled = saveData.statisticData.distanceTraveled;
+        MinutesPlayed = saveData.statisticData.minutesPlayed;
+        GoldCollected = saveData.statisticData.goldCollected;
+        OrbsCollected = new Dictionary<string, int>(saveData.statisticData.orbsCollected);
+        EnemyKillCount = new Dictionary<string, int>(saveData.statisticData.enemyKillCount);
     }
 }
