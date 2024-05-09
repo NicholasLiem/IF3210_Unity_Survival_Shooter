@@ -103,7 +103,7 @@ namespace Nightmare
 
             // Get all colliders within the sphere's radius
             Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange.radius, shootableMask);
-
+            GameEventsManager.instance.playerActionEvents.TriggerShotFired();
 
             foreach (var hitCollider in hitColliders)
             {
@@ -128,6 +128,7 @@ namespace Nightmare
                     // Check if the enemy is in front of the player
                     if (Vector3.Dot(toEnemy, transform.forward) > 0)
                     {
+                        GameEventsManager.instance.playerActionEvents.TriggerShotHit(true);
                         enemyHealth.TakeDamage((int)(multiplier * damage), toEnemy);
                     }
                 }
