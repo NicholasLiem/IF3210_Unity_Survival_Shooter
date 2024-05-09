@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : MonoBehaviour, ISaveable
 {
     private bool eventsSubscribed = false;
     public static PlayerStats Instance { get; private set; }
@@ -156,26 +156,32 @@ public class PlayerStats : MonoBehaviour
 
     public void PopulateSaveData(SaveData saveData)
     {
-        saveData.statisticData.shotAccuracy = ShotAccuracy;
-        saveData.statisticData.totalShotsFired = TotalShotsFired;
-        saveData.statisticData.successfulHits = SuccessfulHits;
-        saveData.statisticData.distanceTraveled = DistanceTraveled;
-        saveData.statisticData.secondsPlayed = SecondsPlayed;
-        saveData.statisticData.goldCollected = GoldCollected;
-        saveData.statisticData.orbsCollected = new Dictionary<string, int>(OrbsCollected);
-        saveData.statisticData.enemyKillCount = new Dictionary<string, int>(EnemyKillCount);
+        SaveData.StatisticData statisticData = new();
+
+        statisticData.shotAccuracy = this.ShotAccuracy;
+        statisticData.totalShotsFired = this.TotalShotsFired;
+        statisticData.successfillHits = this.SuccessfulHits;
+        statisticData.distanceTraveled = this.DistanceTraveled;
+        statisticData.secondsPlayed = this.SecondsPlayed;
+        statisticData.GoldCollected = this.GoldCollected;
+        statisticData.OrbsCollected = this.OrbsCollected;
+        statisticData.EnemyKillCount = this.EnemyKillCount;
+        statisticData.score = this.Score;
+
+        saveData.statisticData = statisticData;
     }
 
     public void LoadFromSaveData(SaveData saveData)
     {
-        ShotAccuracy = saveData.statisticData.shotAccuracy;
-        TotalShotsFired = saveData.statisticData.totalShotsFired;
-        SuccessfulHits = saveData.statisticData.successfulHits;
-        DistanceTraveled = saveData.statisticData.distanceTraveled;
-        SecondsPlayed = saveData.statisticData.secondsPlayed;
-        GoldCollected = saveData.statisticData.goldCollected;
-        OrbsCollected = new Dictionary<string, int>(saveData.statisticData.orbsCollected);
-        EnemyKillCount = new Dictionary<string, int>(saveData.statisticData.enemyKillCount);
+        this.ShotAccuracy = saveData.statisticData.shotAccuracy;
+        this.TotalShotsFired = saveData.statisticData.totalShotsFired;
+        this.SuccessfulHits = saveData.statisticData.successfillHits;
+        this.DistanceTraveled = saveData.statisticData.distanceTraveled;
+        this.SecondPlayed = saveData.statisticData.secondsPlayed;
+        this.GoldCollected = saveData.statisticData.GoldCollected;
+        this.OrbsCollected = saveData.statisticData.OrbsCollected;
+        this.EnemyKillCount = saveData.statisticData.EnemyKillCount;
+        this.Score = saveData.statisticData.score;
     }
 
     public string GetFormattedTimePlayed()

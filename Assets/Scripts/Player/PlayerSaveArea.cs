@@ -21,8 +21,9 @@ public class PlayerSaveArea : MonoBehaviour
             {
                 if (saveButtons[i] != null)
                 {
+                    int saveSlot = i + 1;
                     saveButtons[i].onClick.RemoveAllListeners();
-                    saveButtons[i].onClick.AddListener(() => GameManager.Instance.SaveGame(1));
+                    saveButtons[i].onClick.AddListener(() => GameManager.Instance.SaveGame(saveSlot));
                 }
             }
         }
