@@ -27,6 +27,13 @@ public class SaveData
     }
 
     [System.Serializable]
+    public struct QuestItemData
+    {
+        public string id;
+        public string serializedQuestData;
+    }
+
+    [System.Serializable]
     public struct PlayerData
     {
         public string username;
@@ -60,6 +67,9 @@ public class SaveData
     {
         public int progress;
         public int currentLevel;
+
+        public QuestItemData[] questMap;
+        public int currentPlayerLevel;
     }
 
     public PlayerData playerData;
