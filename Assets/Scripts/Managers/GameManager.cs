@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public enum GameDifficulty : ushort
@@ -32,6 +33,8 @@ public class GameManager : MonoBehaviour, ISaveable
     public int MAX_PLAYABLE_SCENE = 7;
 
     public bool HavePlayed;
+
+    public AudioMixer masterMixer;
 
     void OnEnable()
     {
