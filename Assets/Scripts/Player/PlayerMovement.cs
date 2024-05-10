@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject messageText;
     public TMPro.TMP_InputField cheatingInputField;
     public Transform shopKeeper;
-    public float shopThresholdRange = 3f;
+    public float shopThresholdRange = 4f;
     public float errorTextShowTime = 2f;
     public GameObject attackPetPrefab;
     public GameObject healPetPrefab;
