@@ -17,8 +17,6 @@ MonoBehaviour:
   description: Ya.. bunuh aja
   levelRequirement: 6
   questPrerequisites:
-  - {fileID: 11400000, guid: 3c190d3a5b79468849aa09c873439272, type: 2}
-  - {fileID: 11400000, guid: e990b8a9f3ae5b18c9bb1d011aa27e9f, type: 2}
   - {fileID: 11400000, guid: a7d9ec6da1a87d2cc9b8318f9a310991, type: 2}
   questStepPrefabs:
   - {fileID: 5559749325367368401, guid: b7c21d5e505c980168c4e014189e58a6, type: 3}
