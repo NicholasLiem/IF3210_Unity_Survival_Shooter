@@ -218,20 +218,20 @@ public class QuestManager : MonoBehaviour, ISaveable
         return quest;
     }
 
-    // Pindahin ke JSON builder?
-    private void OnApplicationQuit()
-    {
-        foreach (Quest quest in questMap.Values)
-        {
-            QuestData questData = quest.GetQuestData();
-            Debug.Log(quest.info.id);
-            Debug.Log("State: " + questData.state);
-            foreach (QuestStepState stepState in questData.questStepStates)
-            {
-                Debug.Log("Step state: " + stepState.state);
-            }
-        }
-    }
+    // Ini buat cara dapetin datanya (yang bakal disimpen)
+    // private void OnApplicationQuit()
+    // {
+    //     foreach (Quest quest in questMap.Values)
+    //     {
+    //         QuestData questData = quest.GetQuestData();
+    //         Debug.Log(quest.info.id);
+    //         Debug.Log("State: " + questData.state);
+    //         foreach (QuestStepState stepState in questData.questStepStates)
+    //         {
+    //             Debug.Log("Step state: " + stepState.state);
+    //         }
+    //     }
+    // }
 
     private Quest LoadQuest(QuestInfoSO questInfo, string serializedData)
     {
