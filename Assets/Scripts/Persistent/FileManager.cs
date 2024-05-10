@@ -23,7 +23,7 @@ public static class FileManager
     public static bool LoadFromFile(string a_FileName, out string result)
     {
         var fullPath = Path.Combine(Application.persistentDataPath, a_FileName);
-        Debug.Log(fullPath);
+        //Debug.Log(fullPath);
 
         try
         {
@@ -32,7 +32,7 @@ public static class FileManager
         }
         catch (Exception e)
         {
-            Debug.LogError($"Failed to read from {fullPath} with exception {e}");
+            //Debug.LogError($"Failed to read from {fullPath} with exception {e}");
             result = "";
             return false;
         }

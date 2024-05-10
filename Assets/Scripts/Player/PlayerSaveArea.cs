@@ -8,26 +8,8 @@ public class PlayerSaveArea : MonoBehaviour
     public GameObject messageHUD;
     public GameObject saveMenu;
 
-    public Button[] saveButtons;
-
     private bool isPlayerInTrigger = false;
     private bool isPerformingAction = false;
-
-    private void Start()
-    {
-        if (GameManager.Instance != null)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                if (saveButtons[i] != null)
-                {
-                    int saveSlot = i + 1;
-                    saveButtons[i].onClick.RemoveAllListeners();
-                    saveButtons[i].onClick.AddListener(() => GameManager.Instance.SaveGame(saveSlot));
-                }
-            }
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {

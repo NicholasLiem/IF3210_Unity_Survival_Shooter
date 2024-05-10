@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,33 +7,31 @@ public class LoadMenuController : MonoBehaviour
 {
     public Color disabledTextColor = Color.gray;
 
-    public Button save01;
-    public TMP_Text buttonText01;
-
-    public Button save02;
-    public TMP_Text buttonText02;
-
-    public Button save03;
-    public TMP_Text buttonText03;
+    public Button[] SaveButtons;
+    public TMP_Text[] Texts;
 
     void OnEnable()
     {
         if (GameManager.Instance != null)
         {
-            save01.interactable = FileManager.IsFileExist("1.dat");
-            buttonText01.color = save01.interactable ? buttonText01.color : disabledTextColor;
-            save01.onClick.RemoveAllListeners();
-            save01.onClick.AddListener(() => GameManager.Instance.LoadGame(1));
+            Tuple<bool, string>[] saveSlots = SaveManager.GetSaveSlotList();
 
-            save02.interactable = FileManager.IsFileExist("2.dat");
-            buttonText02.color = save02.interactable ? buttonText02.color : disabledTextColor;
-            save02.onClick.RemoveAllListeners();
-            save02.onClick.AddListener(() => GameManager.Instance.LoadGame(2));
+            for (int i = 0; i < 3; i++)
+            {
+                if (SaveButtons[i] != null && saveSlots[i] != null)
+                {
+                    SaveButtons[i].interactable = saveSlots[i].Item1;
+                    Texts[i].color = saveSlots[i].Item1 ? Texts[i].color : disabledTextColor;
 
-            save03.interactable = FileManager.IsFileExist("3.dat");
-            buttonText03.color = save03.interactable ? buttonText03.color : disabledTextColor;
-            save03.onClick.RemoveAllListeners();
-            save03.onClick.AddListener(() => GameManager.Instance.LoadGame(3));
+                    SaveButtons[i].onClick.RemoveAllListeners();
+                    if (saveSlots[i].Item1)
+                    {
+                        int num = i + 1;
+                        Texts[i].text = saveSlots[i].Item2;
+                        SaveButtons[i].onClick.AddListener(() => GameManager.Instance.LoadGame(num));
+                    }
+                }
+            }
         }
     }
 }

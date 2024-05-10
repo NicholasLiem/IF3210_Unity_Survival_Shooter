@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1388,8 +1388,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000013351, y: 20.611}
-  m_SizeDelta: {x: 149.8559, y: 55.988}
+  m_AnchoredPosition: {x: -0.0013123, y: 20.611}
+  m_SizeDelta: {x: 763.01, y: 55.988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &426430825
 MonoBehaviour:
@@ -4516,12 +4516,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disabledTextColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  save01: {fileID: 1291961835}
-  buttonText01: {fileID: 1256380711}
-  save02: {fileID: 426430825}
-  buttonText02: {fileID: 999716304}
-  save03: {fileID: 2091870579}
-  buttonText03: {fileID: 102410305}
+  SaveButtons:
+  - {fileID: 1291961835}
+  - {fileID: 426430825}
+  - {fileID: 2091870579}
+  Texts:
+  - {fileID: 1256380711}
+  - {fileID: 999716304}
+  - {fileID: 102410305}
 --- !u!1 &1161576664
 GameObject:
   m_ObjectHideFlags: 0
@@ -4912,8 +4914,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: 76}
-  m_SizeDelta: {x: 128.2861, y: 54.7897}
+  m_AnchoredPosition: {x: -0.0025024, y: 76}
+  m_SizeDelta: {x: 763.01, y: 54.7897}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1291961835
 MonoBehaviour:
@@ -8244,8 +8246,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000013351, y: -35.377007}
-  m_SizeDelta: {x: 149.8559, y: 55.988}
+  m_AnchoredPosition: {x: -0.0007019, y: -35.377007}
+  m_SizeDelta: {x: 763.01, y: 55.988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2091870579
 MonoBehaviour:

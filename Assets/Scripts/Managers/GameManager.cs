@@ -118,7 +118,6 @@ public class GameManager : MonoBehaviour, ISaveable
         this.QuestManager.PopulateSaveData(saveData);
         saveData.questData.progress = this.questProgress;
         saveData.questData.currentLevel = this.currentLevel;
-        Debug.Log("ULELELEL" + saveData.questData.questMap.Length);
 
         PlayerStats.PopulateSaveData(saveData);
     }
@@ -143,12 +142,12 @@ public class GameManager : MonoBehaviour, ISaveable
         PlayerStats.LoadFromSaveData(saveData);
     }
 
-    public void SaveGame(int num)
+    public void SaveGame(int num, string name)
     {
         SaveData sd = new();
         PopulateSaveData(sd);
 
-        if (FileManager.WriteToFile(num + ".dat", sd.ToJson()))
+        if (SaveManager.SaveGame(num, name, sd))
         {
             Debug.Log("Save successful " + num);
         }
@@ -157,11 +156,8 @@ public class GameManager : MonoBehaviour, ISaveable
     public void LoadGame(int num)
     {
         Debug.Log("LOADING");
-        if (FileManager.LoadFromFile(num + ".dat", out var json))
+        if (SaveManager.LoadGame(num, out var sd))
         {
-            SaveData sd = new();
-            sd.LoadFromJson(json);
-
             LoadFromSaveData(sd);
             Debug.Log("Load complete");
             this.HavePlayed = true;
