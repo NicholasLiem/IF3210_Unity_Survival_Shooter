@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text.Json;
 
-public class QuestManager : MonoBehaviour
+public class QuestManager : MonoBehaviour, ISaveable
 {
     public static QuestManager Instance { get; private set; }
     private List<GameObject> instantiatedPrefabs = new List<GameObject>();
@@ -202,7 +203,7 @@ public class QuestManager : MonoBehaviour
             {
                 Debug.LogWarning("Duplicate ID found when creating quest map: " + questInfo.id);
             }
-            idToQuestMap.Add(questInfo.id, LoadQuest(questInfo));
+            idToQuestMap.Add(questInfo.id, new Quest(questInfo));
         }
         return idToQuestMap;
     }
@@ -232,32 +233,13 @@ public class QuestManager : MonoBehaviour
     //     }
     // }
 
-    private void SaveQuest(Quest quest)
-    {
-        try
-        {
-            QuestData questData = quest.GetQuestData();
-            string serializedData = ""; // set To JSOn or something
-            // string serializedData = JsonUtility.ToJson(questData);
-            // saving to PlayerPrefs is just a quick example for this tutorial video,
-            // you probably don't want to save this info there long-term.
-            // instead, use an actual Save & Load system and write to a file, the cloud, etc..
-            // PlayerPrefs.SetString(quest.info.id, serializedData); -> simpen ke persistance
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError("Fail to save quest");
-        }
-    }
-
-    private Quest LoadQuest(QuestInfoSO questInfo)
+    private Quest LoadQuest(QuestInfoSO questInfo, string serializedData)
     {
         Quest quest = null;
         try
         {
-            // serializedData = ""; //Ambil dari file
-            // QuestData questData = JsonUtility.FromJSON<questData>(serializedData);
-            // quest = new Quest(questInfo, questData.state, questData.questStepIndex, questData.questStepStates);
+            QuestData questData = JsonUtility.FromJson<QuestData>(serializedData);
+            quest = new Quest(questInfo, questData.state, questData.questStepIndex, questData.questStepStates);
             quest = new Quest(questInfo);
         }
         catch (System.Exception e)
@@ -267,4 +249,53 @@ public class QuestManager : MonoBehaviour
         return quest;
     }
 
+    public void PopulateSaveData(SaveData saveData)
+    {
+        Debug.Log("QUEST COUNTER " + this.questMap.Count);
+        SaveData.QuestData saveQuestData = new();
+
+        SaveData.QuestItemData[] saveQuestMap = new SaveData.QuestItemData[this.questMap.Count];
+        int i = 0;
+        foreach (KeyValuePair<string, Quest> entry in this.questMap)
+        {
+            SaveData.QuestItemData saveQuestItemData = new();
+            saveQuestItemData.id = entry.Key;
+
+            QuestData questData = entry.Value.GetQuestData();
+            saveQuestItemData.serializedQuestData = JsonUtility.ToJson(questData, true);
+
+            saveQuestMap[i++] = saveQuestItemData;
+        }
+        saveQuestData.questMap = saveQuestMap;
+        //Debug.Log("ULOLO" + saveData.questData.questMap.Length);
+
+        saveQuestData.currentPlayerLevel = this.currentPlayerLevel;
+
+        saveData.questData = saveQuestData;
+    }
+
+    public void LoadFromSaveData(SaveData saveData)
+    {
+        ClearInstantiatedPrefabs();
+
+        QuestInfoSO[] allQuests = Resources.LoadAll<QuestInfoSO>("Quests");
+        Dictionary<string, Quest> idToQuestMap = new Dictionary<string, Quest>();
+
+        foreach (QuestInfoSO questInfo in allQuests)
+        {
+            foreach (SaveData.QuestItemData savedQuestData in saveData.questData.questMap)
+            {
+                if (savedQuestData.id == questInfo.id)
+                {
+                    idToQuestMap.Add(questInfo.id, LoadQuest(questInfo, savedQuestData.serializedQuestData));
+                    break;
+                }
+            }
+        }
+
+        questMap = idToQuestMap;
+
+
+        this.currentPlayerLevel = saveData.questData.currentPlayerLevel;
+    }
 }

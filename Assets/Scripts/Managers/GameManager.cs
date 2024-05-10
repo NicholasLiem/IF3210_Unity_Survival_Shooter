@@ -107,12 +107,10 @@ public class GameManager : MonoBehaviour, ISaveable
         playerData.petData = peDataArray;
         saveData.playerData = playerData;
 
-        SaveData.QuestData questData = new();
-
-        questData.progress = this.questProgress;
-        questData.currentLevel = this.currentLevel;
-
-        saveData.questData = questData;
+        this.QuestManager.PopulateSaveData(saveData);
+        saveData.questData.progress = this.questProgress;
+        saveData.questData.currentLevel = this.currentLevel;
+        Debug.Log("ULELELEL" + saveData.questData.questMap.Length);
 
         PlayerStats.PopulateSaveData(saveData);
     }
@@ -128,6 +126,7 @@ public class GameManager : MonoBehaviour, ISaveable
             this.petData.Add(new Tuple<string, int>(item.name, item.count));
         }
 
+        this.QuestManager.LoadFromSaveData(saveData);
         this.questProgress = saveData.questData.progress;
         this.currentLevel = saveData.questData.currentLevel;
 

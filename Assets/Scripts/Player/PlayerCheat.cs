@@ -133,7 +133,7 @@ public class PlayerCheat : MonoBehaviour
         else if (input == "skip")
         {
             Debug.Log("Skip");
-            GameManager.Instance.AdvanceLevel(); ;
+            GameManager.Instance.AdvanceLevel(true);
         }
         else if (input == "deactivecheat")
         {
