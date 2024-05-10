@@ -35,7 +35,24 @@ namespace Nightmare
             if (isPaused)
                 return;
 
-            timer -= Time.deltaTime;
+            int currentDif = (int)GameManager.Instance.gameDifficulty;
+            // 0 is easy, 1 is medium, 2 is hard
+            Debug.Log("Current Difficulty: " + currentDif);
+            if (currentDif == 0)
+            {
+                timer -= (float)(Time.deltaTime * 0.75);
+            }
+            else if (currentDif == 1)
+            {
+                timer -= (float)(Time.deltaTime);
+            }
+            else if (currentDif == 2)
+            {
+                timer -= (float)(Time.deltaTime * 1.25);
+            }
+
+
+
             if (timer <= 0f && spawned < spawnQty)
             {
                 Spawn();
