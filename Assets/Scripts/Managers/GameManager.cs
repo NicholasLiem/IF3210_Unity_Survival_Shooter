@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour, ISaveable
     public QuestManager QuestManager;
 
     public int currentLevel = 1;
+    public int localGoldCollected {get; set;} = 0;
+    public int localScore {get; set;} = 0;
+
     public int shopSceneIndex = 8;
     public int MAX_PLAYABLE_SCENE = 7;
 
@@ -102,6 +105,8 @@ public class GameManager : MonoBehaviour, ISaveable
         playerData.username = this.Username;
         playerData.baseDamage = this.baseDemage;
         playerData.gameDifficulty = this.gameDifficulty;
+        playerData.localGoldCollected = this.localGoldCollected;
+        playerData.localScore = this.localScore;
         SaveData.PetData[] peDataArray = new SaveData.PetData[petData.Count];
         for (int i = 0; i < petData.Count; i++)
         {
@@ -123,6 +128,8 @@ public class GameManager : MonoBehaviour, ISaveable
         this.Username = saveData.playerData.username;
         this.baseDemage = saveData.playerData.baseDamage;
         this.gameDifficulty = saveData.playerData.gameDifficulty;
+        this.localGoldCollected = saveData.playerData.localGoldCollected;
+        this.localScore = saveData.playerData.localScore;
         this.petData.Clear();
         foreach (SaveData.PetData item in saveData.playerData.petData)
         {
@@ -255,6 +262,8 @@ public class GameManager : MonoBehaviour, ISaveable
     public void RestartGame()
     {
         currentLevel = 1;
+        localGoldCollected = 0;
+        localScore = 0;
         QuestManager.RestartQuest(currentLevel);
     }
 }

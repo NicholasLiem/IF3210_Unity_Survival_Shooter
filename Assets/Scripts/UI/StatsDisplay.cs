@@ -60,10 +60,10 @@ public class StatsDisplay : MonoBehaviour
         if (timePlayedText != null)
             timePlayedText.text = $"Time Played: {playerStats.GetFormattedTimePlayed()}";
         if (goldCollectedText != null)
-            goldCollectedText.text = $"Gold Collected: {playerStats.GoldCollected}";
+            goldCollectedText.text = $"Local Gold Collected: {GameManager.Instance.localGoldCollected}";
         if (shotAccuracyText != null)
-            shotAccuracyText.text = $"Shot Accuracy: {playerStats.ShotAccuracy * 100:F2}%";
+            shotAccuracyText.text = $"Global Shot Accuracy: {playerStats.ShotAccuracy * 100:F2}%";
         if (scoreText != null)
-            scoreText.text = $"Score: {playerStats.Score}";
+            scoreText.text = $"Local Score: {GameManager.Instance.localScore}";
     }
 }

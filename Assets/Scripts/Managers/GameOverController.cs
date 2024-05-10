@@ -55,9 +55,9 @@ public class GameOverController : MonoBehaviour
         if (usernameText != null)
             usernameText.text = $"Username: {GameManager.Instance.Username}";
         if (scoreText != null)
-            scoreText.text = $"Score: {playerStats.Score}";
+            scoreText.text = $"Local Score: {GameManager.Instance.localScore}";
         if (goldCollectedText != null)
-            goldCollectedText.text = $"Gold Collected: {playerStats.GoldCollected}";
+            goldCollectedText.text = $"Local Gold Collected: {GameManager.Instance.localGoldCollected}";
         if (timePlayedText != null)
             timePlayedText.text = $"Time Played: {playerStats.GetFormattedTimePlayed()}";
         if (enemiesKilledText != null)

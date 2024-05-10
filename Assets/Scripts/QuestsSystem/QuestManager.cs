@@ -122,8 +122,23 @@ public class QuestManager : MonoBehaviour, ISaveable
 
     private void Update()
     {
+        if (questMap == null)
+        {
+            return;
+        }
+
         foreach (Quest quest in questMap.Values)
         {
+            if (quest == null)
+            {
+                continue;
+            }
+
+            if (quest.info == null)
+            {
+                continue;
+            }
+
             if (quest.state == QuestState.REQUIREMENTS_NOT_MET && CheckRequirementsMet(quest))
             {
                 ChangeQuestState(quest.info.id, QuestState.CAN_START);
@@ -140,6 +155,7 @@ public class QuestManager : MonoBehaviour, ISaveable
             }
         }
     }
+
 
     private void ChangeQuestState(string id, QuestState state)
     {

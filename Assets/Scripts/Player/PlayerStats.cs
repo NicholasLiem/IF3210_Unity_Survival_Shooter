@@ -98,6 +98,7 @@ public class PlayerStats : MonoBehaviour, ISaveable
 
     private void AddGoldCollected(int goldCollected)
     {
+        GameManager.Instance.localGoldCollected += goldCollected;
         GoldCollected += goldCollected;
     }
 
@@ -107,7 +108,7 @@ public class PlayerStats : MonoBehaviour, ISaveable
         {
             return;
         }
-        GoldCollected -= price;
+        GameManager.Instance.localGoldCollected -= price;
     }
 
     private void AddShotFired()
@@ -137,6 +138,7 @@ public class PlayerStats : MonoBehaviour, ISaveable
     public void AddScore(int score)
     {
         Score += score;
+        GameManager.Instance.localScore += score;
     }
 
     public void ResetStats()
