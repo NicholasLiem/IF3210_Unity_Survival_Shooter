@@ -217,20 +217,20 @@ public class QuestManager : MonoBehaviour
         return quest;
     }
 
-    // Pindahin ke JSON builder?
-    private void OnApplicationQuit()
-    {
-        foreach (Quest quest in questMap.Values)
-        {
-            QuestData questData = quest.GetQuestData();
-            Debug.Log(quest.info.id);
-            Debug.Log("State: " + questData.state);
-            foreach (QuestStepState stepState in questData.questStepStates)
-            {
-                Debug.Log("Step state: " + stepState.state);
-            }
-        }
-    }
+    // Ini buat cara dapetin datanya (yang bakal disimpen)
+    // private void OnApplicationQuit()
+    // {
+    //     foreach (Quest quest in questMap.Values)
+    //     {
+    //         QuestData questData = quest.GetQuestData();
+    //         Debug.Log(quest.info.id);
+    //         Debug.Log("State: " + questData.state);
+    //         foreach (QuestStepState stepState in questData.questStepStates)
+    //         {
+    //             Debug.Log("Step state: " + stepState.state);
+    //         }
+    //     }
+    // }
 
     private void SaveQuest(Quest quest)
     {
@@ -238,6 +238,11 @@ public class QuestManager : MonoBehaviour
         {
             QuestData questData = quest.GetQuestData();
             string serializedData = ""; // set To JSOn or something
+            // string serializedData = JsonUtility.ToJson(questData);
+            // saving to PlayerPrefs is just a quick example for this tutorial video,
+            // you probably don't want to save this info there long-term.
+            // instead, use an actual Save & Load system and write to a file, the cloud, etc..
+            // PlayerPrefs.SetString(quest.info.id, serializedData); -> simpen ke persistance
         }
         catch (System.Exception e)
         {
