@@ -64,12 +64,14 @@ public class PlayerSaveArea : MonoBehaviour
 
     void PerformAction()
     {
+        InputManager.DisableInput();
         isPerformingAction = true;
         saveMenu.SetActive(true);
     }
 
     public void QuitPerformAction()
     {
+        InputManager.EnableInput();
         saveMenu.SetActive(false);
         isPerformingAction = false;
     }

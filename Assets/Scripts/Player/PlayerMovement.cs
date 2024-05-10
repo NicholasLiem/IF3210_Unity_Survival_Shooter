@@ -76,12 +76,15 @@ public class PlayerMovement : MonoBehaviour
         }
         speed = baseSpeed + baseSpeed * buffPercentage + baseSpeed * buffCheat;
 
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+        if (InputManager.CanProcessInput)
+        {
+            float h = Input.GetAxisRaw("Horizontal");
+            float v = Input.GetAxisRaw("Vertical");
 
-        Move(h, v);
-        Turning();
-        Animating(h, v);
+            Move(h, v);
+            Turning();
+            Animating(h, v);
+        }
     }
 
     void Update()
