@@ -5,8 +5,6 @@ using TMPro;
 public class StatisticDisplay : MonoBehaviour
 {
     private PlayerStats playerStats;
-    // Upper
-    public TMP_Text usernameText;
 
     // Left-Side
     public TMP_Text scoreText;
@@ -42,7 +40,6 @@ public class StatisticDisplay : MonoBehaviour
 
     void BindComponentToVariables()
     {
-        usernameText = FindComponentInChildByName<TMPro.TextMeshProUGUI>("UsernameText");
         scoreText = FindComponentInChildByName<TMPro.TextMeshProUGUI>("StatisticsScoreText");
         goldCollectedText = FindComponentInChildByName<TMPro.TextMeshProUGUI>("StatisticsGoldText");
         timePlayedText = FindComponentInChildByName<TMPro.TextMeshProUGUI>("StatisticsTimePlayedText");
@@ -57,8 +54,6 @@ public class StatisticDisplay : MonoBehaviour
     {
         if (playerStats == null) return;
 
-        if (usernameText != null)
-            usernameText.text = $"Username: {GameManager.Instance.Username}";
         if (scoreText != null)
             scoreText.text = $"Score: {playerStats.Score}";
         if (goldCollectedText != null)
@@ -96,7 +91,15 @@ public class StatisticDisplay : MonoBehaviour
 
     string GenerateStatsText(Dictionary<string, int> statsDictionary, string title)
     {
-        string text = $"{title}:\n";
+        string text = $"{title}: ";
+
+        if (statsDictionary.Count == 0)
+        {
+            text += "-";
+            return text;
+        }
+
+        text += "\n";
         foreach (KeyValuePair<string, int> entry in statsDictionary)
         {
             text += $"{entry.Key}: {entry.Value}\n";
