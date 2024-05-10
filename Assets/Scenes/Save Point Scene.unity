@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4422,9 +4422,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1327452106522994524, guid: 4cad235a511e3ca4391907989d59bacb, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: efb2c6d83903d394187c8ae4f0cb95e9, type: 3}
     - target: {fileID: 1817271121336607761, guid: 4cad235a511e3ca4391907989d59bacb, type: 3}
       propertyPath: m_Name
       value: ShopCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240024806903270752, guid: 4cad235a511e3ca4391907989d59bacb, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 4870ec32eed24b8449df54f25c582174, type: 3}
+    - target: {fileID: 2455885020550854663, guid: 4cad235a511e3ca4391907989d59bacb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2585640495210349035, guid: 4cad235a511e3ca4391907989d59bacb, type: 3}
       propertyPath: m_text
