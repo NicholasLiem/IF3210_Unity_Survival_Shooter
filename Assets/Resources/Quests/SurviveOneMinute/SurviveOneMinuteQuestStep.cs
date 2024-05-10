@@ -18,9 +18,22 @@ public class SurviveOneMinuteQuestStep : QuestStep
     private void OneMinuteHasPassed()
     {
         totalMinutes++;
+        UpdateState();
         if (totalMinutes >= minutesToComplete)
         {
             FinishQuestStep();
         }
+    }
+
+    private void UpdateState()
+    {
+        string state = totalMinutes.ToString();
+        ChangeState(state);
+    }
+
+    protected override void SetQuestStepState(string state)
+    {
+        this.minutesToComplete = System.Int32.Parse(state);
+        UpdateState();
     }
 }

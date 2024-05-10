@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6020c1e8bd8b6ad8e543062150923c, type: 3}
   m_Name: BanyakKeroco
   m_EditorClassIdentifier: 
-  <id>k__BackingField: 
-  displayName: 
-  description: 
-  levelRequirement: 0
-  questPrerequisites: []
-  questStepPrefabs: []
-  goldReward: 0
+  <id>k__BackingField: BanyakKeroco
+  displayName: Pembunuh Keroco
+  description: Bunuh 10 Keroco, 5 Kepala, dan 1 Jenderal dalam 2 Menit atau Mati!
+  levelRequirement: 4
+  questPrerequisites:
+  - {fileID: 11400000, guid: 3c190d3a5b79468849aa09c873439272, type: 2}
+  - {fileID: 11400000, guid: e990b8a9f3ae5b18c9bb1d011aa27e9f, type: 2}
+  questStepPrefabs:
+  - {fileID: 86572688654763162, guid: e7a80561e4a008240ba8f12d3d75b3fb, type: 3}
+  goldReward: 1000

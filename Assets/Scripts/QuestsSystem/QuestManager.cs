@@ -64,6 +64,7 @@ public class QuestManager : MonoBehaviour
         GameEventsManager.Instance.questEvents.onAdvanceQuest += AdvanceQuest;
         GameEventsManager.Instance.questEvents.onFinishQuest += FinishQuest;
         GameEventsManager.Instance.miscEvents.OnLevelAdvance += PlayerLevelChange;
+        GameEventsManager.Instance.questEvents.onQuestStepStateChange += QuestStepStateChange;
     }
 
     private void OnDisable()
@@ -72,12 +73,24 @@ public class QuestManager : MonoBehaviour
         GameEventsManager.Instance.questEvents.onAdvanceQuest -= AdvanceQuest;
         GameEventsManager.Instance.questEvents.onFinishQuest -= FinishQuest;
         GameEventsManager.Instance.miscEvents.OnLevelAdvance -= PlayerLevelChange;
+        GameEventsManager.Instance.questEvents.onQuestStepStateChange -= QuestStepStateChange;
+    }
+
+    private void QuestStepStateChange(string id, int stepIndex, QuestStepState questStepState)
+    {
+        Quest quest = GetQuestById(id);
+        quest.StoreQuestStepState(questStepState, stepIndex);
+        ChangeQuestState(id, quest.state);
     }
 
     private void Start()
     {
         foreach (Quest quest in questMap.Values)
         {
+            if (quest.state == QuestState.IN_PROGRESS)
+            {
+                quest.InstantiateCurrentQuestStep(this.transform);
+            }
             GameEventsManager.Instance.questEvents.QuestStateChange(quest);
         }
     }
@@ -189,7 +202,7 @@ public class QuestManager : MonoBehaviour
             {
                 Debug.LogWarning("Duplicate ID found when creating quest map: " + questInfo.id);
             }
-            idToQuestMap.Add(questInfo.id, new Quest(questInfo));
+            idToQuestMap.Add(questInfo.id, LoadQuest(questInfo));
         }
         return idToQuestMap;
     }
@@ -200,6 +213,51 @@ public class QuestManager : MonoBehaviour
         if (quest == null)
         {
             Debug.LogError("ID not found in the Quest Map: " + id);
+        }
+        return quest;
+    }
+
+    // Pindahin ke JSON builder?
+    private void OnApplicationQuit()
+    {
+        foreach (Quest quest in questMap.Values)
+        {
+            QuestData questData = quest.GetQuestData();
+            Debug.Log(quest.info.id);
+            Debug.Log("State: " + questData.state);
+            foreach (QuestStepState stepState in questData.questStepStates)
+            {
+                Debug.Log("Step state: " + stepState.state);
+            }
+        }
+    }
+
+    private void SaveQuest(Quest quest)
+    {
+        try
+        {
+            QuestData questData = quest.GetQuestData();
+            string serializedData = ""; // set To JSOn or something
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Fail to save quest");
+        }
+    }
+
+    private Quest LoadQuest(QuestInfoSO questInfo)
+    {
+        Quest quest = null;
+        try
+        {
+            // serializedData = ""; //Ambil dari file
+            // QuestData questData = JsonUtility.FromJSON<questData>(serializedData);
+            // quest = new Quest(questInfo, questData.state, questData.questStepIndex, questData.questStepStates);
+            quest = new Quest(questInfo);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Fail to load quest");
         }
         return quest;
     }

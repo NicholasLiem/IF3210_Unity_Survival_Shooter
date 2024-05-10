@@ -19,5 +19,5 @@ MonoBehaviour:
   questPrerequisites:
   - {fileID: 11400000, guid: 3c190d3a5b79468849aa09c873439272, type: 2}
   questStepPrefabs:
-  - {fileID: 4136876856949779362, guid: eee2c2ef1af4db6fd9611ed0aadf4d22, type: 3}
+  - {fileID: 21321069036910907, guid: 1fc0d7690e7c355f5bafa7f56c2f3407, type: 3}
   goldReward: 150

@@ -22,8 +22,20 @@ public class BunuhRajaStep : QuestStep
         if (enemyType == "Raja")
         {
             rajaCount++;
+            UpdateState();
         }
 
+        CheckCompletion();
+    }
+
+    private void UpdateState()
+    {
+        string state = rajaCount.ToString();
+        ChangeState(state);
+    }
+
+    private void CheckCompletion()
+    {
         if (rajaCount >= requiredRajaCount)
         {
             CompleteQuestStep();
@@ -35,4 +47,10 @@ public class BunuhRajaStep : QuestStep
         FinishQuestStep();
     }
 
+    protected override void SetQuestStepState(string state)
+    {
+        rajaCount = int.Parse(state);
+        UpdateState();
+        CheckCompletion();
+    }
 }

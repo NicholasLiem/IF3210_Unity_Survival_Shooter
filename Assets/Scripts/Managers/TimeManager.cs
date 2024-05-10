@@ -28,7 +28,7 @@ public class TimeManager : MonoBehaviour
             totalSeconds++;
             GameManager.Instance.PlayerStats.AddSecondsPassed();
 
-            if (totalSeconds % 60 == 0)
+            if (totalSeconds % 10 == 0)
             {
                 GameEventsManager.Instance.miscEvents.TriggerMinutePassed();
             }

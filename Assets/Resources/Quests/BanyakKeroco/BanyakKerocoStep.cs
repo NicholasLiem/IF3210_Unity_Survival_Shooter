@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Nightmare;
+
 public class BanyakKerocoStep : QuestStep
 {
     private int kerocoCount = 0;
@@ -42,12 +43,14 @@ public class BanyakKerocoStep : QuestStep
                 break;
         }
 
+        UpdateState();
         CheckQuestCompletion();
     }
 
     private void OneMinuteHasPassed()
     {
         totalMinutes++;
+        UpdateState();
 
         if (totalMinutes >= minutesToComplete)
         {
@@ -58,6 +61,12 @@ public class BanyakKerocoStep : QuestStep
         }
     }
 
+    private void UpdateState()
+    {
+        string state = $"{kerocoCount},{kepalaKerocoCount},{jenderalCount},{totalMinutes}";
+        ChangeState(state);
+    }
+
     private bool CheckQuestCompletion()
     {
         if (kerocoCount >= requiredKerocoCount && kepalaKerocoCount >= requiredKepalaKerocoCount && jenderalCount >= requiredJenderalCount)
@@ -66,8 +75,25 @@ public class BanyakKerocoStep : QuestStep
             FinishQuestStep();
             return true;
         }
-
         return false;
+    }
+
+    protected override void SetQuestStepState(string state)
+    {
+        var states = state.Split(',');
+        if (states.Length == 4)
+        {
+            kerocoCount = int.Parse(states[0]);
+            kepalaKerocoCount = int.Parse(states[1]);
+            jenderalCount = int.Parse(states[2]);
+            totalMinutes = int.Parse(states[3]);
+        }
+
+        CheckQuestCompletion();
+        if (totalMinutes >= minutesToComplete)
+        {
+            KillPlayer();
+        }
     }
 
     private void KillPlayer()
@@ -77,7 +103,7 @@ public class BanyakKerocoStep : QuestStep
         {
             playerHealth.TakeDamage(playerHealth.currentHealth);
         }
-        else if (playerHealth == null)
+        else
         {
             Debug.LogError("PlayerHealth component not found in the scene.");
         }

@@ -30,6 +30,18 @@ public class LimaKerocoDuaKepalaStep : QuestStep
             kepalaKerocoCount++;
         }
 
+        UpdateState();
+        CheckCompletion();
+    }
+
+    private void UpdateState()
+    {
+        string state = $"{kerocoCount},{kepalaKerocoCount}";
+        ChangeState(state);
+    }
+
+    private void CheckCompletion()
+    {
         if (kerocoCount >= requiredKerocoCount && kepalaKerocoCount >= requiredKepalaKerocoCount)
         {
             CompleteQuestStep();
@@ -39,5 +51,17 @@ public class LimaKerocoDuaKepalaStep : QuestStep
     private void CompleteQuestStep()
     {
         FinishQuestStep();
+    }
+
+    protected override void SetQuestStepState(string state)
+    {
+        var states = state.Split(',');
+        if (states.Length == 2)
+        {
+            kerocoCount = int.Parse(states[0]);
+            kepalaKerocoCount = int.Parse(states[1]);
+        }
+        UpdateState();
+        CheckCompletion();
     }
 }
