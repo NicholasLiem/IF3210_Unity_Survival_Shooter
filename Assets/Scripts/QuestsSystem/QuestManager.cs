@@ -218,21 +218,6 @@ public class QuestManager : MonoBehaviour, ISaveable
         return quest;
     }
 
-    // Ini buat cara dapetin datanya (yang bakal disimpen)
-    // private void OnApplicationQuit()
-    // {
-    //     foreach (Quest quest in questMap.Values)
-    //     {
-    //         QuestData questData = quest.GetQuestData();
-    //         Debug.Log(quest.info.id);
-    //         Debug.Log("State: " + questData.state);
-    //         foreach (QuestStepState stepState in questData.questStepStates)
-    //         {
-    //             Debug.Log("Step state: " + stepState.state);
-    //         }
-    //     }
-    // }
-
     private Quest LoadQuest(QuestInfoSO questInfo, string serializedData)
     {
         Quest quest = null;
@@ -240,7 +225,6 @@ public class QuestManager : MonoBehaviour, ISaveable
         {
             QuestData questData = JsonUtility.FromJson<QuestData>(serializedData);
             quest = new Quest(questInfo, questData.state, questData.questStepIndex, questData.questStepStates);
-            quest = new Quest(questInfo);
         }
         catch (System.Exception e)
         {
