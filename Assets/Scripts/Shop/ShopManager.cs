@@ -31,7 +31,7 @@ public class ShopManager : MonoBehaviour
 
     public void BuyAttackPet()
     {
-        int currentGold = GameManager.Instance.PlayerStats.GoldCollected;
+        int currentGold = GameManager.Instance.localGoldCollected;
         if (currentGold < petPrice && !ScoreManager.motherlodeCheat)
         {
             errorTextTimeShown = errorTextShowTime;
@@ -51,7 +51,7 @@ public class ShopManager : MonoBehaviour
 
     public void BuyHealPet()
     {
-        int currentGold = GameManager.Instance.PlayerStats.GoldCollected;
+        int currentGold = GameManager.Instance.localGoldCollected;
         if (currentGold < petPrice && !ScoreManager.motherlodeCheat)
         {
             errorTextTimeShown = errorTextShowTime;

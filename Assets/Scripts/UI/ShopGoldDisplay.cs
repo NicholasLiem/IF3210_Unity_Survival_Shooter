@@ -13,6 +13,6 @@ public class ShopGoldDisplay : MonoBehaviour
 
     private void Update()
     {
-        goldTextObject.text = "Gold: " + GameManager.Instance.PlayerStats.GoldCollected;
+        goldTextObject.text = "Gold: " + GameManager.Instance.localGoldCollected;
     }
 }

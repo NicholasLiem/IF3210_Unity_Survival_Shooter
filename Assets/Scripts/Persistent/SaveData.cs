@@ -37,6 +37,8 @@ public class SaveData
     public struct PlayerData
     {
         public string username;
+        public int localGoldCollected;
+        public int localScore;
         public float baseDamage;
         
         public PetData[] petData;

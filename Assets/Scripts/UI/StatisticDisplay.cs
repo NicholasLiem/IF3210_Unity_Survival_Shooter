@@ -55,9 +55,9 @@ public class StatisticDisplay : MonoBehaviour
         if (playerStats == null) return;
 
         if (scoreText != null)
-            scoreText.text = $"Score: {playerStats.Score}";
+            scoreText.text = $"Total Score: {playerStats.Score}";
         if (goldCollectedText != null)
-            goldCollectedText.text = $"Gold Collected: {playerStats.GoldCollected}";
+            goldCollectedText.text = $"Total Gold Collected: {playerStats.GoldCollected}";
         if (timePlayedText != null)
             timePlayedText.text = $"Time Played: {playerStats.GetFormattedTimePlayed()}";
         if (enemiesKilledText != null)
