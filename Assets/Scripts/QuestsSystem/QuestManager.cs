@@ -267,7 +267,6 @@ public class QuestManager : MonoBehaviour, ISaveable
             saveQuestMap[i++] = saveQuestItemData;
         }
         saveQuestData.questMap = saveQuestMap;
-        //Debug.Log("ULOLO" + saveData.questData.questMap.Length);
 
         saveQuestData.currentPlayerLevel = this.currentPlayerLevel;
 

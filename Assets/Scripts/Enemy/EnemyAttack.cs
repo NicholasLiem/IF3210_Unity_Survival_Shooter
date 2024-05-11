@@ -43,7 +43,6 @@ namespace Nightmare
                 // ... the player or his pet is in range.
                 if (other.CompareTag(petTag))
                 {
-                    Debug.Log("[ENEMY] Found pet");
                     petHealth = other.gameObject.GetComponent<PetHealth>();
                 }
                 attackableInRange = true;
@@ -76,7 +75,6 @@ namespace Nightmare
             if (timer >= timeBetweenAttacks && attackableInRange && enemyHealth.CurrentHealth() > 0)
             {
                 // ... attack.
-                Debug.Log("ATTACKING ");
                 Attack();
             }
 
@@ -93,13 +91,9 @@ namespace Nightmare
             // Reset the timer.
             timer = 0f;
 
-            Debug.Log("[ENEMY] Damage given: " + (int)(attackDamage * multiplier));
-            Debug.Log("[ENEMY] Multiplier: " + multiplier);
-
             // Prioritize pet
             if (petHealth != null && petHealth.CurrentHealth() > 0)
             {
-                Debug.Log("[ENEMY] Attacking PET");
                 petHealth.TakeDamage((int)(attackDamage * multiplier));
                 return;
             }
@@ -114,7 +108,6 @@ namespace Nightmare
 
         public void IncreaseDamage(float percent)
         {
-            Debug.Log("[ENEMY] Increasing damage: " + percent);
             multiplier += percent;
 
             Sword swordScript = GetComponentInChildren<Sword>();
