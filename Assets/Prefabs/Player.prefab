@@ -211,11 +211,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 0}
   errorText: {fileID: 0}
+  messageText: {fileID: 0}
   cheatingInputField: {fileID: 0}
   shopKeeper: {fileID: 0}
   shopThresholdRange: 3
   errorTextShowTime: 2
-  allowedShopTime: 15
   attackPetPrefab: {fileID: 0}
   healPetPrefab: {fileID: 0}
   isCheating: 0
@@ -392,6 +392,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -150
       objectReference: {fileID: 0}
+    - target: {fileID: 9017573385290810308, guid: 9d3a12dc6f5a5a1429f1fdee4703ddb3, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300001, guid: 5b84db49d40ea449aa4f3e3bd229ab5b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -516,6 +520,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 6689862430946744538, guid: 4ef49ef8ded2338409ce3ff41bc48e26, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300001, guid: 5b84db49d40ea449aa4f3e3bd229ab5b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
